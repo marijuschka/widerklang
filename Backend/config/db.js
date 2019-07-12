@@ -5,6 +5,7 @@ var connection = mysql.createConnection({
     password: '',
     port: '33060',
     database: 'widerklang',
+  //  _socket: '/var/run/mysqld/mysqld.sock',
 }); 
 
 connection.connect(function(err) {

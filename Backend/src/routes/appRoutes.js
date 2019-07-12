@@ -1,6 +1,8 @@
 'use strict';
 module.exports = function (app) {
     var userController = require('../controllers/userController');
+    var mmdController = require('../controllers/mmdController');
+    var materialController = require('../controllers/materialController');
 
 /*Hier schreiben wir später die Routen, die wir brauchen
 
@@ -20,4 +22,17 @@ app.route('/users/:user_id')
         .get(userController.get_a_user)
         .put(userController.update_a_user)
         .delete(userController.delete_a_user);
+
+//Mensch mit Demenz MmD
+app.route('/mmd/')
+        .get(mmdController.get_all_mmd)
+        .post(mmdController.create_a_mmd);
+
+//Material 
+app.route('/material/')
+        .get(materialController.get_all_material)
+        .post(materialController.create_a_material);
 };
+
+
+
