@@ -1,7 +1,7 @@
 'user strict';
 var sql = require('../../config/db');
-//var bcrypt = require('bcrypt');
-//var jwt = require('jsonwebtoken');
+var bcrypt = require('bcrypt');
+var jwt = require('jsonwebtoken');
 //User object constructor
 var User = function (id, user) {
     this.id = id;
@@ -9,7 +9,20 @@ var User = function (id, user) {
     this.password = user.password;
     this.email = user.email;
     this.role = user.role;
+    this.mmd_id = user.mmd_id;
 };
+
+User.getAllUsers = function getAllUsers(result) {
+    sql.query("SELECT * FROM User", function (err, res) {
+        if (err) {
+            result(null, err);
+        }
+        else {
+            result(null, res);
+        }
+    });
+};
+
 
 User.createUser = function createUser(user, result) {
     sql.query("INSERT INTO User SET ?", user, function (err, res) {
@@ -21,3 +34,73 @@ User.createUser = function createUser(user, result) {
         }
     });
 };
+
+User.getUserById = function getUserById(userId, result) {
+    sql.query("SELECT * FROM User WHERE id = ?", userId, function (err, res) {
+        if (err) {
+            result(err, null);
+        }
+        else {
+            result(null, res[0]);
+        }
+    });
+};
+
+User.updateById = function updateById(input, result) {
+    console.log("model", input)
+    sql.query("UPDATE User SET username = ?, password = ?, email = ?, role = ? WHERE id = ?", [input.username, input.password, input.email, input.role], function (err, res) {
+        if (err) {
+            result(null, err);
+        }
+        else {
+            result(null, res);
+        }
+    });
+};
+
+User.remove = function remove(id, result) {
+    sql.query("DELETE FROM User WHERE id = ?", [id], function (err, res) {
+
+        if (err) {
+            result(null, err);
+        }
+        else {
+            result(null, res);
+        }
+    });
+};
+
+User.login = function login(username, password, result){
+    sql.query("SELECT * FROM User WHERE username = ? ",
+    [username], function (err, row, field){
+
+        if (err){
+            console.log(err);
+            result(err, { 'token': false, 'message': 'Could not connect to db'})
+        }
+        if(row.length > 0)     
+       {
+        if(bcrypt.compareSync(password, row[0].password)){
+            const user = row[0];
+            const token = jwt.sign({
+                                    email: user.email,
+                                    userId: user.id,
+                                    username: user.username
+                                    }, 'my_secret_key');
+            result(null, {'token': token, 
+                          'auth': true,          
+                          'userid': user.id,
+                          'name': user.username,
+                          'email': user.email});
+        } else{
+            result(null, {'token': false, 'message': 'Username or password is not correct'});
+        }
+    }
+        else{
+            result(null, {'token': false, 'message': 'Username or password is not correct'});
+        }
+    }
+    );
+}
+
+module.exports = User;

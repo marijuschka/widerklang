@@ -6,6 +6,7 @@ class User {
         this.email = email;
         this.password = password;
         this.role = role;
+        this.mmd_id = mmd_id;
     }
 
     setId(id) {
@@ -46,6 +47,12 @@ class User {
 
     getRole() {
         return this.role;
+    }
+    getMmdID() {
+        return this.mmd_id;
+    }
+    setMmdID(mmd_id){
+        this.mmd_id = mmd_id;
     }
 
 }

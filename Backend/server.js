@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 //var jwt = require('jsonwebtoken');
 port = process.env.PORT || 8080;
-//var sql = require('./config/db');
+var sql = require('./config/db');
 
 var app = express();
 
@@ -16,9 +16,7 @@ console.log('API server started on: ' + port);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-});
-/*var routes = require('./src/routes/appRoutes'); //importing route
+
+var routes = require('./src/routes/appRoutes'); //importing route
 routes(app); //register the route */
 

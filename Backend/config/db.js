@@ -1,13 +1,14 @@
+var mysql = require('mysql');
 var connection = mysql.createConnection({
     host: 'localhost',
-    user: 'homestead',
-    password: 'secret',
+    user: 'root',
+    password: '',
     port: '33060',
-    database: 'widerklang'
-});
+    database: 'widerklang',
+}); 
 
 connection.connect(function(err) {
     if (err) throw err;
 });
 
-module.exports = connection;
+module.exports = connection; 

@@ -33,6 +33,7 @@ exports.create_a_user = function (req, res) {
         password: req.body.password,
         email: req.body.email,
         role: req.body.role,
+        mmd_id: 'XXXXXXXX'
       //  profile_img: req.body.profile_img
     }
     user.password = bcrypt.hashSync(user.password, 10);
@@ -49,3 +50,59 @@ exports.create_a_user = function (req, res) {
         });
     }
 };
+
+exports.get_a_user = function (req, res) {
+      User.getUserById(req.params.user_id, function (err, user) {
+                if (err) {
+                    res.send(err);
+                }
+                else if (user == null) {
+                    res.send("User does not exist!");
+                } else {
+                    res.json(user);
+                }
+            });
+        };
+
+ exports.update_a_user = function (req, res) {
+                var updated_user = {
+                        id: req.params.user_id,
+                        username: req.body.username,
+                        email: req.body.email,
+                        password: bcrypt.hashSync(req.body.password, 10),
+                        profile_img: req.body.profile_img,
+                        role: req.body.role
+                    }
+                    User.updateById(updated_user, function (err, user) {
+                        if (err) {
+                            res.send(err);
+                        } else if (user == null) {
+                            res.send("User does not exist!");
+                        } else {
+                            res.json(user);
+                        }
+                    });
+                };
+
+ exports.delete_a_user = function (req, res) {
+                    ensureToken(req, res);
+                    jwt.verify(req.token, 'my_secret_key', function (err, data) {
+                        if (err) {
+                            res.sendStatus(403);
+                        } else {
+                            User.remove(req.params.user_id, function (err, user) {
+                                if (err)
+                                    res.send(err);
+                                res.json({ message: 'User successfully deleted' });
+                            });
+                        };
+                    });
+                }
+
+   exports.login_a_user = function (req, res) {
+         User.login(req.body.username, req.body.password, function (err, authRes) {
+             if (err)
+                res.send(err);
+                res.send(authRes)
+            });
+    }
