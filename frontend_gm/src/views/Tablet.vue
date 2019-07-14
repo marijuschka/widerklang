@@ -1,12 +1,9 @@
 <template>
   <div id="app">
-    <div class="home">
+    <div class="tablet">
       <Header />
-      <br/>
-      <img alt="Vue logo" src="../assets/WiderklangLogo.png" />
-      <br/>
       <br>
-      HOMEPAGE VON WIDERKLANG --> TESTPHASE
+      HIER KOMMT DIE TABLET ANWENDUNG HIN
     </div>
   </div>
 </template>
@@ -15,7 +12,7 @@
 import Header from "../components/Header.vue";
 
 export default {
-  name: "home",
+  name: "tablet",
   components: { 
     Header
   }

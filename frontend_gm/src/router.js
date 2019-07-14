@@ -12,14 +12,19 @@ export default new Router({
       component: Home
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import('./views/About.vue')
+      path: '/user',
+      name: 'user',
+      component: () => import('./views/User.vue')
     },
     {
       path: '/login',
       name: 'login',
       component: () => import('./views/Login.vue')
+    },
+    {
+      path: '/tablet',
+      name: 'tablet',
+      component: () => import('./views/Tablet.vue')
     }
   ]
 })
