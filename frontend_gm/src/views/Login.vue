@@ -2,7 +2,7 @@
   <div class="login">
     <Header />
     <br />
-    <img class="logo" alt="Vue logo" src="../assets/WiderklangLogo.png" />
+    <img class="logo" alt="Vue logo Responsive image" src="../assets/WiderklangLogo.png" />
     <br />
     <br />
     <h1>Das wird die LOGIN Seite!</h1>
@@ -34,17 +34,21 @@
               class="form-control"
               id="password"
               placeholder="Passwort"
+              align="center"
             />
           </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary">Anmelden</button>
     </form>
 
     <br />
     <br />
     <br />
 
+
+
+<!-- CARDS with BootstrapVUE -->
   <b-row align-h="center">
     <b-col cols=2>
       <b-img thumbnail fluid rounded="circle" src="https://picsum.photos/250/250/?image=57" alt="Image 1"></b-img>
@@ -67,7 +71,6 @@
 <script>
 import Header from "@/components/Header.vue";
 import axios from "axios";
-
 
 
 export default {

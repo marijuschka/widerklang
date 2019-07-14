@@ -5,19 +5,98 @@
     <br />
     <div>
       <b-row class="justify-content-md-center">
-        <b-col md="10">
+        <b-col cols="10" md="5">
           <b-card no-body class="overflow-hidden">
             <b-row no-gutters>
-              <b-col md="1">
-                <b-card-img src="https://picsum.photos/400/400/?image=20" class="circle"></b-card-img>
+              <b-col cols="2" md="1">
+                <b-card-img src="https://picsum.photos/400/400/?image=20"></b-card-img>
               </b-col>
-              <b-col md="6">
-                <b-card-body title="Horizontal Card">
-                  <b-card-text>
-                    This is a wider card with supporting text as a natural lead-in to additional content.
-                    This content is a little bit longer.
-                  </b-card-text>
-                </b-card-body>
+              <b-col cols="10">
+                <b-row>
+                  <b-col cols="6">Emma Emersson</b-col>
+                  <b-col cols="3" md="2">
+                    <b-card-text>
+                      <b-button pill variant="outline-secondary">Bearbeiten</b-button>
+                    </b-card-text>
+                  </b-col>
+                  <b-col cols="3" md="2">
+                    <b-card-text>
+                      <b-button pill variant="outline-danger">Entfernen</b-button>
+                    </b-card-text>
+                  </b-col>
+                </b-row>
+              </b-col>
+            </b-row>
+          </b-card>
+        </b-col>
+        <b-col cols="10" md="5">
+          <b-card no-body class="overflow-hidden">
+            <b-row no-gutters>
+              <b-col cols="2" md="1">
+                <b-card-img src="https://picsum.photos/400/400/?image=20"></b-card-img>
+              </b-col>
+              <b-col cols="10">
+                <b-row>
+                  <b-col cols="6">Emma Emersson</b-col>
+                  <b-col cols="3" md="2">
+                    <b-card-text>
+                      <b-button pill variant="outline-secondary">Bearbeiten</b-button>
+                    </b-card-text>
+                  </b-col>
+                  <b-col cols="3" md="2">
+                    <b-card-text>
+                      <b-button pill variant="outline-danger">Entfernen</b-button>
+                    </b-card-text>
+                  </b-col>
+                </b-row>
+              </b-col>
+            </b-row>
+          </b-card>
+        </b-col>
+        <b-col cols="10" md="5">
+          <b-card no-body class="overflow-hidden">
+            <b-row no-gutters>
+              <b-col cols="2" md="1">
+                <b-card-img src="https://picsum.photos/400/400/?image=20"></b-card-img>
+              </b-col>
+              <b-col cols="10">
+                <b-row>
+                  <b-col cols="6">Emma Emersson</b-col>
+                  <b-col cols="3" md="2">
+                    <b-card-text>
+                      <b-button pill variant="outline-secondary">Bearbeiten</b-button>
+                    </b-card-text>
+                  </b-col>
+                  <b-col cols="3" md="2">
+                    <b-card-text>
+                      <b-button pill variant="outline-danger">Entfernen</b-button>
+                    </b-card-text>
+                  </b-col>
+                </b-row>
+              </b-col>
+            </b-row>
+          </b-card>
+        </b-col>
+        <b-col cols="10" md="5">
+          <b-card no-body class="overflow-hidden">
+            <b-row no-gutters>
+              <b-col cols="2" md="1">
+                <b-card-img src="https://picsum.photos/400/400/?image=20"></b-card-img>
+              </b-col>
+              <b-col cols="10">
+                <b-row>
+                  <b-col cols="6">Emma Emersson</b-col>
+                  <b-col cols="3" md="2">
+                    <b-card-text>
+                      <b-button pill variant="outline-secondary">Bearbeiten</b-button>
+                    </b-card-text>
+                  </b-col>
+                  <b-col cols="3" md="2">
+                    <b-card-text>
+                      <b-button pill variant="outline-danger">Entfernen</b-button>
+                    </b-card-text>
+                  </b-col>
+                </b-row>
               </b-col>
             </b-row>
           </b-card>
@@ -39,4 +118,8 @@ export default {
 </script>
 
 <style scoped>
+img {
+  max-width: 100%;
+  height: auto;
+}
 </style>
