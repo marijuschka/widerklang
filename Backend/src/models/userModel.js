@@ -1,6 +1,6 @@
 'user strict';
 var sql = require('../../config/db');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jsonwebtoken');
 //User object constructor
 var User = function (id, user) {
@@ -13,7 +13,7 @@ var User = function (id, user) {
 };
 
 User.getAllUsers = function getAllUsers(result) {
-    sql.query("SELECT * FROM User", function (err, res) {
+    sql.query("SELECT * FROM user", function (err, res) {
         if (err) {
             result(null, err);
         }
@@ -25,7 +25,7 @@ User.getAllUsers = function getAllUsers(result) {
 
 
 User.createUser = function createUser(user, result) {
-    sql.query("INSERT INTO User SET ?", user, function (err, res) {
+    sql.query("INSERT INTO user SET ?", user, function (err, res) {
         if (err) {
             result(err, null);
         }
@@ -36,7 +36,7 @@ User.createUser = function createUser(user, result) {
 };
 
 User.getUserById = function getUserById(userId, result) {
-    sql.query("SELECT * FROM User WHERE id = ?", userId, function (err, res) {
+    sql.query("SELECT * FROM user WHERE id = ?", userId, function (err, res) {
         if (err) {
             result(err, null);
         }
@@ -48,7 +48,7 @@ User.getUserById = function getUserById(userId, result) {
 
 User.updateById = function updateById(input, result) {
     console.log("model", input)
-    sql.query("UPDATE User SET username = ?, password = ?, email = ?, role = ? WHERE id = ?", [input.username, input.password, input.email, input.role], function (err, res) {
+    sql.query("UPDATE user SET username = ?, password = ?, email = ?, role = ? WHERE id = ?", [input.username, input.password, input.email, input.role], function (err, res) {
         if (err) {
             result(null, err);
         }
@@ -59,7 +59,7 @@ User.updateById = function updateById(input, result) {
 };
 
 User.remove = function remove(id, result) {
-    sql.query("DELETE FROM User WHERE id = ?", [id], function (err, res) {
+    sql.query("DELETE FROM user WHERE id = ?", [id], function (err, res) {
 
         if (err) {
             result(null, err);
@@ -71,9 +71,8 @@ User.remove = function remove(id, result) {
 };
 
 User.login = function login(username, password, result){
-    sql.query("SELECT * FROM User WHERE username = ? ",
+    sql.query("SELECT * FROM user WHERE username = ? ",
     [username], function (err, row, field){
-
         if (err){
             console.log(err);
             result(err, { 'token': false, 'message': 'Could not connect to db'})

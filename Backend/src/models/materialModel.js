@@ -1,5 +1,5 @@
 'user strict';
-var sql = require('../../config/db');
+var sql = require('../../config/db_lokal');
 var jwt = require('jsonwebtoken');
 //Material object constructor
 var Material = function (id, material) {

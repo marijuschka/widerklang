@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 //var jwt = require('jsonwebtoken');
 port = process.env.PORT || 8080;
-var sql = require('./config/db');
+var sql = require('./config/db_lokal');
 
 var app = express();
 

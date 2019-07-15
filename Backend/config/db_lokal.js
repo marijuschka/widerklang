@@ -2,10 +2,10 @@ var mysql = require('mysql');
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'gm2019pmw',
-    port: '3306',
+    password: '',
+    port: '33060',
     database: 'widerklang',
-    _socket: '/var/run/mysqld/mysqld.sock',
+  //  _socket: '/var/run/mysqld/mysqld.sock',
 }); 
 
 connection.connect(function(err) {

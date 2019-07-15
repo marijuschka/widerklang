@@ -2,7 +2,7 @@
 
 var User = require('../models/userModel.js');
 //var jwt = require('jsonwebtoken');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 function generateUniqueId() {
     return Math.random().toString(36).substr(2, 10);
 }
@@ -33,10 +33,10 @@ exports.create_a_user = function (req, res) {
         password: req.body.password,
         email: req.body.email,
         role: req.body.role,
-        mmd_id: 'XXXXXXXX'
+        mmd_id: generateUniqueId()
       //  profile_img: req.body.profile_img
     }
-    user.password = bcrypt.hashSync(user.password, 10);
+    user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10));
     //handles null error 
     if (!user.username || !user.password || !user.email || !user.role) {
         res.status(400).send({ error: true, message: 'Please provide all necessary fields!' });
@@ -69,7 +69,7 @@ exports.get_a_user = function (req, res) {
                         id: req.params.user_id,
                         username: req.body.username,
                         email: req.body.email,
-                        password: bcrypt.hashSync(req.body.password, 10),
+                        password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10)),
                         profile_img: req.body.profile_img,
                         role: req.body.role
                     }
