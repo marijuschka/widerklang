@@ -108,12 +108,29 @@
 
 <script>
 import Header from "../components/Header.vue";
+import axios from "axios";
 
 export default {
   name: "user",
   components: {
     Header
-  }
+  },
+  data(){
+    return{
+    user: [],
+  };
+},
+  methods:{}
+  ,
+   created() {
+    axios
+      .get("http://139.6.102.67/api/users")
+      .then(res => {
+        this.user = res.data;
+        console.log(res.data);
+      })
+      .catch(err => console.log("Axios error for events: " + err));
+  },
 };
 </script>
 

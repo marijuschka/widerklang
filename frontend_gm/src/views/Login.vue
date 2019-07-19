@@ -39,7 +39,7 @@
           </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Anmelden</button>
+      <button v-on:click="login" type="submit" class="btn btn-primary">Anmelden</button>
     </form>
 
     <br />
@@ -48,7 +48,7 @@
 
 
 
-<!-- CARDS with BootstrapVUE -->
+<!-- CARDS with BootstrapVUE 
   <b-row align-h="center">
     <b-col cols=2>
       <b-img thumbnail fluid rounded="circle" src="https://picsum.photos/250/250/?image=57" alt="Image 1"></b-img>
@@ -63,7 +63,7 @@
       <b-img thumbnail fluid rounded="circle" src="https://picsum.photos/250/250/?image=59" alt="Image 3"></b-img>
     </b-col>
   </b-row>
-
+-->
     
   </div>
 </template>
@@ -85,7 +85,7 @@ export default {
   },
   methods: {
     login() {
-      axios.post(+"/api/login", {
+      axios.post("http://139.6.102.67/phpmyadmin/login", {
         username: username,
         password: password
       });
