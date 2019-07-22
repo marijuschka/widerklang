@@ -4,7 +4,12 @@
       <Header />
       <br>
       MEDIENVERWALTUNG
-    </div>
+      <b-col cols="2" md="1">
+              <b-card-img src="https://picsum.photos/id/870/200/300?grayscale&blur=2"></b-card-img>
+              <b-card-img src="https://picsum.photos/id/870/200/300?grayscale&blur=2"></b-card-img>
+              <b-card-img src="https://picsum.photos/id/870/200/300?grayscale&blur=2"></b-card-img>
+              </b-col>
+                     </div>
   </div>
 </template>
 
@@ -21,7 +26,7 @@ export default {
 
 <style>
 img{
-  width:400px
+   width: 70px;
 }
 
 </style>
