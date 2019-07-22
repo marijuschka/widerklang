@@ -1,36 +1,27 @@
 <template>
-  <div class="login">
-    <Header />
-    <br />
-    <img class="logo" alt="Vue logo Responsive image" src="../assets/WiderklangLogo.png" />
-    <br />
-    <br />
-    <h1>Medienverwaltung!</h1>
-
-   
- 
-
-    <br />
-    <br />
-    <br />
-
-
-
-
-    
+  <div id="app">
+    <div class="media">
+      <Header />
+      <br>
+      MEDIENVERWALTUNG
+    </div>
   </div>
 </template>
 
 <script>
+import Header from "../components/Header.vue";
 
-
-
-export default 
+export default {
+  name: "media",
+  components: { 
+    Header
+  }
+};
 </script>
 
-
-<style scoped>
-.logo {
-  width: 300px;
+<style>
+img{
+  width:400px
 }
+
 </style>
