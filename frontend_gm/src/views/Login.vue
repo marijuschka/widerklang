@@ -5,7 +5,7 @@
     <img class="logo" alt="Vue logo Responsive image" src="../assets/WiderklangLogo.png" />
     <br />
     <br />
-    <h1>Das wird die LOGIN Seite!</h1>
+    <!-- <h1>Das wird die LOGIN Seite!</h1> -->
 
     <!-- Benutzername -->
     <form>
@@ -46,9 +46,7 @@
     <br />
     <br />
 
-
-
-<!-- CARDS with BootstrapVUE 
+    <!-- CARDS with BootstrapVUE 
   <b-row align-h="center">
     <b-col cols=2>
       <b-img thumbnail fluid rounded="circle" src="https://picsum.photos/250/250/?image=57" alt="Image 1"></b-img>
@@ -63,15 +61,13 @@
       <b-img thumbnail fluid rounded="circle" src="https://picsum.photos/250/250/?image=59" alt="Image 3"></b-img>
     </b-col>
   </b-row>
--->
-    
+    -->
   </div>
 </template>
 
 <script>
 import Header from "@/components/Header.vue";
 import axios from "axios";
-
 
 export default {
   name: "login",
@@ -85,10 +81,16 @@ export default {
   },
   methods: {
     login() {
-      axios.post("http://139.6.102.67/phpmyadmin/login", {
-        username: username,
-        password: password
-      });
+      axios
+        .post("http://139.6.102.67:8080/login", {
+          username: username,
+          password: password
+        })
+        .then(res => {
+          {
+            console.log(res);
+          }
+        });
     }
   }
 };

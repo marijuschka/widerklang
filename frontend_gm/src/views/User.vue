@@ -71,15 +71,15 @@ export default {
      // add new User to databank with a username
     addNewUser() {
       axios
-        .post("/users", this.newUser)
+        .post("http://139.6.102.67:8080/users", this.newUser)
         .then(res => {
           if (res.status == 200) {
             console.log(res);
             this.user = this.user.concat(this.newUser.name);
-            M.toast({
-              html: "<b>Added new user @" + this.newUser.name + "</b>",
-              classes: "green white-text"
-            });
+           // M.toast({
+           //   html: "<b>Added new user @" + this.newUser.name + "</b>",
+           //   classes: "green white-text"
+           // });
             this.toggleElements('createUser');
           }
         })
@@ -96,7 +96,7 @@ export default {
     deleteUser(id) {
       console.log("delete User with ID: " + id);
       axios
-        .delete("users/" + id)
+        .delete("http://139.6.102.67:8080/users/" + id)
         .then(res => {
           if (res.status == 200) {
             console.log(res);
@@ -123,12 +123,13 @@ export default {
   },
   created() {
     axios
-      .get("http://139.6.102.67/api/users")
+      .get("http://139.6.102.67:8080/users")
       .then(res => {
-        this.user = res.data;
+        
         console.log(res.data);
+        this.user = res.data;
       })
-      .catch(err => console.log("Axios error for events: " + err));
+      .catch(err => console.log("Hey! Axios error for Users: " + err));
   }
 };
 </script>
