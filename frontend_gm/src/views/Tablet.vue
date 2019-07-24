@@ -7,14 +7,14 @@
       <div class="container">
         <div class="row">      
           <div class="col 6 theme-frame">
-            <a href="/" class="theme-text">
+            <a href="/#/tabletMedia" class="theme-text">
               <div class="col 6 theme-boxes red-theme">
                 <h1>Familie & Freundschaft</h1>
               </div>
             </a>
           </div>
           <div class="col 6 theme-frame">
-            <a href="/" class="theme-text align-middle">
+            <a href="/#/tabletMedia" class="theme-text align-middle">
               <div class="col 6 theme-boxes blue-theme">
                 <h1>Heimat & Regionales</h1>
               </div>
@@ -23,14 +23,14 @@
         </div>
         <div class="row">      
           <div class="col 6 theme-frame">
-            <a href="/" class="theme-text">
+            <a href="/#/tabletMedia" class="theme-text">
               <div class="col 6 theme-boxes green-theme">
                 <h1>Natur & Tierwelt</h1>
               </div>
             </a>
           </div>
           <div class="col 6 theme-frame">
-            <a href="/" class="theme-text">
+            <a href="/#/tabletMedia" class="theme-text">
               <div class="col 6 theme-boxes orange-theme">
                 <h1>Freizeit & Vergnügen</h1>
               </div>

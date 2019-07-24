@@ -27,6 +27,11 @@ export default new Router({
       component: () => import('./views/Tablet.vue')
     },
     {
+      path: '/tabletMedia',
+      name: 'tabletMedia',
+      component: () => import('./views/TabletMedia.vue')
+    },
+    {
       path: '/media',
       name: 'media',
       component: () => import('./views/Media.vue')
