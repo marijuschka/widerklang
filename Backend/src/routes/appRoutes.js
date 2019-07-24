@@ -29,7 +29,7 @@ app.route('/mmd/')
         .post(mmdController.create_a_mmd);
 
 //Material 
-app.route('/material/')
+app.route('/material/:generic')
         .get(materialController.get_all_material)
         .post(materialController.create_a_material);
 };

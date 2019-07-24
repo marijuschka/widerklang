@@ -1,5 +1,5 @@
 'user strict';
-var sql = require('../../config/db_lokal');
+var sql = require('../../config/db');
 var jwt = require('jsonwebtoken');
 //Material object constructor
 var Material = function (id, material) {
@@ -22,8 +22,9 @@ Material.createMaterial = function createMaterial(material, result) {
     });
 };
 
-Material.getAllMaterial = function getAllMaterial(result) {
-    sql.query("SELECT * FROM material", function (err, res) {
+Material.getAllMaterial = function getAllMaterial(generic, result) {
+    if(generic == true){
+    sql.query("SELECT * FROM material WHERE generic = ?", generic, function (err, res) {
         if (err) {
             result(null, err);
         }
@@ -31,6 +32,6 @@ Material.getAllMaterial = function getAllMaterial(result) {
             result(null, res);
         }
     });
+ } 
 };
-
 module.exports = Material;
