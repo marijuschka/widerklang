@@ -33,8 +33,8 @@ export default new Router({
     },
     {
       path: '/media',
-      name: 'media',
-      component: () => import('./views/Media.vue')
+      name: 'mediaManagement',
+      component: () => import('./views/MediaManagement.vue')
     }
   ]
 })
