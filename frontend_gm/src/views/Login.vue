@@ -11,7 +11,7 @@
     <form>
       <div class="form-group">
         <!-- <label for="exampleInputEmail1"></label> -->
-        <div class="row justify-content-md-center">
+        <div class="row justify-content-center">
           <div class="col-lg-4 col-md-6">
             <input
               v-model="loginData.username"
