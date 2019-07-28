@@ -12,7 +12,7 @@
             <b-img
               rounded="circle"
               thumbnail
-              src="https://picsum.photos/300/150/?image=41"
+              src="https://images.unsplash.com/photo-1472066719480-ecc7314ed065?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
               fluid
               alt="Fluid image"
             ></b-img>
@@ -21,7 +21,7 @@
             <b-img
               rounded="circle"
               thumbnail
-              src="https://picsum.photos/300/150/?image=41"
+              src="https://images.unsplash.com/photo-1472066719480-ecc7314ed065?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
               fluid
               alt="Fluid image"
             ></b-img>
@@ -30,7 +30,7 @@
             <b-img
               rounded="circle"
               thumbnail
-              src="https://picsum.photos/300/150/?image=41"
+              src="https://images.unsplash.com/photo-1472066719480-ecc7314ed065?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
               fluid
               alt="Fluid image"
             ></b-img>
@@ -39,7 +39,7 @@
             <b-img
               rounded="circle"
               thumbnail
-              src="https://picsum.photos/300/150/?image=41"
+              src="https://images.unsplash.com/photo-1472066719480-ecc7314ed065?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
               fluid
               alt="Fluid image"
             ></b-img>
@@ -55,13 +55,13 @@
         <hr />
         <b-row class="justify-content-center">
           <b-col cols="6">
-            <b-img
+            <img
               rounded="0"
               thumbnail
-              src="https://picsum.photos/300/150/?image=41"
+              src="../assets/WiderklangLogo.png"
               fluid
               alt="Fluid image"
-            ></b-img>
+            >
           </b-col>
           <b-col cols="6">
             <b-img
