@@ -2,16 +2,49 @@
   <div class="user">
     <Header />
     <br />
-    <b-row align-v="center">
-      <b-col offset="2" cols="5">
-        <h1>Das wird die Nutzer Verwaltung</h1>
-      </b-col>
-      <b-col cols="3">
-        <b-button v-on:click="addNewUser" variant="success">Neuen Nutzer hinzufügen</b-button>
+    <b-row class="justify-content-center">
+      <b-col cols="12" md="11">
+        <b-row align-h="start">
+          <b-col cols="auto">
+            <b-button
+              v-b-toggle.collapse-newUser
+              v-on:click="addNewUser"
+              variant="success"
+            >Neuen Nutzer hinzufügen</b-button>
+          </b-col>
+        </b-row>
       </b-col>
     </b-row>
     <br />
-
+    <div>
+      <b-row class="justify-content-center" id="addUser">
+        <b-col cols="12" md="11">
+          <b-collapse id="collapse-newUser" class="mt-2">
+            <b-card>
+              <b-row class="justify-content-center">
+                <b-col cols="11" md="3" lg="3">
+                  <b-form-input v-model="password" placeholder="Name"></b-form-input>
+                </b-col>
+                <b-col cols="11" md="3" lg="3">
+                  <b-form-input v-model="password" placeholder="Passwort"></b-form-input>
+                </b-col>
+                <b-col cols="11" md="3" lg="3">
+                  <b-form-input v-model="xy" placeholder="etc"></b-form-input>
+                </b-col>
+                <!-- <b-col cols="6" md="4" lg="3"> -->
+                  <b-col cols="auto">
+                  <b-button
+                    v-on:click="editUser(xxyy)"
+                    v-b-toggle.collapse-newUser-inner
+                    size="md"
+                  >Nutzer hinzufügen</b-button>
+                </b-col>
+              </b-row>
+            </b-card>
+          </b-collapse>
+        </b-col>
+      </b-row>
+    </div>
     <!--  Dynamisches Erzeugen der User Liste
     <div v-for="index in user.length">-->
     <div>
@@ -31,11 +64,11 @@
               </b-col>
 
               <!-- buttons-->
-              <b-col cols="6" md="7">
+              <b-col cols="5" md="7">
                 <b-row>
                   <b-col cols="6" sm="4" offset-sm="2" offset-md="4" offset-lg="7" md="4" lg="2">
                     <b-card-text>
-                      <b-button v-b-toggle.collapse-1 pill>Bearbeiten</b-button>
+                      <b-button v-b-toggle.collapse-editUser pill>Bearbeiten</b-button>
                     </b-card-text>
                   </b-col>
                   <b-col cols="6" md="4" lg="2">
@@ -49,7 +82,7 @@
             </b-row>
             <!-- Collapse -->
             <div>
-              <b-collapse id="collapse-1" class="mt-2">
+              <b-collapse id="collapse-editUser" class="mt-2">
                 <b-card>
                   <b-row class="justify-content-center">
                     <b-col cols="4" md="3">
@@ -59,7 +92,11 @@
                       <b-form-input v-model="xy" placeholder="Neue XY"></b-form-input>
                     </b-col>
                     <b-col cols="2" md="2">
-                      <b-button v-on:click="editUser(xxyy)" v-b-toggle.collapse-1-inner size="md">Ändern!</b-button>
+                      <b-button
+                        v-on:click="editUser(xxyy)"
+                        v-b-toggle.collapse-editUser-inner
+                        size="md"
+                      >Ändern!</b-button>
                     </b-col>
                   </b-row>
                 </b-card>
@@ -84,8 +121,12 @@ export default {
   data() {
     return {
       user: [],
-      password:'',
-      xy:'',
+      newUser: {
+        username: "",
+        password: ""
+      },
+      password: "",
+      xy: "",
       newUser: { name: "", password: "" }
     };
   },
