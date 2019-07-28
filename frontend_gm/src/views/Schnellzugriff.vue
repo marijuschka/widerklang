@@ -1,28 +1,96 @@
 <template>
   <div class="schnellzugriff">
     <Header />
-    <br />
-    <b-row class="justify-content-md-center">
-      <b-col cols="5">
-        <h1>Das wird der Schnellzugriff</h1>
-      </b-col>
-    </b-row>
-    <br />
 
     <b-row class="justify-content-center">
       <!-- Linke Seite -->
       <b-col cols="5" id="links">
-        <b-col cols="12"> </b-col>
-        <h2>TEST</h2>
+        <h2 id="konten">KONTEN</h2>
         <hr />
+        <b-row class="justify-content-center">
+          <b-col cols="6">
+            <b-img
+              rounded="circle"
+              thumbnail
+              src="https://picsum.photos/300/150/?image=41"
+              fluid
+              alt="Fluid image"
+            ></b-img>
+          </b-col>
+          <b-col cols="6">
+            <b-img
+              rounded="circle"
+              thumbnail
+              src="https://picsum.photos/300/150/?image=41"
+              fluid
+              alt="Fluid image"
+            ></b-img>
+          </b-col>
+          <b-col cols="6">
+            <b-img
+              rounded="circle"
+              thumbnail
+              src="https://picsum.photos/300/150/?image=41"
+              fluid
+              alt="Fluid image"
+            ></b-img>
+          </b-col>
+          <b-col cols="6">
+            <b-img
+              rounded="circle"
+              thumbnail
+              src="https://picsum.photos/300/150/?image=41"
+              fluid
+              alt="Fluid image"
+            ></b-img>
+          </b-col>
+        </b-row>
       </b-col>
 
       <div class="headerDivider"></div>
 
       <!-- Rechte Seite -->
       <b-col cols="5">
-        <h2>TEST</h2>
+        <h2>MEDIEN</h2>
         <hr />
+        <b-row class="justify-content-center">
+          <b-col cols="6">
+            <b-img
+              rounded="0"
+              thumbnail
+              src="https://picsum.photos/300/150/?image=41"
+              fluid
+              alt="Fluid image"
+            ></b-img>
+          </b-col>
+          <b-col cols="6">
+            <b-img
+              rounded="0"
+              thumbnail
+              src="https://picsum.photos/300/150/?image=41"
+              fluid
+              alt="Fluid image"
+            ></b-img>
+          </b-col>
+          <b-col cols="6">
+            <b-img
+              rounded="0"
+              thumbnail
+              src="https://picsum.photos/300/150/?image=41"
+              fluid
+              alt="Fluid image"
+            ></b-img>
+          </b-col>
+          <b-col cols="6">
+            <b-img
+              rounded="0"
+              thumbnail
+              src="https://picsum.photos/300/150/?image=41"
+              fluid
+              alt="Fluid image"
+            ></b-img>
+          </b-col>
+        </b-row>
       </b-col>
     </b-row>
   </div>
@@ -126,10 +194,10 @@ h3 {
   position: absolute;
   left: 50%;
   margin-left: -2px;
-  margin-top: 250px;
+  margin-top: 160px;
   top: 0;
 }
 .links{
-  padding-top: 40px;
+  line-height: 200px;
 }
 </style>
