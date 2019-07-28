@@ -7,7 +7,7 @@
         <h1>Das wird die Nutzer Verwaltung</h1>
       </b-col>
       <b-col cols="3">
-        <b-button v-on:click="createUser" variant="success">Neuen Nutzer hinzufügen</b-button>
+        <b-button v-on:click="addNewUser" variant="success">Neuen Nutzer hinzufügen</b-button>
       </b-col>
     </b-row>
     <br />
@@ -56,7 +56,7 @@
                       <b-form-input v-model="password" placeholder="Neues Passwort"></b-form-input>
                     </b-col>
                     <b-col cols="4" md="3">
-                      <b-form-input v-model="xxyyx" placeholder="Neue XY"></b-form-input>
+                      <b-form-input v-model="xy" placeholder="Neue XY"></b-form-input>
                     </b-col>
                     <b-col cols="2" md="2">
                       <b-button v-on:click="editUser(xxyy)" v-b-toggle.collapse-1-inner size="md">Ändern!</b-button>
@@ -84,6 +84,8 @@ export default {
   data() {
     return {
       user: [],
+      password:'',
+      xy:'',
       newUser: { name: "", password: "" }
     };
   },

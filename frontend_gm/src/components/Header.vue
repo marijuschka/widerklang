@@ -41,7 +41,18 @@
 
 <script>
 export default {
-  name: "Header"
+  name: "Header",
+  data() {
+    return {
+      user: [],
+      newUser: { name: "", password: "" }
+    };
+  },
+  methods: {
+    // Log out User
+    logout() {
+    }
+  }
 };
 </script>
 
