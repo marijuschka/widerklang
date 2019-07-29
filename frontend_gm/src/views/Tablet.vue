@@ -5,40 +5,47 @@
       <br />
 
       <div class="container">
-        <div class="row">      
+        <div class="row">
           <div class="col 6 theme-frame">
-            <a href="/#/tabletMedia" class="theme-text">
-              <div class="col 6 theme-boxes red-theme">
-                <h1>Familie & Freundschaft</h1>
-              </div>
-            </a>
+            <router-link to="/tabletMedia" id="tabletMedia">
+              <a href="#" class="theme-text">
+                <div class="col 6 theme-boxes red-theme">
+                  <h1>Familie & Freundschaft</h1>
+                </div>
+              </a>
+            </router-link>
           </div>
           <div class="col 6 theme-frame">
-            <a href="/#/tabletMedia" class="theme-text align-middle">
-              <div class="col 6 theme-boxes blue-theme">
-                <h1>Heimat & Regionales</h1>
-              </div>
-            </a>
+            <router-link to="/tabletMedia" id="tabletMedia">
+              <a href="#" class="theme-text">
+                <div class="col 6 theme-boxes blue-theme">
+                  <h1>Heimat & Regionales</h1>
+                </div>
+              </a>
+            </router-link>
           </div>
         </div>
-        <div class="row">      
+        <div class="row">
           <div class="col 6 theme-frame">
-            <a href="/#/tabletMedia" class="theme-text">
-              <div class="col 6 theme-boxes green-theme">
-                <h1>Natur & Tierwelt</h1>
-              </div>
-            </a>
+            <router-link to="/tabletMedia" id="tabletMedia">
+              <a href="#" class="theme-text">
+                <div class="col 6 theme-boxes green-theme">
+                  <h1>Natur & Tierwelt</h1>
+                </div>
+              </a>
+            </router-link>
           </div>
           <div class="col 6 theme-frame">
-            <a href="/#/tabletMedia" class="theme-text">
-              <div class="col 6 theme-boxes orange-theme">
-                <h1>Freizeit & Vergnügen</h1>
-              </div>
-            </a>
+            <router-link to="/tabletMedia" id="tabletMedia">
+              <a href="#" class="theme-text">
+                <div class="col 6 theme-boxes orange-theme">
+                  <h1>Freizeit & Vergnügen</h1>
+                </div>
+              </a>
+            </router-link>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -54,9 +61,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 img {
   width: 400px;
+}
+a:hover {
+  text-decoration: None !important;
 }
 .theme-boxes {
   height: 30vh;
@@ -70,20 +80,20 @@ img {
 .theme-text {
   color: white;
 }
-.theme-text:hover{
+.theme-text:hover {
   color: pink;
-  Text-Decoration: None !important;
+  text-decoration: None !important;
 }
 .red-theme {
-  background-color: #DB1644;
+  background-color: #db1644;
 }
 .blue-theme {
-  background-color: #50A5EB;
+  background-color: #50a5eb;
 }
 .green-theme {
-  background-color: #32A62E;
+  background-color: #32a62e;
 }
 .orange-theme {
-  background-color: #F2BC18;
+  background-color: #f2bc18;
 }
 </style>
