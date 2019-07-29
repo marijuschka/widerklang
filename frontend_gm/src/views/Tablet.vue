@@ -7,7 +7,7 @@
       <div class="container">
         <div class="row">
           <div class="col 6 theme-frame">
-            <router-link to="/tabletMedia" id="tabletMedia">
+            <router-link :to="{ path: '/tabletMedia', query: { theme: 'red' }}" id="tabletMedia">
               <a href="#" class="">
                 <div class="col 6 theme-boxes red-theme">
                   <div class="row theme-position theme-position-red">
@@ -19,7 +19,7 @@
             </router-link>
           </div>
           <div class="col 6 theme-frame">
-            <router-link to="/tabletMedia" id="tabletMedia">
+            <router-link :to="{ path: '/tabletMedia', query: { theme: 'blue' }}" id="tabletMedia">
               <a href="#" class="">
                 <div class="col 6 theme-boxes blue-theme">
                   <div class="row theme-position">
@@ -33,7 +33,7 @@
         </div>
         <div class="row">
           <div class="col 6 theme-frame">
-            <router-link to="/tabletMedia" id="tabletMedia">
+            <router-link :to="{ path: '/tabletMedia', query: { theme: 'green' }}" id="tabletMedia">
               <a href="#" class="">
                 <div class="col 6 theme-boxes green-theme">
                   <div class="row theme-position theme-position-green">
@@ -45,7 +45,7 @@
             </router-link>
           </div>
           <div class="col 6 theme-frame">
-            <router-link to="/tabletMedia" id="tabletMedia">
+            <router-link :to="{ path: '/tabletMedia', query: { theme: 'orange' }}" id="tabletMedia">
               <a href="#" class="">
                 <div class="col 6 theme-boxes orange-theme">
                   <div class="row theme-position">
