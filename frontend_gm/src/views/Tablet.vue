@@ -8,18 +8,24 @@
         <div class="row">
           <div class="col 6 theme-frame">
             <router-link to="/tabletMedia" id="tabletMedia">
-              <a href="#" class="theme-text">
+              <a href="#" class="">
                 <div class="col 6 theme-boxes red-theme">
-                  <h1>Familie & Freundschaft</h1>
+                  <div class="row theme-position theme-position-red">
+                    <img alt="" src="../assets/Familie-Icon.png"/>
+                    <h1 class="theme-text">Familie <br /> & Freundschaft</h1>
+                  </div>
                 </div>
               </a>
             </router-link>
           </div>
           <div class="col 6 theme-frame">
             <router-link to="/tabletMedia" id="tabletMedia">
-              <a href="#" class="theme-text">
+              <a href="#" class="">
                 <div class="col 6 theme-boxes blue-theme">
-                  <h1>Heimat & Regionales</h1>
+                  <div class="row theme-position">
+                    <img alt="" src="../assets/Heimat-Icon.png"/>
+                    <h1 class="theme-text">Heimat <br /> & Regionales</h1>
+                  </div>
                 </div>
               </a>
             </router-link>
@@ -28,18 +34,24 @@
         <div class="row">
           <div class="col 6 theme-frame">
             <router-link to="/tabletMedia" id="tabletMedia">
-              <a href="#" class="theme-text">
+              <a href="#" class="">
                 <div class="col 6 theme-boxes green-theme">
-                  <h1>Natur & Tierwelt</h1>
+                  <div class="row theme-position theme-position-green">
+                    <img alt="" src="../assets/Natur-Icon.png"/>
+                    <h1 class="theme-text">Natur <br /> & Tierwelt</h1>
+                  </div>
                 </div>
               </a>
             </router-link>
           </div>
           <div class="col 6 theme-frame">
             <router-link to="/tabletMedia" id="tabletMedia">
-              <a href="#" class="theme-text">
+              <a href="#" class="">
                 <div class="col 6 theme-boxes orange-theme">
-                  <h1>Freizeit & Vergnügen</h1>
+                  <div class="row theme-position">
+                    <img alt="" src="../assets/Freizeit-Icon.png"/>
+                    <h1 class="theme-text">Freizeit <br /> & Vergnügen</h1>
+                  </div>
                 </div>
               </a>
             </router-link>
@@ -63,7 +75,8 @@ export default {
 
 <style scoped>
 img {
-  width: 400px;
+  height: 100px;
+  width: auto;
 }
 a:hover {
   text-decoration: None !important;
@@ -79,11 +92,24 @@ a:hover {
 }
 .theme-text {
   color: white;
+  text-align: left;
+  padding-left: 30px;
 }
 .theme-text:hover {
   color: pink;
   text-decoration: None !important;
 }
+.theme-position {
+  padding-top: 8vh;
+  padding-left: 6vw;
+}
+.theme-position-red {
+  padding-left: 3vw !important;
+}
+.theme-position-green {
+  padding-left: 8vw !important;
+}
+
 .red-theme {
   background-color: #db1644;
 }
