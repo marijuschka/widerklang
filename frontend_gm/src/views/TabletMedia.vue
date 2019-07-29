@@ -38,6 +38,11 @@ export default {
   name: "tablet",
   components: {
     Header
+  },
+  data() {
+    return {
+      theme: this.$route.query.theme
+    };
   }
 };
 </script>
