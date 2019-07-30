@@ -12,28 +12,31 @@
 
     <!-- leftSidebar -->
 
-    <!-- toDo: Abstand zwischen leftSidebar und Gallerie -->
+    <!-- toDo: Abstand zwischen leftSidebar und Gallerie
+    Gallerie soll etwa 80% der Fläche einnehmen und leftSidebar 20%
+    -> Container Boxen-->
+
     <div class="test">
-      <div id="leftSidebar" style="width: 20px; padding: 10px; margin: 0 0px">
+      <div id="leftSidebar" style="width: 10px; padding: 0px; margin: 0 0px">
         <ul id="leftSidebar">
-          <b-col cols="1">
+          <b-col cols="2">
             <li>
-              <button tabindex="1">
-                <img src="https://picsum.photos/id/155/300/300"/>
+              <button>
+                <img src="https://picsum.photos/id/155/300/300" />
               </button>
             </li>
             <li>
-              <button tabindex="1">
-                <img src="https://picsum.photos/id/155/300/300"/>
+              <button>
+                <img src="https://picsum.photos/id/155/300/300" />
               </button>
             </li>
             <li>
-              <button tabindex="1">
-                <img src="https://picsum.photos/id/155/300/300"/>
+              <button>
+                <img src="https://picsum.photos/id/155/300/300" />
               </button>
             </li>
             <li>
-              <button tabindex="1">
+              <button>
                 <img src="https://picsum.photos/id/155/300/300" />
               </button>
             </li>
@@ -45,120 +48,50 @@
     <!-- Bildergalerie -->
     <div class="test">
       <div id="galerie">
-        <ul id="galerie">
-          <b-col cols="0">
+        <b-col cols="12">
+          <!-- Dieser Button führt zu ImageUpload -->
 
-            <!-- Dieser Button soll zu ImageUpload führen --> 
-           
-
-
-            
-
-            <li>
-              <button tabindex="1">
-                <!-- <img src="https://picsum.photos/id/315/300/300"/> -->
-                <b-nav-item href="#">
+          <button>
+            <!-- <img src="https://picsum.photos/id/315/300/300"/> -->
+            <b-nav-item href="#">
               <router-link to="/imageUpload" id="imageUpload">BildHochladen</router-link>
             </b-nav-item>
-              </button>
-            </li>
-            <li>
-              <button tabindex="1">
-                <img src="https://picsum.photos/id/870/300/300?grayscale&blur=2"/>
-              </button>
-            </li>
-            <li>
-              <button tabindex="1">
-                <img src="https://picsum.photos/id/870/300/300?grayscale&blur=2"/>
-              </button>
-            </li>
-            <li>
-              <button tabindex="1">
-                <img src="https://picsum.photos/id/870/300/300?grayscale&blur=2"/>
-              </button>
-            </li>
-            <li>
-              <button tabindex="1">
-                <img src="https://picsum.photos/id/870/300/300?grayscale&blur=2"/>
-              </button>
-            </li>
-            <li>
-              <button tabindex="1">
-                <img src="https://picsum.photos/id/870/300/300?grayscale&blur=2"/>
-              </button>
-            </li>
-            <li>
-              <button tabindex="1">
-                <img src="https://picsum.photos/id/870/300/300?grayscale&blur=2"/>
-              </button>
-            </li>
-            <li>
-              <button tabindex="1">
-                <img src="https://picsum.photos/id/870/300/300?grayscale&blur=2"/>
-              </button>
-            </li>
-            <li>
-              <button tabindex="1">
-                <img src="https://picsum.photos/id/870/300/300?grayscale&blur=2"/>
-              </button>
-            </li>
-            <li>
-              <button tabindex="1">
-                <img src="https://picsum.photos/id/870/300/300?grayscale&blur=2"/>
-              </button>
-            </li>
-            <li>
-              <button tabindex="1">
-                <img src="https://picsum.photos/id/870/300/300?grayscale&blur=2"/>
-              </button>
-            </li>
-            <li>
-              <button tabindex="1">
-                <img src="https://picsum.photos/id/870/300/300?grayscale&blur=2"/>
-              </button>
-            </li>
-            <li>
-              <button tabindex="1">
-                <img src="https://picsum.photos/id/870/300/300?grayscale&blur=2"/>
-              </button>
-            </li>
-            <li>
-              <button tabindex="1">
-                <img src="https://picsum.photos/id/870/300/300?grayscale&blur=2"/>
-              </button>
-            </li>
-            <li>
-              <button tabindex="1">
-                <img src="https://picsum.photos/id/870/300/300?grayscale&blur=2"/>
-              </button>
-            </li>
-            <li>
-              <button tabindex="1">
-                <img src="https://picsum.photos/id/870/300/300?grayscale&blur=2"/>
-              </button>
-            </li>
-            <li>
-              <button tabindex="1">
-                <img src="https://picsum.photos/id/870/300/300?grayscale&blur=2"/>
-              </button>
-            </li>
-            <li>
-              <button tabindex="1">
-                <img src="https://picsum.photos/id/870/300/300?grayscale&blur=2"/>
-              </button>
-            </li>
-            <li>
-              <button tabindex="1">
-                <img src="https://picsum.photos/id/870/300/300?grayscale&blur=2"/>
-              </button>
-            </li>
-            <li>
-              <button tabindex="1">
-                <img src="https://picsum.photos/id/870/300/300?grayscale&blur=2"/>
-              </button>
-            </li>
-          </b-col>
-        </ul>
+          </button>
+
+          <button>
+            <img src="https://picsum.photos/id/132/100/100" />
+          </button>
+          <button>
+            <img src="https://picsum.photos/id/132/100/100" />
+          </button>
+          <button>
+            <img src="https://picsum.photos/id/132/100/100" />
+          </button>
+          <button>
+            <img src="https://picsum.photos/id/132/100/100" />
+          </button>
+          <button>
+            <img src="https://picsum.photos/id/132/100/100" />
+          </button>
+          <button>
+            <img src="https://picsum.photos/id/132/100/100" />
+          </button>
+          <button>
+            <img src="https://picsum.photos/id/132/100/100" />
+          </button>
+          <button>
+            <img src="https://picsum.photos/id/132/100/100" />
+          </button>
+          <button>
+            <img src="https://picsum.photos/id/132/100/100" />
+          </button>
+          <button>
+            <img src="https://picsum.photos/id/132/100/100" />
+          </button>
+          <button>
+            <img src="https://picsum.photos/id/132/100/100" />
+          </button>
+        </b-col>
       </div>
     </div>
   </div>
@@ -201,7 +134,7 @@ button {
   img {
     padding: 0;
     margin: 0;
-    width: 100%; /* Bild passt sich an verfügbaren Raum im li an         ÜBERPRÜFEN */     
+    width: 100%; /* Bild passt sich an verfügbaren Raum im li an         ÜBERPRÜFEN */
   }
 
   button {
@@ -216,9 +149,9 @@ button {
 
 .test {
   float: left;
-  width: 33.33333%;
-  padding: 20px;
-  background: #eee;
+  width: 50%;
+  padding: 10px;
+  background: rgb(102, 94, 94);
   box-sizing: border-box;
 }
 </style>

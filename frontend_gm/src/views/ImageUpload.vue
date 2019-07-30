@@ -3,6 +3,10 @@
 <div class="imageUpload">
     <Header />
     <h1>HIER DAS BILD HOCHLADEN!!!</h1>
+    <button>
+        Datei auswählen
+        <!-- GET Befehl an DB -->
+        </button>
 </div>
     
 </template>
