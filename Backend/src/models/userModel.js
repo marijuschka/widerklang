@@ -9,7 +9,6 @@ var User = function (id, user) {
     this.password = user.password;
     this.email = user.email;
     this.role = user.role;
-    this.mmd_id = user.mmd_id;
 };
 
 User.getAllUsers = function getAllUsers(result) {

@@ -33,7 +33,6 @@ exports.create_a_user = function (req, res) {
         password: req.body.password,
         email: req.body.email,
         role: req.body.role,
-        mmd_id: generateUniqueId()
       //  profile_img: req.body.profile_img
     }
     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10));

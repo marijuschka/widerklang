@@ -1,12 +1,11 @@
 class Material {
 
-    constructor(id, name, description, path, type, generic) {
+    constructor(id, name, description, path, type) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.path = path;
         this.type = type;
-        this.generic = generic;
     }
     setId(id){
         this.id = id;
@@ -38,12 +37,4 @@ class Material {
     getType(){
         return this.type;
     }
-    setGeneric(generic){
-        this.generic = generic;
-    }
-    getGeneric(){
-        return this.generic;
-    }
-
-
 }
