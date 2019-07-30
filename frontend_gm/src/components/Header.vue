@@ -25,7 +25,7 @@
               <router-link to="/tablet" id="tablet">TABLET</router-link>
             </b-nav-item>
             <b-nav-item href="#">
-              <router-link to="/media" id="media">Medien</router-link>
+              <router-link to="/mediaManagement" id="mediaManagement">Medien</router-link>
             </b-nav-item>
           </b-navbar-nav>
 

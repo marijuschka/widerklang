@@ -32,7 +32,7 @@ export default new Router({
       component: () => import('./views/TabletMedia.vue')
     },
     {
-      path: '/media',
+      path: '/mediaManagement',
       name: 'mediaManagement',
       component: () => import('./views/MediaManagement.vue')
     },
@@ -40,6 +40,11 @@ export default new Router({
       path: '/schnellzugriff',
       name: 'schnellzugriff',
       component: () => import('./views/Schnellzugriff.vue')
+    },
+    {
+      path: '/imageUpload',
+      name: 'imageUpload',
+      component: () => import('./views/ImageUpload.vue')
     }
   ]
 })
