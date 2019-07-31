@@ -40,6 +40,8 @@ export default {
   data() {
     return {
       theme: this.$route.query.theme,
+
+      /* Hier sollte dann der richtige Stack in Abhängigkeit der Themen geladen werden */
       stack: [
         {
           id: 1,
@@ -58,6 +60,7 @@ export default {
           path: "https://picsum.photos/id/230/400/400"
         }
       ]
+      
     };
   }
 };
