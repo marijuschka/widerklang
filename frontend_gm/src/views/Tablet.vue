@@ -7,9 +7,9 @@
       -->
 
       <div class="container">
-        <div class="row">
+        <div class="row margin-top">
           <div class="col 6 theme-frame">
-            <router-link :to="{ path: '/tabletMedia', query: { theme: 'red' }}" id="tabletMedia">
+            <router-link :to="{ path: '/tabletMedia', query: { theme: 'red-theme' }}" id="tabletMedia">
               <a href="#" class="">
                 <div class="col 6 theme-boxes red-theme">
                   <div class="row theme-position theme-position-red">
@@ -21,7 +21,7 @@
             </router-link>
           </div>
           <div class="col 6 theme-frame">
-            <router-link :to="{ path: '/tabletMedia', query: { theme: 'blue' }}" id="tabletMedia">
+            <router-link :to="{ path: '/tabletMedia', query: { theme: 'blue-theme' }}" id="tabletMedia">
               <a href="#" class="">
                 <div class="col 6 theme-boxes blue-theme">
                   <div class="row theme-position">
@@ -35,7 +35,7 @@
         </div>
         <div class="row">
           <div class="col 6 theme-frame">
-            <router-link :to="{ path: '/tabletMedia', query: { theme: 'green' }}" id="tabletMedia">
+            <router-link :to="{ path: '/tabletMedia', query: { theme: 'green-theme' }}" id="tabletMedia">
               <a href="#" class="">
                 <div class="col 6 theme-boxes green-theme">
                   <div class="row theme-position theme-position-green">
@@ -47,7 +47,7 @@
             </router-link>
           </div>
           <div class="col 6 theme-frame">
-            <router-link :to="{ path: '/tabletMedia', query: { theme: 'orange' }}" id="tabletMedia">
+            <router-link :to="{ path: '/tabletMedia', query: { theme: 'orange-theme' }}" id="tabletMedia">
               <a href="#" class="">
                 <div class="col 6 theme-boxes orange-theme">
                   <div class="row theme-position">
@@ -80,6 +80,9 @@ img {
   height: 100px;
   width: auto;
 }
+.margin-top {
+  margin-top: 15vh;
+}
 a:hover {
   text-decoration: None !important;
 }
@@ -110,18 +113,5 @@ a:hover {
 }
 .theme-position-green {
   padding-left: 8vw !important;
-}
-
-.red-theme {
-  background-color: #db1644;
-}
-.blue-theme {
-  background-color: #50a5eb;
-}
-.green-theme {
-  background-color: #32a62e;
-}
-.orange-theme {
-  background-color: #f2bc18;
 }
 </style>

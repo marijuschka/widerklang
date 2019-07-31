@@ -1,43 +1,31 @@
 <template>
-  <div id="app">
+  <div id="tablet">
     <!--
     <Header />
     <br />
     -->
 
-    <!-- Familie & Freundschaft -->
-    <div v-if="theme === 'red'">
-      <b-row class="red-theme">
-        <router-link to="/tablet" id="tablet">back</router-link>
+    <!-- Farbe ist abhängig von Thema - 'theme' wird ersetzt durch 'farbe'-theme -->
+    <div>
+      <b-row v-bind:class="theme" class="top-row">
+        <router-link to="/tablet" id="tablet"><b-button class="" id="back-button">back</b-button></router-link>
       </b-row>
-      <b-row class="red-theme">
+      <b-row v-bind:class="theme" class="fill">
+        <!-- vorheriges Bild -->
         <b-col cols="4">
-          <img class="stack" v-bind:src="stack[0].path" v-bind:alt="stack[0].path">
+          <img class="stack stack-pos-side" v-bind:src="stack[0].path" v-bind:alt="stack[0].path">
         </b-col>
+        <!-- aktuelles Bild - startet Video bei anklicken wenn Video -->
         <b-col cols="4">
           <img class="stack" v-bind:src="stack[1].path" v-bind:alt="stack[1].path">
         </b-col>
+        <!-- nächstes Bild -->
         <b-col cols="4">
-          <img class="stack" v-bind:src="stack[2].path" v-bind:alt="stack[2].path">
+          <img class="stack stack-pos-side" v-bind:src="stack[2].path" v-bind:alt="stack[2].path">
         </b-col>
       </b-row>
     </div>
-    <!-- Heimat & Regionales -->
-    <div v-else-if="theme === 'blue'">
-      <h1>blue</h1>
-    </div>
-    <!-- Natur & Tiere -->
-    <div v-else-if="theme === 'green'">
-      <h1>green</h1>
-    </div>
-    <!-- Freizeit & Vergnügen -->
-    <div v-else-if="theme === 'orange'">
-      <h1>orange</h1>
-    </div>
-    <!-- Fehler -->
-    <div v-else>
-      <h1>kein Thema</h1>
-    </div>
+
   </div>
 </template>
 
@@ -75,26 +63,28 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+#app {
+  margin-top: 0px !important;
+}
+.top-row {
+  height: 30vh;
+}
+#back-button {
+  margin-top: 12vh;
+  margin-left: 12vh;
+}
 .stack {
-  height: 80%;
+  height: 40vh;
   width: auto;
   margin-top: 0px;
-  padding-top: 50%;
+  padding-top: 0%;
+  padding-bottom: 0%;
+}
+.fill {
+  height: 70vh;
 }
 .stack-pos-side {
-  opacity: 0.5;
-}
-.red-theme {
-  background-color: #db1644;
-}
-.blue-theme {
-  background-color: #50a5eb;
-}
-.green-theme {
-  background-color: #32a62e;
-}
-.orange-theme {
-  background-color: #f2bc18;
+  opacity: 0.7;
 }
 </style>

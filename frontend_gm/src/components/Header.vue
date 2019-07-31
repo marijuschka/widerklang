@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div>
+    <div class="margin-top-60">
       <b-navbar toggleable="lg" type="light" variant="light">
         <b-navbar-brand href="#">
           <router-link to="/" id="home">
@@ -75,5 +75,9 @@ header {
 
 img {
   width: 70px;
+}
+/* Für Abstand auf jeder Seite mit Header */
+.margin-top-60 {  
+  margin-top: 60px;
 }
 </style>
