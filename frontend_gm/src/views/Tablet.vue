@@ -1,8 +1,10 @@
 <template>
   <div id="app">
     <div class="tablet">
+      <!--
       <Header />
       <br />
+      -->
 
       <div class="container">
         <div class="row">

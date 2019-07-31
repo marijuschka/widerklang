@@ -1,32 +1,42 @@
 <template>
   <div id="app">
-    <div class="tabletMedia">
-      <Header />
-      <br />
+    <!--
+    <Header />
+    <br />
+    -->
 
-      <!-- Würde hier dann eine Abfrage machen, welches Thema geklickt wurde und danach den passenden Inhalt auswählen -->
-      <div class="container red-theme">
-        <div class="row">
-          <a href="/#/tablet">Back</a>
-          <h1>{{this.$route.query.theme}}</h1>
-        </div>
-      </div>
-
-      <div v-if="theme === 'red'">
-        <h1>red</h1>
-      </div>
-      <div v-else-if="theme === 'blue'">
-        <h1>blue</h1>
-      </div>
-      <div v-else-if="theme === 'green'">
-        <h1>green</h1>
-      </div>
-      <div v-else-if="theme === 'orange'">
-        <h1>orange</h1>
-      </div>
-      <div v-else>
-        <h1>kein Thema</h1>
-      </div>
+    <!-- Familie & Freundschaft -->
+    <div v-if="theme === 'red'">
+      <b-row class="red-theme">
+        <router-link to="/tablet" id="tablet">back</router-link>
+      </b-row>
+      <b-row class="red-theme">
+        <b-col cols="4">
+          <img class="stack" v-bind:src="stack[0].path" v-bind:alt="stack[0].path">
+        </b-col>
+        <b-col cols="4">
+          <img class="stack" v-bind:src="stack[1].path" v-bind:alt="stack[1].path">
+        </b-col>
+        <b-col cols="4">
+          <img class="stack" v-bind:src="stack[2].path" v-bind:alt="stack[2].path">
+        </b-col>
+      </b-row>
+    </div>
+    <!-- Heimat & Regionales -->
+    <div v-else-if="theme === 'blue'">
+      <h1>blue</h1>
+    </div>
+    <!-- Natur & Tiere -->
+    <div v-else-if="theme === 'green'">
+      <h1>green</h1>
+    </div>
+    <!-- Freizeit & Vergnügen -->
+    <div v-else-if="theme === 'orange'">
+      <h1>orange</h1>
+    </div>
+    <!-- Fehler -->
+    <div v-else>
+      <h1>kein Thema</h1>
     </div>
   </div>
 </template>
@@ -41,15 +51,39 @@ export default {
   },
   data() {
     return {
-      theme: this.$route.query.theme
+      theme: this.$route.query.theme,
+      stack: [
+        {
+          id: 1,
+          path: "https://picsum.photos/id/40/400/400"
+        },
+        {
+          id: 2,
+          path: "https://picsum.photos/id/77/400/400"
+        },
+        {
+          id: 3,
+          path: "https://picsum.photos/id/200/400/400"
+        },
+        {
+          id: 4,
+          path: "https://picsum.photos/id/230/400/400"
+        }
+      ]
     };
   }
 };
 </script>
 
 <style>
-img {
-  width: 400px;
+.stack {
+  height: 80%;
+  width: auto;
+  margin-top: 0px;
+  padding-top: 50%;
+}
+.stack-pos-side {
+  opacity: 0.5;
 }
 .red-theme {
   background-color: #db1644;
