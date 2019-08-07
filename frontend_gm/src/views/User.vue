@@ -19,20 +19,23 @@
     <div>
       <b-row class="justify-content-center" id="addUser">
         <b-col cols="12" md="11">
-          <b-collapse id="collapse-newUser" class="mt-2">
+          <b-collapse id="collapse-newUser" class="mt-2 collapse1">
             <b-card>
-              <b-row class="justify-content-center">
+              <b-row align-v="center" class="justify-content-center">
+                <b-col cols="2" md="1" lg="1">
+                  <img class="addUserIcon" alt="NewUser" src="https://cdn.onlinewebfonts.com/svg/img_227643.png" />
+                </b-col>
                 <b-col cols="11" md="3" lg="3">
                   <b-form-input v-model="password" placeholder="Name"></b-form-input>
                 </b-col>
-                <b-col cols="11" md="3" lg="3">
+                <b-col cols="11" md="4" lg="3">
                   <b-form-input v-model="password" placeholder="Passwort"></b-form-input>
                 </b-col>
-                <b-col cols="11" md="3" lg="3">
+                <b-col cols="11" md="4" lg="3">
                   <b-form-input v-model="xy" placeholder="etc"></b-form-input>
                 </b-col>
-                <!-- <b-col cols="6" md="4" lg="3"> -->
-                  <b-col cols="auto">
+                <b-col cols="6" md="4" lg="2"> 
+                 <!-- <b-col cols="auto"> -->
                   <b-button
                     v-on:click="editUser(xxyy)"
                     v-b-toggle.collapse-newUser-inner
@@ -46,9 +49,11 @@
       </b-row>
     </div>
     <!--  Dynamisches Erzeugen der User Liste
+
     <div v-for="index in user.length">-->
+      
     <div>
-      <b-row class="justify-content-center" id="UserSpalte">
+      <b-row class="justify-content-center userlist" id="UserSpalte">
         <b-col cols="12" md="11">
           <b-card no-body class="overflow-hidden">
             <!-- Hier ist die CENTER anweisung -->
@@ -73,7 +78,66 @@
                   </b-col>
                   <b-col cols="6" md="4" lg="2">
                     <b-card-text>
-                      <!--  <b-button v-on:click="deleteUser(user[index-1]) pill variant="outline-danger">-->
+                      <!--  <b-button v-on:click="deleteUser(user[index-1]) pill variant="outline-danger"> -->
+                      <b-button v-on:click="deleteUser(xxyy)" pill variant="danger">Entfernen</b-button>
+                    </b-card-text>
+                  </b-col>
+                </b-row>
+              </b-col>
+            </b-row>
+            <!-- Collapse -->
+            <div>
+              <b-collapse id="collapse-editUser" class="mt-2">
+                <b-card>
+                  <b-row class="justify-content-center">
+                    <b-col cols="4" md="3">
+                      <b-form-input v-model="password" placeholder="Neues Passwort"></b-form-input>
+                    </b-col>
+                    <b-col cols="4" md="3">
+                      <b-form-input v-model="xy" placeholder="Neue XY"></b-form-input>
+                    </b-col>
+                    <b-col cols="2" md="2">
+                      <b-button
+                        v-on:click="editUser(xxyy)"
+                        v-b-toggle.collapse-editUser-inner
+                        size="md"
+                      >Ändern!</b-button>
+                    </b-col>
+                  </b-row>
+                </b-card>
+              </b-collapse>
+            </div>
+          </b-card>
+        </b-col>
+      </b-row>
+    </div>
+  <div>
+      <b-row class="justify-content-center" id="UserSpalte">
+        <b-col cols="12" md="11">
+          <b-card no-body class="overflow-hidden">
+            <!-- Hier ist die CENTER anweisung -->
+            <b-row align-v="center" align-h="between" no-gutters>
+              <!-- Bild -->
+              <b-col cols="2" md="1">
+                <b-card-img src="https://picsum.photos/400/400/?image=20"></b-card-img>
+              </b-col>
+              <!-- Name -->
+              <b-col cols="4">
+                <!-- {{ user[index-1] }} -->
+                <h3>Peter Petersen</h3>
+              </b-col>
+
+              <!-- buttons-->
+              <b-col cols="5" md="7">
+                <b-row>
+                  <b-col cols="6" sm="4" offset-sm="2" offset-md="4" offset-lg="7" md="4" lg="2">
+                    <b-card-text>
+                      <b-button v-b-toggle.collapse-editUser pill>Bearbeiten</b-button>
+                    </b-card-text>
+                  </b-col>
+                  <b-col cols="6" md="4" lg="2">
+                    <b-card-text>
+                      <!--  <b-button v-on:click="deleteUser(user[index-1]) pill variant="outline-danger"> -->
                       <b-button v-on:click="deleteUser(xxyy)" pill variant="danger">Entfernen</b-button>
                     </b-card-text>
                   </b-col>
@@ -197,9 +261,21 @@ export default {
 </script>
 
 <style scoped>
+.collapse1{
+  margin-bottom: 10px;
+}
+.addUserIcon{
+  width:40px;
+}
+.userlist{
+  margin-bottom: 10px;
+}
 img {
   max-width: 100%;
   height: auto;
+}
+.NewUser{
+ height: 200px;
 }
 .UserSpalte {
   max-height: 100px;

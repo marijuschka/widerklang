@@ -53,44 +53,74 @@
       <b-col cols="5">
         <h2>MEDIEN</h2>
         <hr />
-        <b-row class="justify-content-center">
-          <b-col cols="6">
-            <img
-              rounded="0"
-              thumbnail
-              src="../assets/WiderklangLogo.png"
-              fluid
-              alt="Fluid image"
-            >
-          </b-col>
-          <b-col cols="6">
-            <b-img
-              rounded="0"
-              thumbnail
-              src="https://picsum.photos/300/150/?image=41"
-              fluid
-              alt="Fluid image"
-            ></b-img>
-          </b-col>
-          <b-col cols="6">
-            <b-img
-              rounded="0"
-              thumbnail
-              src="https://picsum.photos/300/150/?image=41"
-              fluid
-              alt="Fluid image"
-            ></b-img>
-          </b-col>
-          <b-col cols="6">
-            <b-img
-              rounded="0"
-              thumbnail
-              src="https://picsum.photos/300/150/?image=41"
-              fluid
-              alt="Fluid image"
-            ></b-img>
-          </b-col>
-        </b-row>
+        <div class="container">
+          <div class="row" >
+            <div class="col 6 theme-frame">
+              <router-link :to="{ path: '/tabletMedia', query: { theme: 'red' }}" id="tabletMedia">
+                <a href="#" class>
+                  <div class="col 6 theme-boxes red-theme">
+                    <div class="row theme-position theme-position-red">
+                      <img alt src="../assets/Familie-Icon.png" />
+                      <h1 class="theme-text">
+                        
+                      </h1>
+                    </div>
+                  </div>
+                </a>
+              </router-link>
+            </div>
+            <div class="col 6 theme-frame">
+              <router-link :to="{ path: '/tabletMedia', query: { theme: 'blue' }}" id="tabletMedia">
+                <a href="#" class>
+                  <div class="col 6 theme-boxes blue-theme">
+                    <div class="row theme-position">
+                      <img alt src="../assets/Heimat-Icon.png" />
+                      <h1 class="theme-text">
+                        
+                      </h1>
+                    </div>
+                  </div>
+                </a>
+              </router-link>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col 2 theme-frame">
+              <router-link
+                :to="{ path: '/tabletMedia', query: { theme: 'green' }}"
+                id="tabletMedia"
+              >
+                <a href="#" class>
+                  <div class="col 6 theme-boxes green-theme">
+                    <div class="row theme-position theme-position-green">
+                      <img alt src="../assets/Natur-Icon.png" />
+                      <h1 class="theme-text">
+                        
+                      </h1>
+                    </div>
+                  </div>
+                </a>
+              </router-link>
+            </div>
+            <div class="col 6 theme-frame">
+              <router-link
+                :to="{ path: '/tabletMedia', query: { theme: 'orange' }}"
+                id="tabletMedia"
+              >
+                <a href="#" class>
+                  <div class="col 6 theme-boxes orange-theme">
+                    <div class="row theme-position">
+                      <img alt src="../assets/Freizeit-Icon.png" />
+                      <h1 class="theme-text">
+                        
+                      </h1>
+                    </div>
+                  </div>
+                </a>
+              </router-link>
+            </div>
+          </div>
+        </div>
       </b-col>
     </b-row>
   </div>
@@ -178,9 +208,21 @@ export default {
 </script>
 
 <style scoped>
-img {
-  max-width: 100%;
-  height: auto;
+h2{
+  margin-top: 30px;
+}
+.theme-boxes {
+  height: 30vh;
+  padding: 0;
+  border-radius: 50px;
+  box-shadow: 0px 5px 5px #303030;
+}
+.theme-frame {
+  margin-top: 20px;
+}
+img{
+  height: 150px;
+  width: auto;
 }
 .UserSpalte {
   max-height: 100px;
@@ -197,7 +239,13 @@ h3 {
   margin-top: 160px;
   top: 0;
 }
-.links{
+.links {
   line-height: 200px;
+}
+.theme-boxes {
+  height: 30vh;
+  padding: 0;
+  border-radius: 50px;
+  box-shadow: 0px 5px 5px #303030;
 }
 </style>
