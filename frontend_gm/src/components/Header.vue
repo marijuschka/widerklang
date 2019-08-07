@@ -78,6 +78,6 @@ img {
 }
 /* Für Abstand auf jeder Seite mit Header */
 .margin-top-60 {  
-  margin-top: 60px;
+  margin-top: 10px;
 }
 </style>
