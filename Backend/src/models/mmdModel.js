@@ -1,5 +1,5 @@
 'user strict';
-var sql = require('../../config/db_lokal');
+var sql = require('../../config/db');
 var jwt = require('jsonwebtoken');
 //User object constructor
 var MmD = function (id, mmd) {

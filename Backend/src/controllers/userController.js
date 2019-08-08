@@ -31,14 +31,13 @@ exports.create_a_user = function (req, res) {
         id: user_id,
         username: req.body.username,
         password: req.body.password,
-        email: req.body.email,
         role: req.body.role,
-        mmd_id: generateUniqueId()
+        role_id: req.body.role
       //  profile_img: req.body.profile_img
     }
     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10));
     //handles null error 
-    if (!user.username || !user.password || !user.email || !user.role) {
+    if (!user.username || !user.password || !user.role) {
         res.status(400).send({ error: true, message: 'Please provide all necessary fields!' });
     }
     else {
