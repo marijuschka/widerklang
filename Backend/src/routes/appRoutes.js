@@ -4,6 +4,7 @@ module.exports = function (app) {
     var mmdController = require('../controllers/mmdController');
     var materialController = require('../controllers/materialController');
     var pflegerController = require('../controllers/pflegerController');
+    var angehoerigerController = require('../controllers/angehoerigerController');
 
 /*Hier schreiben wir später die Routen, die wir brauchen
 
@@ -24,7 +25,9 @@ app.route('/users/:user_id')
         .put(userController.update_a_user)
         .delete(userController.delete_a_user);
 
-
+//Angehoeriger
+app.route('/angehoeriger/')
+        .post(angehoerigerController.create_a_angehoeriger);
 //Pfleger
 app.route('/pfleger/')
         .post(pflegerController.create_a_pfleger);

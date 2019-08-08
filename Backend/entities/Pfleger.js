@@ -25,3 +25,5 @@ class Pfleger {
     }
 
 }
+
+module.exports = Pfleger;

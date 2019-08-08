@@ -26,3 +26,5 @@ class MmD {
     }
 
 }
+
+module.exports = MmD;

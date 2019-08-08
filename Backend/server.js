@@ -1,8 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var multer = require('multer');
-var ejs = require('ejs');
-var path = require('path');
+
 //var jwt = require('jsonwebtoken');
 port = process.env.PORT || 8080;
 

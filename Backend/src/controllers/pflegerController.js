@@ -25,7 +25,7 @@ exports.create_a_pfleger = function (req, res) {
       //  profile_img: req.body.profile_img
     }
 
-    if (!pfleger.name || !pfleger.email || !user.username || !user.password) {
+    if (!pfleger.name || !pfleger.email || !user.username || !user.password ) {
         res.status(400).send({ error: true, message: 'Please provide all necessary fields!' });
     }
     else {
