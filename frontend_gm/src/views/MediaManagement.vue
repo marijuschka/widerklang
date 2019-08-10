@@ -1,97 +1,44 @@
 <template>
-  <div class="mediaManagement">
-    <Header />
-    <!-- Header Titel ändern ihren Abstand, wenn man auf "Medien" klickt> -->
-
-    <!-- Medienverwaltung -->
-    <b-row align-v="center">
-      <b-col offset="2" cols="5">
-        <h1>Medienverwaltung</h1>
-      </b-col>
-    </b-row>
-
-    <!-- leftSidebar -->
-
-    <!-- toDo: Abstand zwischen leftSidebar und Gallerie
-    Gallerie soll etwa 80% der Fläche einnehmen und leftSidebar 20%
-    -> Container Boxen-->
-
-    <div class="test">
-      <div id="leftSidebar" style="width: 10px; padding: 0px; margin: 0 0px">
-        <ul id="leftSidebar">
-          <b-col cols="2">
-            <li>
-              <button>
-                <img src="https://picsum.photos/id/155/300/300" />
-              </button>
-            </li>
-            <li>
-              <button>
-                <img src="https://picsum.photos/id/155/300/300" />
-              </button>
-            </li>
-            <li>
-              <button>
-                <img src="https://picsum.photos/id/155/300/300" />
-              </button>
-            </li>
-            <li>
-              <button>
-                <img src="https://picsum.photos/id/155/300/300" />
-              </button>
-            </li>
-          </b-col>
-        </ul>
+  <div class="media-management">
+    <my-header></my-header>
+    <div class="container">
+      <div class="image-sidebar">
+        <div class="image-sidebar__button">Kategorie 1</div>
+        <div class="image-sidebar__button">Kategorie 2</div>
+        <div class="image-sidebar__button">Kategorie 3</div>
+        <div class="image-sidebar__button">Kategorie 4</div>
       </div>
-    </div>
-
-    <!-- Bildergalerie -->
-    <div class="test">
-      <div id="galerie">
-        <b-col cols="12">
-          <!-- Dieser Button führt zu ImageUpload -->
-
-          <button>
-            <!-- <img src="https://picsum.photos/id/315/300/300"/> -->
-            <b-nav-item href="#">
-              <router-link to="/imageUpload" id="imageUpload">BildHochladen</router-link>
-            </b-nav-item>
-          </button>
-
-          <button>
-            <img src="https://picsum.photos/id/132/100/100" />
-          </button>
-          <button>
-            <img src="https://picsum.photos/id/132/100/100" />
-          </button>
-          <button>
-            <img src="https://picsum.photos/id/132/100/100" />
-          </button>
-          <button>
-            <img src="https://picsum.photos/id/132/100/100" />
-          </button>
-          <button>
-            <img src="https://picsum.photos/id/132/100/100" />
-          </button>
-          <button>
-            <img src="https://picsum.photos/id/132/100/100" />
-          </button>
-          <button>
-            <img src="https://picsum.photos/id/132/100/100" />
-          </button>
-          <button>
-            <img src="https://picsum.photos/id/132/100/100" />
-          </button>
-          <button>
-            <img src="https://picsum.photos/id/132/100/100" />
-          </button>
-          <button>
-            <img src="https://picsum.photos/id/132/100/100" />
-          </button>
-          <button>
-            <img src="https://picsum.photos/id/132/100/100" />
-          </button>
-        </b-col>
+      <div class="image-grid">
+        <div class="image-navbar">
+          <button>Generisch</button>
+          <button>Persönlich</button>
+        </div>
+        <div class="image-gallery">
+          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
+          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
+          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
+          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
+          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
+          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
+          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
+          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
+          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
+          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
+          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
+          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
+          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
+          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
+          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
+          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
+          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
+          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
+          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
+          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
+          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
+          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
+          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
+          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
+        </div>
       </div>
     </div>
   </div>
@@ -103,55 +50,43 @@ import Header from "../components/Header.vue";
 export default {
   name: "mediaManagement",
   components: {
-    Header
+    'my-header': Header
   }
 };
 </script>
 
-<style >
-li {
-  display: inline-block;
-  list-style-type: none;
-  width: 45%;
+<style lang="css" scoped>
+.container {
+  display: flex;
 }
 
-img {
-  padding: 0;
-  margin: 0;
-  width: 100%; /* Bild passt sich an verfügbaren Raum im li an */
+.image-sidebar {}
+
+.image-sidebar__button {
+  width: 100px;
+  height: 100px;
+  background-color: aqua;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
-button {
-  padding: 0.1em;
+.image-grid {
+  width: 100%;
 }
 
-/* Large screens */
-@media all and (min-width: 35em) {
-  li {
-    width: 10em;
-  }
-
-  img {
-    padding: 0;
-    margin: 0;
-    width: 100%; /* Bild passt sich an verfügbaren Raum im li an         ÜBERPRÜFEN */
-  }
-
-  button {
-    padding: 0.1em;
-  }
-
-  button:focus,
-  button:hover {
-    background: #09c;
-  }
+.image-gallery {
+  width: 100%;
+  overflow:auto;
+   display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 150px));
+    grid-gap: 20px;
 }
 
-.test {
-  float: left;
-  width: 50%;
-  padding: 10px;
-  background: rgb(102, 94, 94);
-  box-sizing: border-box;
+.image-gallery__image {
+    max-width: 150px;
+    max-height: 150px;
 }
-</style>
+</style> 
