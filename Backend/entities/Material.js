@@ -38,3 +38,4 @@ class Material {
         return this.type;
     }
 }
+

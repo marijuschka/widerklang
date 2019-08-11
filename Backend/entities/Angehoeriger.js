@@ -31,3 +31,5 @@ class Angehoeriger {
         return this.mmd_id;
     }
 }
+
+module.exports = Angehoeriger;
