@@ -1,8 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var multer = require('multer');
 var ejs = require('ejs');
-var path = require('path');
+
 //var jwt = require('jsonwebtoken');
 port = process.env.PORT || 8080;
 
@@ -18,6 +17,8 @@ app.use(function(req, res, next) {
     next();
 });
 
+app.set('view engine', 'ejs');
+app.get('/', (req, res ) => res.render('index'));
 app.listen(port, function () {
     console.log('Example app listening on port 8080!');
 });

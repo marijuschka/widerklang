@@ -4,6 +4,8 @@ module.exports = function (app) {
     var mmdController = require('../controllers/mmdController');
     var materialController = require('../controllers/materialController');
     var pflegerController = require('../controllers/pflegerController');
+    var genericController = require('../controllers/genericController');
+    var familyController = require('../controllers/familyController');
 
 /*Hier schreiben wir später die Routen, die wir brauchen
 
@@ -34,10 +36,20 @@ app.route('/mmd/')
         .post(mmdController.create_a_mmd);
 
 //Material 
-app.route('/material/:generic')
-        .get(materialController.get_all_material)
-        .post(materialController.create_a_material);
+app.route('/upload/')
+        .post(materialController.upload_material);
+app.route('/material/')
+        .get(materialController.get_all_material);
+
+app.route('/generic/')
+        .get(genericController.get_all_generic)
+        .post(genericController.upload_generic);
+
+ //Stack
+ app.route('/familie/')
+        .post(familyController.set_to_stack);       
 };
+
 
 
 
