@@ -49,7 +49,7 @@ export default {
       stackLeft: 0,
       stackRight: 2,
 
-      /* Hier sollte dann der richtige Stack in Abhängigkeit der Themen geladen werden */
+      /* Hier sollte dann der richtige Stack in Abhängigkeit der Themen und des Users geladen werden */
       stack: [
         {
           id: 1,
