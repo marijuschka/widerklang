@@ -13,15 +13,15 @@
       <b-row v-bind:class="theme" class="fill">
         <!-- vorheriges Bild -->
         <b-col cols="4">
-          <img class="stack stack-pos-side" v-bind:src="stack[0].path" v-bind:alt="stack[0].path">
+          <img class="stack stack-pos-side" @click="previousOnStack()" v-bind:src="stack[stackLeft].path" v-bind:alt="stack[stackLeft].path">
         </b-col>
         <!-- aktuelles Bild - startet Video bei anklicken wenn Video -->
         <b-col cols="4">
-          <img class="stack" v-bind:src="stack[1].path" v-bind:alt="stack[1].path">
+          <img class="stack" v-bind:src="stack[stackFocus].path" v-bind:alt="stack[stackFocus].path">
         </b-col>
         <!-- nächstes Bild -->
         <b-col cols="4">
-          <img class="stack stack-pos-side" v-bind:src="stack[2].path" v-bind:alt="stack[2].path">
+          <img class="stack stack-pos-side" @click="nextOnStack()" v-bind:src="stack[stackRight].path" v-bind:alt="stack[stackRight].path">
         </b-col>
       </b-row>
     </div>
@@ -39,7 +39,15 @@ export default {
   },
   data() {
     return {
+      // Das momentane Themengebiet, was des Stack und die Farbe bestimmt
       theme: this.$route.query.theme,
+
+      // Stack Positionen vom mittleren, linken und rechten Bild beim öffnen der Seite. 
+      // Stack wird immer resetted wenn man auf TabletMedia geht,
+      // vielleicht nicht ideal und globaler festlegen bzw. speichern wenn geändert.
+      stackFocus: 1,
+      stackLeft: 0,
+      stackRight: 2,
 
       /* Hier sollte dann der richtige Stack in Abhängigkeit der Themen geladen werden */
       stack: [
@@ -58,10 +66,73 @@ export default {
         {
           id: 4,
           path: "https://picsum.photos/id/230/400/400"
+        },
+        {
+          id: 5,
+          path: "https://picsum.photos/id/250/400/400"
         }
-      ]
-      
+      ]      
     };
+  },
+  methods: {
+    previousOnStack: function() {
+    // Verschiebt die Anwahl des Stacks um eine Stelle nach vorne/zurück , also schiebt die Bilder um einen nach rechts
+      console.log('previousOnStack -> ');
+
+      if (this.stackLeft === 0) {
+        console.log('stackLeft reached beginning of Stack.');
+        this.stackLeft = this.stack.length-1;
+        this.stackFocus--;
+        this.stackRight--;
+      } 
+      else if (this.stackFocus === 0) {
+        console.log('stackFocus reached beginning of Stack.');
+        this.stackLeft--;
+        this.stackFocus = this.stack.length-1;
+        this.stackRight--;
+      } 
+      else if (this.stackRight === 0) {
+        console.log('stackRight reached beginning of Stack.');
+        this.stackLeft--;
+        this.stackFocus--;
+        this.stackRight = this.stack.length-1;
+      } 
+      else {
+        this.stackFocus--;
+        this.stackLeft--;
+        this.stackRight--;        
+      }
+      console.log('stackFocus is at Stack Position: ' + this.stackFocus);
+    },
+    nextOnStack: function() {
+    // Verschiebt die Anwahl des Stacks um eine Stelle nach hinten/weiter , also schiebt die Bilder um einen nach links
+      console.log('nextOnStack -> ')
+
+      if (this.stackRight === this.stack.length-1) {
+        console.log('stackRight reached end of Stack.');
+        this.stackLeft++;
+        this.stackFocus++;
+        this.stackRight = 0;
+      } 
+      else if (this.stackFocus === this.stack.length-1) {
+        console.log('stackFocus reached end of Stack.');
+        this.stackLeft++;
+        this.stackFocus = 0;
+        this.stackRight++;
+      } 
+      else if (this.stackLeft === this.stack.length-1) {
+        console.log('stackLeft reached end of Stack.');
+        this.stackLeft = 0;
+        this.stackFocus++;
+        this.stackRight++;
+      } 
+      else {
+        this.stackFocus++;
+        this.stackLeft++;
+        this.stackRight++;        
+      }
+      console.log('stackFocus is at Stack Position: ' + this.stackFocus);
+    }
   }
 };
 </script>
