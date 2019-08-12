@@ -3,10 +3,10 @@
     <my-header></my-header>
     <div class="container">
       <div class="image-sidebar">
-        <div class="image-sidebar__button">Kategorie 1</div>
-        <div class="image-sidebar__button">Kategorie 2</div>
-        <div class="image-sidebar__button">Kategorie 3</div>
-        <div class="image-sidebar__button">Kategorie 4</div>
+        <img src='../../public/rot.png' alt="" class="image-gallery__image">
+        <img src='../../public/gruen.png' alt="" class="image-gallery__image">
+        <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+        <img src='../../public/blau.png' alt="" class="image-gallery__image">
       </div>
       <div class="image-grid">
         <div class="image-navbar">
@@ -14,7 +14,7 @@
           <button>Persönlich</button>
         </div>
         <div class="image-gallery">
-          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
           <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
           <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
           <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
@@ -56,15 +56,32 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+
+
+body {
+    margin: 0;
+}
+
 .container {
+  height: 100vh;
+  padding: 100px;
   display: flex;
 }
 
-.image-sidebar {}
+.image-sidebar {
+ display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.image-sidebar__image {
+    margin-bottom: 10px;
+}
 
 .image-sidebar__button {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   background-color: aqua;
   display: flex;
   flex-direction: row;
@@ -75,6 +92,10 @@ export default {
 
 .image-grid {
   width: 100%;
+  padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .image-gallery {
@@ -86,7 +107,9 @@ export default {
 }
 
 .image-gallery__image {
-    max-width: 150px;
-    max-height: 150px;
+    max-width: 100px;
+    max-height: 100px;
 }
+
+
 </style> 
