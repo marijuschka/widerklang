@@ -3,10 +3,10 @@
     <my-header></my-header>
     <div class="container">
       <div class="image-sidebar">
-        <img src='../../public/rot.png' alt="" class="image-gallery__image">
-        <img src='../../public/gruen.png' alt="" class="image-gallery__image">
-        <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-        <img src='../../public/blau.png' alt="" class="image-gallery__image">
+        <img src='../../public/rot.png' alt="" class="image-sidebar__image">
+        <img src='../../public/gruen.png' alt="" class="image-sidebar__image">
+        <img src='../../public/gelb.png' alt="" class="image-sidebar__image">
+        <img src='../../public/blau.png' alt="" class="image-sidebar__image">
       </div>
       <div class="image-grid">
         <div class="image-navbar">
@@ -14,30 +14,41 @@
           <button>Persönlich</button>
         </div>
         <div class="image-gallery">
+          <img src='../../public/plus.jpg' alt="" class="image-gallery__image">
           <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
-          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
-          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
-          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
-          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
-          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
-          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
-          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
-          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
-          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
-          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
-          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
-          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
-          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
-          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
-          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
-          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
-          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
-          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
-          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
-          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
-          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
-          <img src='../../public/WiderklangLogo.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
         </div>
       </div>
     </div>
@@ -64,21 +75,23 @@ body {
 }
 
 .container {
-  height: 100vh;
+  height: 95vh;
   padding: 100px;
   display: flex;
 }
 
 .image-sidebar {
- display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .image-sidebar__image {
-    margin-bottom: 10px;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 10px;
 }
-
+/*  EVENTUELL NÖTIG WENN DIE SIDEBAR IMAGES ZU BUTTONS WERDEN
 .image-sidebar__button {
   width: 150px;
   height: 150px;
@@ -88,6 +101,11 @@ body {
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
+}
+*/
+
+.image-navbar {
+  flex-basis: 50px;
 }
 
 .image-grid {
@@ -102,8 +120,8 @@ body {
   width: 100%;
   overflow:auto;
    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 150px));
-    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 100px));
+    grid-gap: 10px;
 }
 
 .image-gallery__image {
