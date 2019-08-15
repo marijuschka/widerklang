@@ -83,12 +83,15 @@ export default {
     login() {
       axios
         .post("http://139.6.102.67:8080/login", {
-          username: username,
-          password: password
+          
+          username: this.loginData.username,
+          password: this.loginData.password
         })
         .then(res => {
           {
-            console.log(res);
+            console.log("Token for "+this.loginData.username+" is: "+res.data.token);
+            localStorage.setItem("token", res.data.token)
+            console.log(localStorage.getItem("token"))
           }
         });
     }

@@ -3,7 +3,7 @@
     <div class="margin-top-60">
       <b-navbar toggleable="lg" type="light" variant="light">
         <b-navbar-brand href="#">
-          <router-link to="/" id="home">
+          <router-link to="/" id="login">
             <img alt="Vue logo" src="../assets/WiderklangLogo.png" />
           </router-link>
         </b-navbar-brand>
@@ -12,9 +12,6 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item href="#">
-              <router-link to="/login" id="login">Login</router-link>
-            </b-nav-item>
             <b-nav-item href="#">
               <router-link to="/user" id="user">Nutzer</router-link>
             </b-nav-item>

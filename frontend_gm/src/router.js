@@ -8,18 +8,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      name: 'login',
+      component: () => import('./views/Login.vue')
     },
     {
       path: '/user',
       name: 'user',
       component: () => import('./views/User.vue')
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: () => import('./views/Login.vue')
     },
     {
       path: '/tablet',
