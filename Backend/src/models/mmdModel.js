@@ -8,6 +8,30 @@ var MmD = function (id, mmd) {
     this.age = mmd.age;
 };
 
+MmD.getAMmdById = function getAMmdById(mmd_id,result) {
+    sql.query("SELECT * FROM mmd WHERE id = ?",mmd_id, function (err,res) {
+        if (err) {
+            result(null, err);
+        }
+        else {
+            result(null, res);
+        }
+    });
+};
+
+MmD.remove = function remove(mmd_id, result) {
+    sql.query("DELETE FROM mmd WHERE id = ?", mmd_id, function (err, res) {
+
+        if (err) {
+            result(null, err);
+        }
+        else {
+            result(null, mmd_id);
+        }
+    });
+};
+
+
 MmD.getAllMmD = function getAllMmD(result) {
     sql.query("SELECT * FROM mmd", function (err, res) {
         if (err) {
@@ -25,7 +49,7 @@ MmD.createMmD = function createMmD(mmd, result) {
             result(err, null);
         }
         else {
-            result(null, mmd.mmd_id);
+            result(null, mmd.id);
         }
     });
 };
