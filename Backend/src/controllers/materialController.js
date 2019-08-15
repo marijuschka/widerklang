@@ -29,7 +29,7 @@ exports.upload_material = function(req, res){
             console.log(req.file);
             var material_id = generateUniqueId();
             var mmd_material_id = generateUniqueId();
-            var mmd_id = generateUniqueId();
+            var mmd_id = req.body.mmd_id;
             var material = {
                 id: material_id,
                 name: req.body.name,
@@ -59,16 +59,29 @@ exports.upload_material = function(req, res){
 
 
 exports.get_all_material = function (req, res) {
+    var list = [];
+    var mmdmat = {
+       category: req.body.category,
+       mmd_id: req.body.mmd_id
+    }
+    console.log(req.params.mmd_id)
     /*   ensureToken(req, res);
        jwt.verify(req.token, 'my_secret_key', function (err, data) {
            if (err) {
                res.sendStatus(403);
            } else {*/
-               Material.getAllMaterial(function (err, material) {
+               Mmd_Material.getAllMaterial(mmdmat, function (err, generic) {
                    if (err)
                        res.send(err);
-                   res.send(material);
-               });
+                list = generic;
+                console.log(list);
+                Material.getAllMaterial(list, function (err, selected) {
+                    if (err){
+                        res.send(err);
+                    }
+                 res.json(selected); 
+                   });
+                });
       /*     }
        })*/
    };

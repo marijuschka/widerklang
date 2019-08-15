@@ -31,19 +31,8 @@ exports.get_all_generic = function (req, res) {
                Generic.getAllGeneric(req.body.category, function (err, generic) {
                    if (err)
                        res.send(err);
-                   list = generic;
-
-                  for(var i = 0; i < list.length; i++)
-                   Material.getAllMaterial(list[i], function (err, material) {
-                    if (err)
-                        res.send(err);
-                    mat.push(material);
-                   });
-                console.log(mat);
-                res.json(mat);
-                
-                
-            });
+                res.json(generic);
+                  });
                
       /*     }
        })*/

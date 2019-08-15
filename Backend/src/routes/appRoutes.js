@@ -39,10 +39,11 @@ app.route('/mmd/')
         .post(mmdController.create_a_mmd);
 
 //Material 
-app.route('/upload/')
-        .post(materialController.upload_material);
+
+        
 app.route('/material/')
-        .get(materialController.get_all_material);
+        .get(materialController.get_all_material)
+        .post(materialController.upload_material);
 
 app.route('/generic/')
         .get(genericController.get_all_generic)

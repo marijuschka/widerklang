@@ -8,7 +8,7 @@
     <body>
         <div class="container">
             <h1> File Upload</h1>
-            <form action="/upload" method="POST" enctype="multipart/form-data">
+            <form action="/material" method="POST" enctype="multipart/form-data">
                 <div class="input-field col s12">
                         <input placeholder="Benne deine Datei" id="name" name="name" type="text" class="validate">
                         <label for="first_name">Name</label>
@@ -21,6 +21,10 @@
                                 <input placeholder="Beschreibung/Gruß" id="description" name="description" type="text" class="validate">
                                 <label for="first_name">Beschreibung</label>
                               </div>
+                              <div class="input-field col s12">
+                                <input placeholder="mmd_id" id="mmd_id" name="mmd_id" type="text" class="validate">
+                                <label for="first_name">mmd_id</label>
+                              </div>  
                     </br>
                 <div class="file-field input-field">
                     <div class="btn grey">

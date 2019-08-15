@@ -19,6 +19,17 @@ Mmd_Material.saveMaterial = function saveMaterial(mmd_material, result) {
     });
 };
 
+Mmd_Material.getAllMaterial = function getAllMaterial(mmdmat, result){
+    sql.query("SELECT material_id FROM material_mmd WHERE category = ? AND mmd_id = ?", [mmdmat.category, mmdmat.mmd_id], function (err, res) {
+        if (err) {
+            result(err, null);
+        }
+        else {
+            result(null, res);
+        }
+    });
+}
+
 
 
 module.exports = Mmd_Material;

@@ -20,16 +20,12 @@ Generic.saveMaterial = function saveMaterial(generic, result) {
 };
 
 Generic.getAllGeneric = function getAllGeneric(category, result){
-    sql.query("SELECT materials_id FROM generic WHERE category = ?", category, function (err, res) {
+    sql.query("SELECT * FROM generic WHERE category = ?", category, function (err, res) {
         if (err) {
             result(err, null);
         }
         else {
-            var generic = [];
-            for(var i = 0; i <= res.length -1; i++){
-                generic.push(res[i].materials_id)
-            }
-            result(null, generic);
+            result(null, res);
         }
     });
 }

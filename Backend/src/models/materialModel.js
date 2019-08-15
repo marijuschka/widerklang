@@ -35,13 +35,15 @@ Material.uploadFile = function uploadFile(material, result){
 };*/
 
 
-Material.getAllMaterial = function getAllMaterial(generic, result) {
-    sql.query("SELECT * FROM material WHERE id = ?", generic, function (err, res) {
+Material.getAllMaterial = function getAllMaterial(list, result) {
+    var arr = list.map( function(el) { return el.material_id; });
+    sql.query("SELECT * FROM material WHERE id IN (?)", [arr], function (err, res) {
         if (err) {
             result(null, err);
         }
         else {
-            result(null, res[0]);
+            console.log(res);
+            result(null, res);
         }
     }); 
 };
