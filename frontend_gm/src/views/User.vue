@@ -26,18 +26,24 @@
                   <img class="addUserIcon" alt="NewUser" src="https://cdn.onlinewebfonts.com/svg/img_227643.png" />
                 </b-col>
                 <b-col cols="11" md="3" lg="3">
-                  <b-form-input v-model="password" placeholder="Name"></b-form-input>
+                  <b-form-input v-model="newUser.name" placeholder="Name"></b-form-input>
                 </b-col>
                 <b-col cols="11" md="4" lg="3">
-                  <b-form-input v-model="password" placeholder="Passwort"></b-form-input>
+                  <b-form-input v-model="newUser.username" placeholder="Username"></b-form-input>
                 </b-col>
                 <b-col cols="11" md="4" lg="3">
-                  <b-form-input v-model="xy" placeholder="etc"></b-form-input>
+                  <b-form-input v-model="newUser.email" placeholder="E-Mail"></b-form-input>
+                </b-col>
+                <b-col cols="11" md="4" lg="3">
+                  <b-form-input v-model="newUser.password" placeholder="Password"></b-form-input>
+                </b-col>
+                <b-col cols="11" md="4" lg="3">
+                  <b-form-input v-model="newUser.mmd_name" placeholder="mmd_name"></b-form-input>
                 </b-col>
                 <b-col cols="6" md="4" lg="2"> 
                  <!-- <b-col cols="auto"> -->
                   <b-button
-                    v-on:click="editUser(xxyy)"
+                    v-on:click="addNewUser()"
                     v-b-toggle.collapse-newUser-inner
                     size="md"
                   >Nutzer hinzufügen</b-button>
@@ -185,20 +191,35 @@ export default {
   data() {
     return {
       user: [],
+      angehoerige: [],
+      pfleger: [],
       newUser: {
+        name:"",
         username: "",
-        password: ""
+        email:"test@web.de",
+        password: "123",
+        mmd_name:"Test",
+        age:"100"
       },
+      editedUser: {
+        name:"",
+        username: "",
+        email:"",
+        password: "",
+        mmd_name:"",
+        user_id:""
+      },
+
       password: "",
       xy: "",
-      newUser: { name: "", password: "" }
+      
     };
   },
   methods: {
     // add new User to databank with a username
     addNewUser() {
       axios
-        .post("http://139.6.102.67:8080/users", this.newUser)
+        .post("http://139.6.102.67:8080/angehoeriger/", this.newUser)
         .then(res => {
           if (res.status == 200) {
             console.log(res);
@@ -214,6 +235,30 @@ export default {
           if (err.response.status == 404 || err.response.status == 401) {
             M.toast({
               html: "<b>Could not add new user @" + this.newUser.name + "</b>",
+              classes: "red white-text"
+            });
+          }
+        });
+    },
+    editUser(id) {
+      axios
+        .patch(
+          "http://139.6.102.67:8080/users" + id,
+          this.editedUser
+        )
+        .then(res => {
+          if (res.status == 200) {
+            M.toast({
+              html: "<b>Edited user @" + document.getElementById('icon_editPassword' + id).placeholder + "</b>",
+              classes: "green white-text"
+            });
+            this.toggleElements('editUser' + id);
+          }
+        })
+        .catch(err => {
+          if (err.response.status == 404 || err.response.status == 401) {
+            M.toast({
+              html: "<b>Could not edit user @" + this.editedUser.name + "</b>",
               classes: "red white-text"
             });
           }
@@ -251,6 +296,14 @@ export default {
   created() {
     axios
       .get("http://139.6.102.67:8080/users")
+      .then(res => {
+        console.log(res.data);
+        this.user = res.data;
+      })
+      .catch(err => console.log("Hey! Axios error for Users: " + err));
+
+          axios
+      .get("http://139.6.102.67:8080/angehoeriger")
       .then(res => {
         console.log(res.data);
         this.user = res.data;
