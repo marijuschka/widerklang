@@ -3,10 +3,10 @@
     <my-header></my-header>
     <div class="container">
       <div class="image-sidebar">
-        <img src='../../public/rot.png' alt="" class="image-sidebar__image">
-        <img src='../../public/gruen.png' alt="" class="image-sidebar__image">
-        <img src='../../public/gelb.png' alt="" class="image-sidebar__image">
-        <img src='../../public/blau.png' alt="" class="image-sidebar__image">
+        <img src='../assets/rot.png' alt="" class="image-sidebar__image">
+        <img src='../assets/gruen.png' alt="" class="image-sidebar__image">
+        <img src='../assets/gelb.png' alt="" class="image-sidebar__image">
+        <img src='../assets/blau.png' alt="" class="image-sidebar__image">
       </div>
       <div class="image-grid">
         <div class="image-navbar">
@@ -14,41 +14,42 @@
           <button>Persönlich</button>
         </div>
         <div class="image-gallery">
-          <img src='../../public/plus.jpg' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
-          <img src='../../public/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/plus.jpg' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+          <img src='../assets/gelb.png' alt="" class="image-gallery__image">
+         
         </div>
       </div>
     </div>
