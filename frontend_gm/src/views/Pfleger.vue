@@ -57,10 +57,8 @@
 
     <!--  Dynamisches Erzeugen der Pfleger Liste -->
 
-    <!-- <div v-for="index in pfleger.length"> -->
-      Nummer 1
-      dd
-      <h3> ddd </h3>
+    <!-- <div v-for="index in pfleger.length"> 
+      For Schleife funktioniert  -->
     
     <b-row class="justify-content-center pflegerlist" id="pflegerSpalte">
       <b-col cols="12" md="11">

@@ -97,7 +97,7 @@
     <!--  Dynamisches Erzeugen der User Liste -->
 
     <div v-for="index in user.length">
-      Nummer 1
+      For Schleife funktioniert
       <b-row class="justify-content-center userlist" id="UserSpalte">
         <b-col cols="12" md="11">
           <b-card no-body class="overflow-hidden">
