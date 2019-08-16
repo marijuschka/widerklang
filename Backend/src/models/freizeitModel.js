@@ -2,7 +2,7 @@
 var sql = require('../../config/db');
 var jwt = require('jsonwebtoken');
 //Material object constructor
-var Family = function (id, material) {
+var Freizeit = function (id, material) {
     this.id = id;
     this.mmd_id = material.mmd_id;
     this.relation = material.relation;
@@ -12,8 +12,8 @@ var Family = function (id, material) {
 };
 
 
-Family.setToStack = function setToStack(material, result){
-    sql.query("INSERT INTO familie SET ?", material, function (err, res) {
+Freizeit.setToStack = function setToStack(material, result){
+    sql.query("INSERT INTO freizeit SET ?", material, function (err, res) {
         if (err) {
             result(err, null);
         }
@@ -23,8 +23,8 @@ Family.setToStack = function setToStack(material, result){
     });
 }
 
-Family.proof = function proof(material, result){
-    sql.query("SELECT * FROM familie WHERE mmd_id = ? AND display = ? AND stacknr = ?", [material.mmd_id, material.display, material.stacknr], function (err, res) {
+Freizeit.proof = function proof(material, result){
+    sql.query("SELECT * FROM freizeit WHERE mmd_id = ? AND display = ? AND stacknr = ?", [material.mmd_id, material.display, material.stacknr], function (err, res) {
         if (err) {
             result(err, null);
         }
@@ -35,8 +35,8 @@ Family.proof = function proof(material, result){
     });   
 }
 
-Family.update = function update(material, result){
-    sql.query("UPDATE familie SET relation = ? , materials_id = ? WHERE mmd_id =? AND display = ? AND stacknr = ?", [material.relation, material.materials_id, material.mmd_id, material.display, material.stacknr], function (err, res) {
+Freizeit.update = function update(material, result){
+    sql.query("UPDATE freizeit SET relation = ? , materials_id = ? WHERE mmd_id =? AND display = ? AND stacknr = ?", [material.relation, material.materials_id, material.mmd_id, material.display, material.stacknr], function (err, res) {
         if (err) {
             result(err, null);
         }
@@ -46,4 +46,4 @@ Family.update = function update(material, result){
     });
 }
 
-module.exports = Family;
+module.exports = Freizeit;

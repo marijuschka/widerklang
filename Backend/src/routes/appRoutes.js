@@ -6,6 +6,9 @@ module.exports = function (app) {
     var pflegerController = require('../controllers/pflegerController');
     var genericController = require('../controllers/genericController');
     var familyController = require('../controllers/familyController');
+    var natureController = require('../controllers/natureController');
+    var freizeitController = require('../controllers/freizeitController');
+    var heimatController = require('../controllers/heimatController');
     var angehoerigerController = require('../controllers/angehoerigerController');
 
 /*Hier schreiben wir später die Routen, die wir brauchen
@@ -38,9 +41,7 @@ app.route('/mmd/')
         .get(mmdController.get_all_mmd)
         .post(mmdController.create_a_mmd);
 
-//Material 
-
-        
+//Material   
 app.route('/material/')
         .get(materialController.get_all_material)
         .post(materialController.upload_material);
@@ -50,8 +51,14 @@ app.route('/generic/')
         .post(genericController.upload_generic);
 
  //Stack
- app.route('/familie/')
-        .post(familyController.set_to_stack);       
+app.route('/familie/')
+        .post(familyController.set_to_stack);  
+app.route('/natur/')
+        .post(natureController.set_to_stack); 
+app.route('/freizeit/')
+        .post(freizeitController.set_to_stack);  
+app.route('/heimat/')
+        .post(heimatController.set_to_stack);        
 };
 
 
