@@ -1,6 +1,6 @@
 'use strict';
 
-var Angehoeriger = require('../models/angehoerigerModel.js');
+var Mmd_member = require('../models/mmd_memberModel.js');
 var User = require('../models/userModel.js');
 var MmD = require('../models/mmdModel.js')
 //var jwt = require('jsonwebtoken');
@@ -10,57 +10,57 @@ function generateUniqueId() {
 }
 
 
-// Gibt einen Angehoerigen anhand der ID zurück
-exports.get_a_angehoeriger = function (req,res) {
+// Gibt einen Mmd_member anhand der ID zurück
+exports.get_a_mmd_member = function (req,res) {
 
-    var res_angehoeriger = null;
+    var res_mmd_member = null;
 
-    Angehoeriger.getAngehoergierById(req.params.angehoeriger_id,function (err,angehoeriger) {
+    Mmd_member.getMmd_memberById(req.params.mmd_member_id,function (err,mmd_member) {
         if (err) {
             res.send(err);
         }
-        else if (angehoeriger == null) {
-            res.send("Angehoeriger does not exist!");
+        else if (mmd_member == null) {
+            res.send("Mmd_member does not exist!");
         } else {
-            res_angehoeriger = angehoeriger;
+            res_mmd_member = mmd_member;
         }
     });
 
-    User.getUserByAngehoerigenId(req.params.angehoeriger_id, function (err,user) {
+    User.getUserByMmd_memberId(req.params.mmd_member_id, function (err,user) {
         if (err) {
             res.send(err);
         }
         else if (user == null) {
-            res.send("Angehoeriger does not exist!");
+            res.send("Mmd_member does not exist!");
         } else {
-            var ob = Object.assign({},res_angehoeriger,user)
+            var ob = Object.assign({},res_mmd_member,user)
             res.json(ob);
         }
     });
 }
 
-// Gibt alle in der Datenbank exestierenden Angehoerigen in einer JSON-Liste zuruek
-exports.get_all_angehoerigen = function (req, res) {
+// Gibt alle in der Datenbank exestierenden Mmd_member in einer JSON-Liste zuruek
+exports.get_all_mmd_member = function (req, res) {
     /*   ensureToken(req, res);
        jwt.verify(req.token, 'my_secret_key', function (err, data) {
            if (err) {
                res.sendStatus(403);
            } else {*/
-               Angehoeriger.getAllAngehoerigen(function (err, angehoeriger) {
+            Mmd_member.getAllMmd_member(function (err, mmd_member) {
                    if (err)
                        res.send(err);
-                   res.send(angehoeriger);
+                   res.send(mmd_member);
                });
       /*     }
        })*/
 }
-exports.delete_a_angehoeriger = function (req, res) {
+exports.delete_a_mmd_member = function (req, res) {
     //ensureToken(req, res);
     //jwt.verify(req.token, 'my_secret_key', function (err, data) {
         //if (err) {
             //res.sendStatus(403);
         //} else {
-            Angehoeriger.remove(req.params.angehoeriger_id, function (err, user) {
+            Mmd_member.remove(req.params.mmd_member_id, function (err, user) {
                 if (err)
                     res.send(err);
                 res.json({ message: 'MmD-Member successfully deleted' });
@@ -76,10 +76,10 @@ exports.delete_a_angehoeriger = function (req, res) {
     //});
 }
 
-exports.update_a_angehoeriger = function (req,res) {
+exports.update_a_mmd_member = function (req,res) {
 
-    var updated_angehoeriger = {
-        id: req.body.angehoeriger_id,
+    var updated_mmd_member = {
+        id: req.body.mmd_member_id,
         name: req.body.name
     }
     var updated_user = {
@@ -89,15 +89,15 @@ exports.update_a_angehoeriger = function (req,res) {
         password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10)),
     }
 
-    if (!updated_angehoeriger.id || !updated_angehoeriger.name || !updated_user.id || !updated_user.email || !updated_user.username || !updated_user.password) {
+    if (!updated_mmd_member.id || !updated_mmd_member.name || !updated_user.id || !updated_user.email || !updated_user.username || !updated_user.password) {
         res.status(400).send({ error: true, message: 'Please provide all necessary fields!' });
     }
     else {
 
-        Angehoeriger.updateById(updated_angehoeriger, function (err,resAngehoeriger){
+        Mmd_member.updateById(updated_mmd_member, function (err,resMmd_member){
             if (err)
             res.send(err);
-            res.json(resAngehoeriger);
+            res.json(resMmd_member);
         })
         
         User.updateById(updated_user, function (err, resUser){
@@ -109,11 +109,11 @@ exports.update_a_angehoeriger = function (req,res) {
     }
 }
 
-exports.create_a_angehoeriger = function (req, res) {
-    var angehoeriger_id = generateUniqueId();
+exports.create_a_mmd_member = function (req, res) {
+    var mmd_member_id = generateUniqueId();
     var user_id = generateUniqueId();
-    var angehoeriger = {
-        id: angehoeriger_id,
+    var mmd_member = {
+        id: mmd_member_id,
         name: req.body.name,
         mmd_id: req.body.mmd_id
     }
@@ -122,19 +122,19 @@ exports.create_a_angehoeriger = function (req, res) {
         username: req.body.username,
         email: req.body.email,
         password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10)),
-        role: "Angehoeriger",
-        role_id: angehoeriger_id
+        role: "Mmd_member",
+        role_id: mmd_member_id
       //  profile_img: req.body.profile_img
     }
 
-    if (!angehoeriger.name || !user.username || !user.email || !user.password || !angehoeriger.mmd_id) {
+    if (!mmd_member.name || !user.username || !user.email || !user.password || !mmd_member.mmd_id) {
         res.status(400).send({ error: true, message: 'Please provide all necessary fields!' });
     }
     else {
-        Angehoeriger.createAngehoeriger(angehoeriger, function (err, resAngehoeriger) {
+        Mmd_member.createMmd_member(mmd_member, function (err, resMmd_member) {
             if (err)
                 res.send(err);
-            res.json(resAngehoeriger);
+            res.json(resMmd_member);
         });
         User.createUser(user, function (err, resUser) {
             if (err)

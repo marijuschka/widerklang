@@ -1,6 +1,6 @@
 'use strict';
 
-var Pfleger = require('../models/pflegerModel.js');
+var Carer = require('../models/carerModel.js');
 var User = require('../models/userModel.js');
 //var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt-nodejs');
@@ -8,11 +8,11 @@ function generateUniqueId() {
     return Math.random().toString(36).substr(2, 10);
 }
 
-exports.create_a_pfleger = function (req, res) {
-    var pfleger_id = generateUniqueId();
+exports.create_a_carer = function (req, res) {
+    var carer_id = generateUniqueId();
     var user_id = generateUniqueId();
-    var pfleger = {
-        id: pfleger_id,
+    var carer = {
+        id: carer_id,
         name: req.body.name,
         email: req.body.email
     }
@@ -20,19 +20,19 @@ exports.create_a_pfleger = function (req, res) {
         id: user_id,
         username: req.body.username,
         password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10)),
-        role: "Pfleger",
-        role_id: pfleger_id
+        role: "Carer",
+        role_id: carer_id
       //  profile_img: req.body.profile_img
     }
 
-    if (!pfleger.name || !pfleger.email || !user.username || !user.password ) {
+    if (!carer.name || !carer.email || !user.username || !user.password ) {
         res.status(400).send({ error: true, message: 'Please provide all necessary fields!' });
     }
     else {
-        Pfleger.createPfleger(pfleger, function (err, resPfleger) {
+        Carer.createCarer(carer, function (err, resCarer) {
             if (err)
                 res.send(err);
-            res.json(resPfleger);
+            res.json(resCarer);
         });
         User.createUser(user, function (err, resUser) {
             if (err)

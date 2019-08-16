@@ -3,8 +3,8 @@ module.exports = function (app) {
     var userController = require('../controllers/userController');
     var mmdController = require('../controllers/mmdController');
     var materialController = require('../controllers/materialController');
-    var pflegerController = require('../controllers/pflegerController');
-    var angehoerigerController = require('../controllers/angehoerigerController');
+    var carerController = require('../controllers/carerController');
+    var mmd_memberController = require('../controllers/mmd_memberController');
 
 /*Hier schreiben wir später die Routen, die wir brauchen
 
@@ -25,53 +25,53 @@ app.route('/users/:user_id')
 
 
 
-///////////////////////////////////Angehoeriger/////////////////////////////////////////////
+///////////////////////////////////Mmd_member/////////////////////////////////////////////
 
         // Zugriff //
 
-app.route('/angehoeriger/:angehoeriger_id')
+app.route('/mmd_member/:mmd_member_id')
 
-                // UEBER ID AUF ANGEHOERIGEN ZUGREIFEN
-        .get(angehoerigerController.get_a_angehoeriger)
+                // UEBER ID AUF Mmd_member ZUGREIFEN
+        .get(mmd_memberController.get_a_mmd_member)
 
                 // LOESCHEN
-        .delete(angehoerigerController.delete_a_angehoeriger);
+        .delete(mmd_memberController.delete_a_mmd_member);
 
 
-app.route('/angehoeriger/')
+app.route('/mmd_member/')
 
-                // ALLE ANGEHOERIGEN AUSGEBEN
-        .get(angehoerigerController.get_all_angehoerigen)
+                // ALLE Mmd_member AUSGEBEN
+        .get(mmd_memberController.get_all_mmd_member)
 
 
         // Verwalten //
 
                 // HINZUFUEGEN
-        .post(angehoerigerController.create_a_angehoeriger)
+        .post(mmd_memberController.create_a_mmd_member)
 
 
 
                 // BEARBEITEN
-        .put(angehoerigerController.update_a_angehoeriger);
+        .put(mmd_memberController.update_a_mmd_member);
 
 
                
 
 
-///////////////////////////////////Pfleger/////////////////////////////////////////////
+///////////////////////////////////Carer/////////////////////////////////////////////
 
         // Zugriff //
-app.route('/pfleger/')
+app.route('/carer/')
 
         // 
-        //.get(pflegerController.get_all_pfleger)
-        .post(pflegerController.create_a_pfleger);
+        //.get(carerController.get_all_carer)
+        .post(carerController.create_a_carer);
 
 
 
 
 
-///////////////////////////////////Angehoeriger/////////////////////////////////////////////
+///////////////////////////////////Mmd /////////////////////////////////////////////
 //Mensch mit Demenz MmD
 
 // Es ist zu beachten, dass wenn ein MmD geloescht wird sich auch der gesamte Inhalt aus der Datenbank loescht, sprich:

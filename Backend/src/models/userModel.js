@@ -45,8 +45,8 @@ User.getUserById = function getUserById(userId, result) {
     });
 };
 
-User.getUserByAngehoerigenId = function getUserByAngehoerigenId(angehoerigen_id,result) {
-    sql.query("SELECT * FROM user WHERE role_id = ?",angehoerigen_id, function (err,res) {
+User.getUserByMmd_memberId = function getUserByMmd_memberId(mmd_member_id,result) {
+    sql.query("SELECT * FROM user WHERE role_id = ?",mmd_member_id, function (err,res) {
         if (err) {
             result(err, null);
         }

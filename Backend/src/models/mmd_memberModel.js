@@ -3,12 +3,12 @@ var sql = require('../../config/db');
 var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jsonwebtoken');
 //User object constructor
-var Angehoeriger = function (id, angehoeriger) {
+var Mmd_member = function (id, mmd_member) {
     this.id = id;
-    this.name = angehoeriger.name;
+    this.name = mmd_member.name;
 };
 
-Angehoeriger.getAllAngehoerigen = function getAllAngehoerigen(result) {
+Mmd_member.getAllMmd_member = function getAllMmd_member(result) {
     sql.query("SELECT * FROM mmd_member", function (err, res) {
         if (err) {
             result(null, err);
@@ -19,19 +19,19 @@ Angehoeriger.getAllAngehoerigen = function getAllAngehoerigen(result) {
     });
 };
 
-Angehoeriger.createAngehoeriger = function createAngehoeriger(angehoeriger, result) {
-    sql.query("INSERT INTO mmd_member SET ?", angehoeriger, function (err, res) {
+Mmd_member.createMmd_member = function createMmd_member(mmd_member, result) {
+    sql.query("INSERT INTO mmd_member SET ?", mmd_member, function (err, res) {
         if (err) {
             result(err, null);
         }
         else {
-            result(null, angehoeriger.id);
+            result(null, mmd_member.id);
         }
     });
 };
 
-Angehoeriger.getAngehoergierById = function getAngehoergierById(angehoeriger_id,result) {
-    sql.query("SELECT * FROM mmd_member WHERE id = ?",angehoeriger_id,function (err,res) {
+Mmd_member.getMmd_memberById = function getMmd_memberById(mmd_member_id,result) {
+    sql.query("SELECT * FROM mmd_member WHERE id = ?",mmd_member_id,function (err,res) {
         if (err) {
             result(null, err);
         }
@@ -40,7 +40,7 @@ Angehoeriger.getAngehoergierById = function getAngehoergierById(angehoeriger_id,
         }
     });
 }
-Angehoeriger.updateById = function updateById(input,result) {
+Mmd_member.updateById = function updateById(input,result) {
     sql.query("UPDATE mmd_member SET name = ? WHERE id = ?",[input.name, input.id], function (err,res){
         if (err) {
             result(null, err);
@@ -52,8 +52,8 @@ Angehoeriger.updateById = function updateById(input,result) {
 
 }
 
-Angehoeriger.remove = function remove(id, result) {
-    sql.query("DELETE FROM mmd_member WHERE id = ?", [id], function (err, res) {
+Mmd_member.remove = function remove(id, result) {
+    sql.query("DELETE FROM mmd_member WHERE id = ?", id, function (err, res) {
 
         if (err) {
             result(null, err);
@@ -64,4 +64,4 @@ Angehoeriger.remove = function remove(id, result) {
     });
 };
 
-module.exports = Angehoeriger;
+module.exports = Mmd_member;
