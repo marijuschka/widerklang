@@ -98,68 +98,64 @@
 
     <div v-for="index in user.length">
       Nummer 1
-      dd
-      <h3> ddd </h3>
-    
-    <b-row class="justify-content-center userlist" id="UserSpalte">
-      <b-col cols="12" md="11">
-        <b-card no-body class="overflow-hidden">
-          <!-- Hier ist die CENTER anweisung -->
-          <b-row align-v="center" align-h="between" no-gutters>
-            <!-- Bild -->
-            <b-col cols="2" md="1">
-              <b-card-img src="https://picsum.photos/400/400/?image=20"></b-card-img>
-            </b-col>
-            <!-- Name -->
-            <b-col cols="5">
-              <!-- {{ user[index-1] }} -->
-              <h3>{{user[index-1].username}} --> ID=  {{user[index-1].id}} --> Role= {{user[index-1].role}}</h3> 
-            </b-col>
+      <b-row class="justify-content-center userlist" id="UserSpalte">
+        <b-col cols="12" md="11">
+          <b-card no-body class="overflow-hidden">
+            <!-- Hier ist die CENTER anweisung -->
+            <b-row align-v="center" align-h="between" no-gutters>
+              <!-- Bild -->
+              <b-col cols="2" md="1">
+                <b-card-img src="https://picsum.photos/400/400/?image=20"></b-card-img>
+              </b-col>
+              <!-- Name -->
+              <b-col cols="5">
+                <!-- {{ user[index-1] }} -->
+                <h3>{{user[index-1].username}} --> ID= {{user[index-1].id}} --> Role= {{user[index-1].role}}</h3>
+              </b-col>
 
-            <!-- buttons-->
-            <b-col cols="5" md="6">
-              <b-row>
-                <b-col cols="6" sm="4" offset-sm="2" offset-md="4" offset-lg="7" md="4" lg="2">
-                  <b-card-text>
-                    <b-button v-b-toggle.collapse pill>Bearbeiten</b-button>
-                  </b-card-text>
-                </b-col>
-                <b-col cols="6" md="4" lg="2">
-                  <b-card-text>
-                    <!--  <b-button v-on:click="deleteUser(user[index-1]) pill variant="outline-danger"> -->
-                    <b-button v-on:click="deleteUser(XY)" pill variant="danger">Entfernen</b-button>
-                  </b-card-text>
-                </b-col>
-              </b-row>
-            </b-col>
-          </b-row>
-          <!-- Collapse -->
-          <div>
-            <b-collapse id=collapse-editUser  class="mt-2">
-              <b-card>
-                <b-row class="justify-content-center">
-                  <b-col cols="4" md="3">
-                    <b-form-input v-model="password" placeholder="Neues Passwort"></b-form-input>
+              <!-- buttons-->
+              <b-col cols="5" md="6">
+                <b-row>
+                  <b-col cols="6" sm="4" offset-sm="2" offset-md="4" offset-lg="7" md="4" lg="2">
+                    <b-card-text>
+                      <b-button v-b-toggle.collapse pill>Bearbeiten</b-button>
+                    </b-card-text>
                   </b-col>
-                  <b-col cols="4" md="3">
-                    <b-form-input v-model="xy" placeholder="Neue XY"></b-form-input>
-                  </b-col>
-                  <b-col cols="2" md="2">
-                    <b-button
-                      v-on:click="editUser(xxyy)"
-                      v-b-toggle.collapse-editUser-inner
-                      size="md"
-                    >Ändern!</b-button>
+                  <b-col cols="6" md="4" lg="2">
+                    <b-card-text>
+                      <!--  <b-button v-on:click="deleteUser(user[index-1]) pill variant="outline-danger"> -->
+                      <b-button v-on:click="deleteMMD(XY)" pill variant="danger">Entfernen</b-button>
+                    </b-card-text>
                   </b-col>
                 </b-row>
-              </b-card>
-            </b-collapse>
-          </div>
-        </b-card>
-      </b-col>
-    </b-row>
-</div>
-
+              </b-col>
+            </b-row>
+            <!-- Collapse -->
+            <div>
+              <b-collapse id="collapse-editUser" class="mt-2">
+                <b-card>
+                  <b-row class="justify-content-center">
+                    <b-col cols="4" md="3">
+                      <b-form-input v-model="password" placeholder="Neues Passwort"></b-form-input>
+                    </b-col>
+                    <b-col cols="4" md="3">
+                      <b-form-input v-model="xy" placeholder="Neue XY"></b-form-input>
+                    </b-col>
+                    <b-col cols="2" md="2">
+                      <b-button
+                        v-on:click="editMember(xxyy)"
+                        v-b-toggle.collapse-editUser-inner
+                        size="md"
+                      >Ändern!</b-button>
+                    </b-col>
+                  </b-row>
+                </b-card>
+              </b-collapse>
+            </div>
+          </b-card>
+        </b-col>
+      </b-row>
+    </div>
 
     <b-row class="justify-content-center" id="UserSpalte">
       <b-col cols="12" md="11">
@@ -233,21 +229,22 @@ export default {
   data() {
     return {
       user: [],
-      mmd:[],
+      mmd: [],
       angehoerige: [],
       pfleger: [],
+
       newMember: {
         name: "",
         username: "",
         email: "test@web.de",
         password: "123",
-        mmd_id: "1234"
+        mmd_id: ""
       },
       newMMD: {
         name: "",
         age: ""
       },
-      editedUser: {
+      editedMember: {
         name: "",
         username: "",
         email: "",
@@ -264,7 +261,7 @@ export default {
     // add new Member/Angehoerigen to database
     addNewMember() {
       axios
-        .post("http://139.6.102.67:8080/angehoeriger", this.newMember)
+        .post("http://139.6.102.67:8080/angehoeriger/", this.newMember)
         .then(res => {
           if (res.status == 200) {
             console.log(res);
@@ -285,8 +282,8 @@ export default {
           }
         });
     },
-    // Add new User
-     addNewMember() {
+    // Add new Member
+    addNewMember() {
       axios
         .post("http://139.6.102.67:8080/angehoeriger", this.newMember)
         .then(res => {
@@ -334,9 +331,9 @@ export default {
         });
     },
     // Edit Existing USER
-    editUser(id) {
+    editMember(id) {
       axios
-        .patch("http://139.6.102.67:8080/users" + id, this.editedUser)
+        .patch("http://139.6.102.67:8080/angehoeriger" + id, this.editedMember)
         .then(res => {
           if (res.status == 200) {
             M.toast({
@@ -359,10 +356,10 @@ export default {
         });
     },
     // Delete User with given ID
-    deleteUser(id) {
+    deleteMMD(id) {
       console.log("delete User with ID: " + id);
       axios
-        .delete("http://139.6.102.67:8080/users/" + id)
+        .delete("http://139.6.102.67:8080/mmd/" + id)
         .then(res => {
           if (res.status == 200) {
             console.log(res);
@@ -389,14 +386,6 @@ export default {
   },
   created() {
     axios
-      .get("http://139.6.102.67:8080/users")
-      .then(res => {
-        console.log(res.data);
-        this.user = res.data;
-      })
-      .catch(err => console.log("Hey! Axios error for Users: " + err));
-
-    axios
       .get("http://139.6.102.67:8080/mmd")
       .then(res => {
         console.log(res.data);
@@ -404,11 +393,25 @@ export default {
       })
       .catch(err => console.log("Hey! Axios error for Users: " + err));
 
-      axios
+    axios
       .get("http://139.6.102.67:8080/angehoeriger")
       .then(res => {
         console.log(res.data);
         this.angehoerige = res.data;
+      })
+      .catch(err => console.log("Hey! Axios error for Users: " + err));
+    axios
+      .get("http://139.6.102.67:8080/pfleger")
+      .then(res => {
+        console.log(res.data);
+        this.pfleger = res.data;
+      })
+      .catch(err => console.log("Hey! Axios error for Users: " + err));
+    axios
+      .get("http://139.6.102.67:8080/users")
+      .then(res => {
+        console.log(res.data);
+        this.user = res.data;
       })
       .catch(err => console.log("Hey! Axios error for Users: " + err));
   }
