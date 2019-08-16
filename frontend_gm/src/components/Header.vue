@@ -16,6 +16,9 @@
               <router-link to="/user" id="user">Nutzer</router-link>
             </b-nav-item>
             <b-nav-item href="#">
+              <router-link to="/pfleger" id="pfleger">Pfleger</router-link>
+            </b-nav-item>
+            <b-nav-item href="#">
               <router-link to="/schnellzugriff" id="SZugriff">SZugriff</router-link>
             </b-nav-item>
             <b-nav-item href="#">

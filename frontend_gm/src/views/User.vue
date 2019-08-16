@@ -6,11 +6,13 @@
       <b-col cols="12" md="11">
         <b-row align-h="start">
           <b-col cols="auto">
+            <b-button v-b-toggle.collapse-newMember variant="success">Neuen Angehörigen hinzufügen</b-button>
+          </b-col>
+          <b-col cols="auto">
             <b-button
-              v-b-toggle.collapse-newUser
-              v-on:click="addNewUser"
+              v-b-toggle.collapse-newMMD
               variant="success"
-            >Neuen Nutzer hinzufügen</b-button>
+            >Neuen Menschen mit Demenz hinzufügen</b-button>
           </b-col>
         </b-row>
       </b-col>
@@ -19,32 +21,36 @@
     <div>
       <b-row class="justify-content-center" id="addUser">
         <b-col cols="12" md="11">
-          <b-collapse id="collapse-newUser" class="mt-2 collapse1">
+          <b-collapse id="collapse-newMember" class="mt-2 collapse1">
             <b-card>
               <b-row align-v="center" class="justify-content-center">
                 <b-col cols="2" md="1" lg="1">
-                  <img class="addUserIcon" alt="NewUser" src="https://cdn.onlinewebfonts.com/svg/img_227643.png" />
+                  <img
+                    class="addUserIcon"
+                    alt="newMember"
+                    src="https://cdn.onlinewebfonts.com/svg/img_227643.png"
+                  />
                 </b-col>
                 <b-col cols="11" md="3" lg="3">
-                  <b-form-input v-model="newUser.name" placeholder="Name"></b-form-input>
+                  <b-form-input v-model="newMember.name" placeholder="Name"></b-form-input>
                 </b-col>
                 <b-col cols="11" md="4" lg="3">
-                  <b-form-input v-model="newUser.username" placeholder="Username"></b-form-input>
+                  <b-form-input v-model="newMember.username" placeholder="Username"></b-form-input>
                 </b-col>
                 <b-col cols="11" md="4" lg="3">
-                  <b-form-input v-model="newUser.email" placeholder="E-Mail"></b-form-input>
+                  <b-form-input v-model="newMember.email" placeholder="E-Mail"></b-form-input>
                 </b-col>
                 <b-col cols="11" md="4" lg="3">
-                  <b-form-input v-model="newUser.password" placeholder="Password"></b-form-input>
+                  <b-form-input v-model="newMember.password" placeholder="Password"></b-form-input>
                 </b-col>
                 <b-col cols="11" md="4" lg="3">
-                  <b-form-input v-model="newUser.mmd_name" placeholder="mmd_name"></b-form-input>
+                  <b-form-input v-model="newMember.mmd_id" placeholder="mmd_id"></b-form-input>
                 </b-col>
-                <b-col cols="6" md="4" lg="2"> 
-                 <!-- <b-col cols="auto"> -->
+                <b-col cols="6" md="4" lg="2">
+                  <!-- <b-col cols="auto"> -->
                   <b-button
-                    v-on:click="addNewUser()"
-                    v-b-toggle.collapse-newUser-inner
+                    v-on:click="addNewMember()"
+                    v-b-toggle.collapse-newMember-inner
                     size="md"
                   >Nutzer hinzufügen</b-button>
                 </b-col>
@@ -54,128 +60,164 @@
         </b-col>
       </b-row>
     </div>
-    <!--  Dynamisches Erzeugen der User Liste
 
-    <div v-for="index in user.length">-->
-      
     <div>
-      <b-row class="justify-content-center userlist" id="UserSpalte">
+      <b-row class="justify-content-center" id="addUser">
         <b-col cols="12" md="11">
-          <b-card no-body class="overflow-hidden">
-            <!-- Hier ist die CENTER anweisung -->
-            <b-row align-v="center" align-h="between" no-gutters>
-              <!-- Bild -->
-              <b-col cols="2" md="1">
-                <b-card-img src="https://picsum.photos/400/400/?image=20"></b-card-img>
-              </b-col>
-              <!-- Name -->
-              <b-col cols="4">
-                <!-- {{ user[index-1] }} -->
-                <h3>Emma Emersson</h3>
-              </b-col>
-
-              <!-- buttons-->
-              <b-col cols="5" md="7">
-                <b-row>
-                  <b-col cols="6" sm="4" offset-sm="2" offset-md="4" offset-lg="7" md="4" lg="2">
-                    <b-card-text>
-                      <b-button v-b-toggle.collapse-editUser pill>Bearbeiten</b-button>
-                    </b-card-text>
-                  </b-col>
-                  <b-col cols="6" md="4" lg="2">
-                    <b-card-text>
-                      <!--  <b-button v-on:click="deleteUser(user[index-1]) pill variant="outline-danger"> -->
-                      <b-button v-on:click="deleteUser(xxyy)" pill variant="danger">Entfernen</b-button>
-                    </b-card-text>
-                  </b-col>
-                </b-row>
-              </b-col>
-            </b-row>
-            <!-- Collapse -->
-            <div>
-              <b-collapse id="collapse-editUser" class="mt-2">
-                <b-card>
-                  <b-row class="justify-content-center">
-                    <b-col cols="4" md="3">
-                      <b-form-input v-model="password" placeholder="Neues Passwort"></b-form-input>
-                    </b-col>
-                    <b-col cols="4" md="3">
-                      <b-form-input v-model="xy" placeholder="Neue XY"></b-form-input>
-                    </b-col>
-                    <b-col cols="2" md="2">
-                      <b-button
-                        v-on:click="editUser(xxyy)"
-                        v-b-toggle.collapse-editUser-inner
-                        size="md"
-                      >Ändern!</b-button>
-                    </b-col>
-                  </b-row>
-                </b-card>
-              </b-collapse>
-            </div>
-          </b-card>
+          <b-collapse id="collapse-newMMD" class="mt-2 collapse1">
+            <b-card>
+              <b-row align-v="center" class="justify-content-center">
+                <b-col cols="2" md="1" lg="1">
+                  <img
+                    class="addUserIcon"
+                    alt="newMMD"
+                    src="https://cdn.onlinewebfonts.com/svg/img_227643.png"
+                  />
+                </b-col>
+                <b-col cols="11" md="3" lg="3">
+                  <b-form-input v-model="newMMD.name" placeholder="Name"></b-form-input>
+                </b-col>
+                <b-col cols="11" md="4" lg="3">
+                  <b-form-input v-model="newMMD.age" placeholder="Alter"></b-form-input>
+                </b-col>
+                <b-col cols="6" md="4" lg="2">
+                  <!-- <b-col cols="auto"> -->
+                  <b-button
+                    v-on:click="addNewMMD()"
+                    v-b-toggle.collapse-newMember-inner
+                    size="md"
+                  >Nutzer hinzufügen</b-button>
+                </b-col>
+              </b-row>
+            </b-card>
+          </b-collapse>
         </b-col>
       </b-row>
     </div>
-  <div>
-      <b-row class="justify-content-center" id="UserSpalte">
-        <b-col cols="12" md="11">
-          <b-card no-body class="overflow-hidden">
-            <!-- Hier ist die CENTER anweisung -->
-            <b-row align-v="center" align-h="between" no-gutters>
-              <!-- Bild -->
-              <b-col cols="2" md="1">
-                <b-card-img src="https://picsum.photos/400/400/?image=20"></b-card-img>
-              </b-col>
-              <!-- Name -->
-              <b-col cols="4">
-                <!-- {{ user[index-1] }} -->
-                <h3>Peter Petersen</h3>
-              </b-col>
+    <!--  Dynamisches Erzeugen der User Liste -->
 
-              <!-- buttons-->
-              <b-col cols="5" md="7">
-                <b-row>
-                  <b-col cols="6" sm="4" offset-sm="2" offset-md="4" offset-lg="7" md="4" lg="2">
-                    <b-card-text>
-                      <b-button v-b-toggle.collapse-editUser pill>Bearbeiten</b-button>
-                    </b-card-text>
+    <div v-for="index in user.length">
+      Nummer 1
+      dd
+      <h3> ddd </h3>
+    
+    <b-row class="justify-content-center userlist" id="UserSpalte">
+      <b-col cols="12" md="11">
+        <b-card no-body class="overflow-hidden">
+          <!-- Hier ist die CENTER anweisung -->
+          <b-row align-v="center" align-h="between" no-gutters>
+            <!-- Bild -->
+            <b-col cols="2" md="1">
+              <b-card-img src="https://picsum.photos/400/400/?image=20"></b-card-img>
+            </b-col>
+            <!-- Name -->
+            <b-col cols="5">
+              <!-- {{ user[index-1] }} -->
+              <h3>{{user[index-1].username}} --> ID=  {{user[index-1].id}} --> Role= {{user[index-1].role}}</h3> 
+            </b-col>
+
+            <!-- buttons-->
+            <b-col cols="5" md="6">
+              <b-row>
+                <b-col cols="6" sm="4" offset-sm="2" offset-md="4" offset-lg="7" md="4" lg="2">
+                  <b-card-text>
+                    <b-button v-b-toggle.collapse pill>Bearbeiten</b-button>
+                  </b-card-text>
+                </b-col>
+                <b-col cols="6" md="4" lg="2">
+                  <b-card-text>
+                    <!--  <b-button v-on:click="deleteUser(user[index-1]) pill variant="outline-danger"> -->
+                    <b-button v-on:click="deleteUser(XY)" pill variant="danger">Entfernen</b-button>
+                  </b-card-text>
+                </b-col>
+              </b-row>
+            </b-col>
+          </b-row>
+          <!-- Collapse -->
+          <div>
+            <b-collapse id=collapse-editUser  class="mt-2">
+              <b-card>
+                <b-row class="justify-content-center">
+                  <b-col cols="4" md="3">
+                    <b-form-input v-model="password" placeholder="Neues Passwort"></b-form-input>
                   </b-col>
-                  <b-col cols="6" md="4" lg="2">
-                    <b-card-text>
-                      <!--  <b-button v-on:click="deleteUser(user[index-1]) pill variant="outline-danger"> -->
-                      <b-button v-on:click="deleteUser(xxyy)" pill variant="danger">Entfernen</b-button>
-                    </b-card-text>
+                  <b-col cols="4" md="3">
+                    <b-form-input v-model="xy" placeholder="Neue XY"></b-form-input>
+                  </b-col>
+                  <b-col cols="2" md="2">
+                    <b-button
+                      v-on:click="editUser(xxyy)"
+                      v-b-toggle.collapse-editUser-inner
+                      size="md"
+                    >Ändern!</b-button>
                   </b-col>
                 </b-row>
-              </b-col>
-            </b-row>
-            <!-- Collapse -->
-            <div>
-              <b-collapse id="collapse-editUser" class="mt-2">
-                <b-card>
-                  <b-row class="justify-content-center">
-                    <b-col cols="4" md="3">
-                      <b-form-input v-model="password" placeholder="Neues Passwort"></b-form-input>
-                    </b-col>
-                    <b-col cols="4" md="3">
-                      <b-form-input v-model="xy" placeholder="Neue XY"></b-form-input>
-                    </b-col>
-                    <b-col cols="2" md="2">
-                      <b-button
-                        v-on:click="editUser(xxyy)"
-                        v-b-toggle.collapse-editUser-inner
-                        size="md"
-                      >Ändern!</b-button>
-                    </b-col>
-                  </b-row>
-                </b-card>
-              </b-collapse>
-            </div>
-          </b-card>
-        </b-col>
-      </b-row>
-    </div>
+              </b-card>
+            </b-collapse>
+          </div>
+        </b-card>
+      </b-col>
+    </b-row>
+</div>
+
+
+    <b-row class="justify-content-center" id="UserSpalte">
+      <b-col cols="12" md="11">
+        <b-card no-body class="overflow-hidden">
+          <!-- Hier ist die CENTER anweisung -->
+          <b-row align-v="center" align-h="between" no-gutters>
+            <!-- Bild -->
+            <b-col cols="2" md="1">
+              <b-card-img src="https://picsum.photos/400/400/?image=20"></b-card-img>
+            </b-col>
+            <!-- Name -->
+            <b-col cols="4">
+              <!-- {{ user[index-1] }} -->
+              <h3>Test Testen</h3>
+            </b-col>
+
+            <!-- buttons-->
+            <b-col cols="5" md="7">
+              <b-row>
+                <b-col cols="6" sm="4" offset-sm="2" offset-md="4" offset-lg="7" md="4" lg="2">
+                  <b-card-text>
+                    <b-button v-b-toggle.collapse-editUser pill>Bearbeiten</b-button>
+                  </b-card-text>
+                </b-col>
+                <b-col cols="6" md="4" lg="2">
+                  <b-card-text>
+                    <!--  <b-button v-on:click="deleteUser(user[index-1]) pill variant="outline-danger"> -->
+                    <b-button v-on:click="deleteUser(xxyy)" pill variant="danger">Entfernen</b-button>
+                  </b-card-text>
+                </b-col>
+              </b-row>
+            </b-col>
+          </b-row>
+          <!-- Collapse -->
+          <div>
+            <b-collapse id="collapse-editUser" class="mt-2">
+              <b-card>
+                <b-row class="justify-content-center">
+                  <b-col cols="4" md="3">
+                    <b-form-input v-model="password" placeholder="Neues Passwort"></b-form-input>
+                  </b-col>
+                  <b-col cols="4" md="3">
+                    <b-form-input v-model="xy" placeholder="Neue XY"></b-form-input>
+                  </b-col>
+                  <b-col cols="2" md="2">
+                    <b-button
+                      v-on:click="editUser(xxyy)"
+                      v-b-toggle.collapse-editUser-inner
+                      size="md"
+                    >Ändern!</b-button>
+                  </b-col>
+                </b-row>
+              </b-card>
+            </b-collapse>
+          </div>
+        </b-card>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -191,39 +233,42 @@ export default {
   data() {
     return {
       user: [],
+      mmd:[],
       angehoerige: [],
       pfleger: [],
-      newUser: {
-        name:"",
+      newMember: {
+        name: "",
         username: "",
-        email:"test@web.de",
+        email: "test@web.de",
         password: "123",
-        mmd_name:"Test",
-        age:"100"
+        mmd_id: "1234"
+      },
+      newMMD: {
+        name: "",
+        age: ""
       },
       editedUser: {
-        name:"",
+        name: "",
         username: "",
-        email:"",
+        email: "",
         password: "",
-        mmd_name:"",
-        user_id:""
+        mmd_name: "",
+        user_id: ""
       },
 
       password: "",
-      xy: "",
-      
+      xy: ""
     };
   },
   methods: {
-    // add new User to databank with a username
-    addNewUser() {
+    // add new Member/Angehoerigen to database
+    addNewMember() {
       axios
-        .post("http://139.6.102.67:8080/angehoeriger/", this.newUser)
+        .post("http://139.6.102.67:8080/angehoeriger", this.newMember)
         .then(res => {
           if (res.status == 200) {
             console.log(res);
-            this.user = this.user.concat(this.newUser.name);
+            this.user = this.user.concat(this.newMember.name);
             // M.toast({
             //   html: "<b>Added new user @" + this.newUser.name + "</b>",
             //   classes: "green white-text"
@@ -240,19 +285,68 @@ export default {
           }
         });
     },
+    // Add new User
+     addNewMember() {
+      axios
+        .post("http://139.6.102.67:8080/angehoeriger", this.newMember)
+        .then(res => {
+          if (res.status == 200) {
+            console.log(res);
+            this.user = this.user.concat(this.newMember.name);
+            // M.toast({
+            //   html: "<b>Added new user @" + this.newUser.name + "</b>",
+            //   classes: "green white-text"
+            // });
+            this.toggleElements("createUser");
+          }
+        })
+        .catch(err => {
+          if (err.response.status == 404 || err.response.status == 401) {
+            M.toast({
+              html: "<b>Could not add new user @" + this.newUser.name + "</b>",
+              classes: "red white-text"
+            });
+          }
+        });
+    },
+    // Add New MMD to DB
+    addNewMMD() {
+      axios
+        .post("http://139.6.102.67:8080/mmd", this.newMMD)
+        .then(res => {
+          if (res.status == 200) {
+            console.log(res);
+            // this.user = this.user.concat(this.newMember.name);
+            // M.toast({
+            //   html: "<b>Added new user @" + this.newUser.name + "</b>",
+            //   classes: "green white-text"
+            // });
+            this.toggleElements("createUser");
+          }
+        })
+        .catch(err => {
+          if (err.response.status == 404 || err.response.status == 401) {
+            M.toast({
+              html: "<b>Could not add new user @" + this.newUser.name + "</b>",
+              classes: "red white-text"
+            });
+          }
+        });
+    },
+    // Edit Existing USER
     editUser(id) {
       axios
-        .patch(
-          "http://139.6.102.67:8080/users" + id,
-          this.editedUser
-        )
+        .patch("http://139.6.102.67:8080/users" + id, this.editedUser)
         .then(res => {
           if (res.status == 200) {
             M.toast({
-              html: "<b>Edited user @" + document.getElementById('icon_editPassword' + id).placeholder + "</b>",
+              html:
+                "<b>Edited user @" +
+                document.getElementById("icon_editPassword" + id).placeholder +
+                "</b>",
               classes: "green white-text"
             });
-            this.toggleElements('editUser' + id);
+            this.toggleElements("editUser" + id);
           }
         })
         .catch(err => {
@@ -302,11 +396,19 @@ export default {
       })
       .catch(err => console.log("Hey! Axios error for Users: " + err));
 
-          axios
+    axios
+      .get("http://139.6.102.67:8080/mmd")
+      .then(res => {
+        console.log(res.data);
+        this.mmd = res.data;
+      })
+      .catch(err => console.log("Hey! Axios error for Users: " + err));
+
+      axios
       .get("http://139.6.102.67:8080/angehoeriger")
       .then(res => {
         console.log(res.data);
-        this.user = res.data;
+        this.angehoerige = res.data;
       })
       .catch(err => console.log("Hey! Axios error for Users: " + err));
   }
@@ -314,21 +416,21 @@ export default {
 </script>
 
 <style scoped>
-.collapse1{
+.collapse1 {
   margin-bottom: 10px;
 }
-.addUserIcon{
-  width:40px;
+.addUserIcon {
+  width: 40px;
 }
-.userlist{
+.userlist {
   margin-bottom: 10px;
 }
 img {
   max-width: 100%;
   height: auto;
 }
-.NewUser{
- height: 200px;
+.NewUser {
+  height: 200px;
 }
 .UserSpalte {
   max-height: 100px;

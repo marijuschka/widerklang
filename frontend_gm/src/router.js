@@ -17,6 +17,11 @@ export default new Router({
       component: () => import('./views/User.vue')
     },
     {
+      path: '/pfleger',
+      name: 'pfleger',
+      component: () => import('./views/Pfleger.vue')
+    },
+    {
       path: '/tablet',
       name: 'tablet',
       component: () => import('./views/Tablet.vue')
