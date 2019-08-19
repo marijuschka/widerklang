@@ -2,135 +2,69 @@
   <div class="schnellzugriff">
     <Header />
 
-    <b-row class="justify-content-center">
-      <!-- Linke Seite -->
-      <b-col cols="5" id="links">
-        <router-link to="/user" id="user"><h2 id="konten">NUTZER</h2></router-link>
-        
-        <hr />
+    <b-container class="container">
+      <b-row class="justify-content-center">
 
-        <h3>Schnellzugriff</h3>
-        <b-row class="justify-content-center">
-          <b-col cols="4">
-            <b-img
-              class="rounded"
-              rounded="circle"
-              thumbnail
-              src="https://images.unsplash.com/photo-1472066719480-ecc7314ed065?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-              fluid
-              alt="Fluid image"
-            ></b-img>
-          </b-col>
-          <b-col cols="4">
-            <b-img
-            class="rounded"
-              rounded="circle"
-              thumbnail
-              src="https://images.unsplash.com/photo-1472066719480-ecc7314ed065?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-              fluid
-              alt="Fluid image"
-            ></b-img>
-          </b-col>
-        </b-row>
-        <br>
-        <b-row class="justify-content-center">
-          <b-col cols="4">
-            <b-img
-            class="rounded"
-              rounded="circle"
-              thumbnail
-              src="https://images.unsplash.com/photo-1472066719480-ecc7314ed065?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-              fluid
-              alt="Fluid image"
-            ></b-img>
-          </b-col>
-          <b-col cols="4">
-            <b-img
-            class="rounded"
-              rounded="circle"
-              thumbnail
-              src="https://images.unsplash.com/photo-1472066719480-ecc7314ed065?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-              fluid
-              alt="Fluid image"
-            ></b-img>
-          </b-col>
-        </b-row>
-      </b-col>
+        <!-- Linke Seite -->
+        <b-col cols="12" sm="6" class="footroom" id="links">
+          <router-link to="/user" id="user"><h2>NUTZER</h2></router-link>
+          <hr />
+          <h3>Schnellzugriff</h3>
+          <b-row class="justify-content-center first-row">
+            <b-col class="user-boxes left-box" cols="4">
+              <img class="user-img" alt="" src="https://images.unsplash.com/photo-1472066719480-ecc7314ed065?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"/>
+            </b-col>
+            <b-col class="user-boxes" cols="4">
+              <img class="user-img" alt="" src="https://images.unsplash.com/photo-1472066719480-ecc7314ed065?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"/>
+            </b-col>
+          </b-row>
+          <b-row class="justify-content-center">
+            <b-col class="user-boxes left-box" cols="4">
+              <img class="user-img" alt="" src="https://images.unsplash.com/photo-1472066719480-ecc7314ed065?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" />
+            </b-col>
+            <b-col class="user-boxes" cols="4">
+              <img class="user-img" alt="" src="https://images.unsplash.com/photo-1472066719480-ecc7314ed065?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"/>
+            </b-col>
+          </b-row>
+        </b-col>
 
-      <div class="headerDivider"></div>
+        <!-- <div class="headerDivider"></div> -->
 
-      <!-- Rechte Seite -->
-      <b-col cols="5">
-        <router-link to="/mediaManagement" id="mediaManagement"><h2 id="konten">MEDIEN</h2></router-link>
-        <hr />
-        <h3>Schnellzugriff</h3>
-        <div class="container">
-          <div class="row" align="center">
-            <!-- Zur Zentrieerung -->
-            <div class="col-2"> </div>
-            <div class="col-4 theme-frame">
-              <router-link :to="{ path: '/tabletMedia', query: { theme: 'red' }}" id="tabletMedia">
-                <a href="#" class>
-                  <div class="col 6 theme-boxes red-theme">
-                    <div class="row theme-position theme-position-red imgCenter">
-                      <img  alt src="../assets/Familie-Icon.png" />
-                      <h1 class="theme-text"></h1>
-                    </div>
-                  </div>
-                </a>
+        <!-- Rechte Seite -->
+        <b-col cols="12" sm="6" class="footroom" id="rechts">
+          <router-link to="/mediaManagement" id="mediaManagement"><h2>MEDIEN</h2></router-link>
+          <hr />
+          <h3>Schnellzugriff</h3>
+          <b-row class="justify-content-center first-row">
+            <b-col class="red-theme theme-boxes left-box" cols="4">
+              <router-link to="/mediaManagement" id="mediaManagement">
+                <img class="theme-img" alt="" src="../assets/Familie-Icon.png"/>
               </router-link>
-            </div>
-            <div class="col-4 theme-frame">
-              <router-link :to="{ path: '/tabletMedia', query: { theme: 'blue' }}" id="tabletMedia">
-                <a href="#" class>
-                  <div class="col 6 theme-boxes blue-theme">
-                    <div class="row theme-position imgCenter">
-                      <img alt src="../assets/Heimat-Icon.png" />
-                      <h1 class="theme-text"></h1>
-                    </div>
-                  </div>
-                </a>
+            </b-col>
+            <b-col class="blue-theme theme-boxes" cols="4">
+              <router-link to="/mediaManagement" id="mediaManagement">
+                <img class="theme-img" alt="" src="../assets/Heimat-Icon.png"/>
               </router-link>
-            </div>
-          </div>
-          <br>
-          <div class="row" align="center">
-            <!-- Zur Zentrieerung -->
-            <div class="col-2"> </div>
-            <div class="col-4 theme-frame">
-              <router-link
-                :to="{ path: '/tabletMedia', query: { theme: 'green' }}"
-                id="tabletMedia"
-              >
-                <a href="#" class>
-                  <div class="col 6 theme-boxes green-theme">
-                    <div class="row theme-position theme-position-green imgCenter">
-                      <img alt src="../assets/Natur-Icon.png" />
-                      <h1 class="theme-text"></h1>
-                    </div>
-                  </div>
-                </a>
+            </b-col>
+          </b-row>
+          <b-row class="justify-content-center">
+            <b-col class="green-theme theme-boxes left-box" cols="4">
+              <router-link to="/mediaManagement" id="mediaManagement">
+                <img class="theme-img" alt="" src="../assets/Natur-Icon.png" />
               </router-link>
-            </div>
-            <div class="col-4 theme-frame">
-              <router-link
-                :to="{ path: '/tabletMedia', query: { theme: 'orange' }}"
-                id="tabletMedia"
-              >
-                <a href="#" class>
-                  <div class="col 6 theme-boxes orange-theme">
-                    <div class="row theme-position imgCenter">
-                      <img alt src="../assets/Freizeit-Icon.png" />
-                      <h1 class="theme-text"></h1>
-                    </div>
-                  </div>
-                </a>
+            </b-col>
+            <b-col class="orange-theme theme-boxes" cols="4">
+              <router-link to="/mediaManagement" id="mediaManagement">
+                <img class="theme-img" alt="" src="../assets/Freizeit-Icon.png"/>
               </router-link>
-            </div>
-          </div>
-        </div>
-      </b-col>
-    </b-row>
+            </b-col>
+          </b-row>
+        </b-col>
+
+      </b-row>
+
+    </b-container>
+    
   </div>
 </template>
 
@@ -156,25 +90,42 @@ export default {
 
 <style scoped>
 h2 {
-  font-size: 350%;
-  margin-top: 100px;
-  margin-bottom: 50px;
+  font-size: 2.4em;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 h3 {
-  font-weight: bold;
-  margin-top: 80px;
-  margin-bottom: 20px;
+  font-size: 1.8em;
+  margin-top: 12px;
+  margin-bottom: 18px;
+}
+a:hover {
+  text-decoration: None !important;
 }
 .theme-boxes {
   height: 20vh;
-  width: 20vh;
+  width: 20vw;
   padding: 0;
   /* border-radius: 50px; */
   box-shadow: 0px 5px 5px #303030;
 }
-img {
-  height: 160px;
-  width: 160px;
+.user-boxes {
+  height: 20vh;
+  width: 20vw;
+  padding: 0;
+}
+.left-box {
+  margin-right: 5vh;
+}
+.theme-img {
+  height: 15vh;
+  width: auto;
+  margin-top: 2.5vh;
+}
+.user-img {
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
 }
 .imgCenter {
   padding-top: 20px;
@@ -198,5 +149,11 @@ img {
 }
 .links {
   line-height: 200px;
+}
+.first-row {
+  margin-bottom: 5vh;
+}
+.footroom {
+  margin-bottom: 40px;
 }
 </style>
