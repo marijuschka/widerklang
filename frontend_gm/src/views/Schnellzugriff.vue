@@ -126,6 +126,7 @@ a:hover {
   height: 100%;
   width: 100%;
   border-radius: 100px;
+  box-shadow: 0px 5px 5px #303030;
 }
 .imgCenter {
   padding-top: 20px;
