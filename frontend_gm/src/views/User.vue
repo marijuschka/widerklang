@@ -96,7 +96,7 @@
     </div>
     <!--  Dynamisches Erzeugen der User Liste -->
 
-    <div v-for="index in user.length">
+   <!-- <div v-for="index in user.length"> -->
       For Schleife funktioniert
       <b-row class="justify-content-center userlist" id="UserSpalte">
         <b-col cols="12" md="11">
@@ -110,7 +110,7 @@
               <!-- Name -->
               <b-col cols="5">
                 <!-- {{ user[index-1] }} -->
-                <h3>{{user[index-1].username}} --> ID= {{user[index-1].id}} --> Role= {{user[index-1].role}}</h3>
+                <!--<h3>{{user[index-1].username}} - ID= {{user[index-1].id}} - Role= {{user[index-1].role}}</h3>-->
               </b-col>
 
               <!-- buttons-->
@@ -155,7 +155,7 @@
           </b-card>
         </b-col>
       </b-row>
-    </div>
+   <!-- </div> -->
 
     <b-row class="justify-content-center" id="UserSpalte">
       <b-col cols="12" md="11">
@@ -228,7 +228,7 @@ export default {
   },
   data() {
     return {
-      user: [],
+      member: [],
       mmd: [],
       angehoerige: [],
       pfleger: [],
@@ -238,7 +238,7 @@ export default {
         username: "",
         email: "test@web.de",
         password: "123",
-        mmd_id: ""
+        mmd_id: "1234"
       },
       newMMD: {
         name: "",
@@ -258,38 +258,14 @@ export default {
     };
   },
   methods: {
-    // add new Member/Angehoerigen to database
-    addNewMember() {
-      axios
-        .post("http://139.6.102.67:8080/angehoeriger/", this.newMember)
-        .then(res => {
-          if (res.status == 200) {
-            console.log(res);
-            this.user = this.user.concat(this.newMember.name);
-            // M.toast({
-            //   html: "<b>Added new user @" + this.newUser.name + "</b>",
-            //   classes: "green white-text"
-            // });
-            this.toggleElements("createUser");
-          }
-        })
-        .catch(err => {
-          if (err.response.status == 404 || err.response.status == 401) {
-            M.toast({
-              html: "<b>Could not add new user @" + this.newUser.name + "</b>",
-              classes: "red white-text"
-            });
-          }
-        });
-    },
     // Add new Member
     addNewMember() {
       axios
-        .post("http://139.6.102.67:8080/angehoeriger", this.newMember)
+        .post("http://139.6.102.67:8080/mmd_member/", this.newMember)
         .then(res => {
           if (res.status == 200) {
             console.log(res);
-            this.user = this.user.concat(this.newMember.name);
+            this.member = this.member.concat(this.newMember.name);
             // M.toast({
             //   html: "<b>Added new user @" + this.newUser.name + "</b>",
             //   classes: "green white-text"
@@ -297,14 +273,15 @@ export default {
             this.toggleElements("createUser");
           }
         })
-        .catch(err => {
-          if (err.response.status == 404 || err.response.status == 401) {
-            M.toast({
-              html: "<b>Could not add new user @" + this.newUser.name + "</b>",
-              classes: "red white-text"
-            });
-          }
-        });
+        .catch(err => console.log("Hey! Axios error for addNewMMD: " + err));
+        //.catch(err => {
+        //  if (err.response.status == 404 || err.response.status == 401) {
+        //    M.toast({
+        //      html: "<b>Could not add new user @" + this.newUser.name + "</b>",
+        //      classes: "red white-text"
+        //    });
+        //  }
+        //});
     },
     // Add New MMD to DB
     addNewMMD() {
@@ -313,22 +290,24 @@ export default {
         .then(res => {
           if (res.status == 200) {
             console.log(res);
-            // this.user = this.user.concat(this.newMember.name);
+           // this.mmd = this.mmd.concat(this.newMMD.name);
+            // this.user = this.user.concat(this.newMMD.name);
             // M.toast({
-            //   html: "<b>Added new user @" + this.newUser.name + "</b>",
+            //   html: "<b>Added new user @" + this.newMMD.name + "</b>",
             //   classes: "green white-text"
             // });
             this.toggleElements("createUser");
           }
         })
-        .catch(err => {
-          if (err.response.status == 404 || err.response.status == 401) {
-            M.toast({
-              html: "<b>Could not add new user @" + this.newUser.name + "</b>",
-              classes: "red white-text"
-            });
-          }
-        });
+        .catch(err => console.log("Hey! Axios error for addNewMMD: " + err));
+        //.catch(err => {
+        //  if (err.response.status == 404 || err.response.status == 401) {
+         //   M.toast({
+         //     html: "<b>Could not add new user @" + this.newMMD.name + "</b>",
+        //      classes: "red white-text"
+        //    });
+        // }
+       // });
     },
     // Edit Existing USER
     editMember(id) {
@@ -349,7 +328,7 @@ export default {
         .catch(err => {
           if (err.response.status == 404 || err.response.status == 401) {
             M.toast({
-              html: "<b>Could not edit user @" + this.editedUser.name + "</b>",
+              html: "<b>Could not edit user @" + this.editedMember.name + "</b>",
               classes: "red white-text"
             });
           }
@@ -386,34 +365,37 @@ export default {
   },
   created() {
     axios
-      .get("http://139.6.102.67:8080/mmd")
+      .get("http://139.6.102.67:8080/mmd/")
       .then(res => {
+        console.log("MMD: ");
         console.log(res.data);
         this.mmd = res.data;
       })
       .catch(err => console.log("Hey! Axios error for Users: " + err));
 
     axios
-      .get("http://139.6.102.67:8080/angehoeriger")
+      .get("http://139.6.102.67:8080/mmd_member/")
       .then(res => {
         console.log(res.data);
         this.angehoerige = res.data;
       })
       .catch(err => console.log("Hey! Axios error for Users: " + err));
+
     axios
-      .get("http://139.6.102.67:8080/pfleger")
+      .get("http://139.6.102.67:8080/carer/")
       .then(res => {
         console.log(res.data);
         this.pfleger = res.data;
       })
       .catch(err => console.log("Hey! Axios error for Users: " + err));
-    axios
-      .get("http://139.6.102.67:8080/users")
-      .then(res => {
-        console.log(res.data);
-        this.user = res.data;
-      })
-      .catch(err => console.log("Hey! Axios error for Users: " + err));
+      
+   // axios
+    //  .get("http://139.6.102.67:8080/users")
+    //  .then(res => {
+    //    console.log(res.data);
+    //    this.user = res.data;
+    //  })
+    //  .catch(err => console.log("Hey! Axios error for Users: " + err));
   }
 };
 </script>

@@ -26,24 +26,24 @@
                   />
                 </b-col>
                 <b-col cols="11" md="3" lg="3">
-                  <b-form-input v-model="newPfleger.name" placeholder="Name"></b-form-input>
+                  <b-form-input v-model="newCarer.name" placeholder="Name"></b-form-input>
                 </b-col>
                 <b-col cols="11" md="4" lg="3">
-                  <b-form-input v-model="newPfleger.pflegername" placeholder="pflegername"></b-form-input>
+                  <b-form-input v-model="newCarer.pflegername" placeholder="pflegername"></b-form-input>
                 </b-col>
                 <b-col cols="11" md="4" lg="3">
-                  <b-form-input v-model="newPfleger.email" placeholder="E-Mail"></b-form-input>
+                  <b-form-input v-model="newCarer.email" placeholder="E-Mail"></b-form-input>
                 </b-col>
                 <b-col cols="11" md="4" lg="3">
-                  <b-form-input v-model="newPfleger.password" placeholder="Password"></b-form-input>
+                  <b-form-input v-model="newCarer.password" placeholder="Password"></b-form-input>
                 </b-col>
                 <b-col cols="11" md="4" lg="3">
-                  <b-form-input v-model="newPfleger.mmd_id" placeholder="mmd_id"></b-form-input>
+                  <b-form-input v-model="newCarer.mmd_id" placeholder="mmd_id"></b-form-input>
                 </b-col>
                 <b-col cols="6" md="4" lg="2">
                   <!-- <b-col cols="auto"> -->
                   <b-button
-                    v-on:click="addNewPfleger()"
+                    v-on:click="addNewCarer()"
                     v-b-toggle.collapse-newMember-inner
                     size="md"
                   >Nutzer hinzufügen</b-button>
@@ -55,9 +55,9 @@
       </b-row>
     </div>
 
-    <!--  Dynamisches Erzeugen der Pfleger Liste -->
+    <!--  Dynamisches Erzeugen der Carer Liste -->
 
-    <!-- <div v-for="index in pfleger.length"> 
+    <!-- <div v-for="index in carer.length"> 
       For Schleife funktioniert  -->
     
     <b-row class="justify-content-center pflegerlist" id="pflegerSpalte">
@@ -71,7 +71,7 @@
             </b-col>
             <!-- Name -->
             <b-col cols="5">
-              <!-- {{ pfleger[index-1] }} -->
+              <!-- {{ carer[index-1] }} -->
               <h3> --> ID=   --> Role= </h3> 
             </b-col>
 
@@ -80,13 +80,13 @@
               <b-row>
                 <b-col cols="6" sm="4" offset-sm="2" offset-md="4" offset-lg="7" md="4" lg="2">
                   <b-card-text>
-                    <b-button v-b-toggle.collapse-editPfleger pill>Bearbeiten</b-button>
+                    <b-button v-b-toggle.collapse-editCarer pill>Bearbeiten</b-button>
                   </b-card-text>
                 </b-col>
                 <b-col cols="6" md="4" lg="2">
                   <b-card-text>
-                    <!--  <b-button v-on:click="deletePfleger(pfleger[index-1]) pill variant="outline-danger"> -->
-                    <b-button v-on:click="deletePfleger(XY)" pill variant="danger">Entfernen</b-button>
+                    <!--  <b-button v-on:click="deleteCarer(carer[index-1]) pill variant="outline-danger"> -->
+                    <b-button v-on:click="deleteCarer(XY)" pill variant="danger">Entfernen</b-button>
                   </b-card-text>
                 </b-col>
               </b-row>
@@ -94,19 +94,19 @@
           </b-row>
           <!-- Collapse -->
           <div>
-            <b-collapse id="collapse-editPfleger" class="mt-2">
+            <b-collapse id="collapse-editCarer" class="mt-2">
               <b-card>
                 <b-row class="justify-content-center">
                   <b-col cols="4" md="3">
-                    <b-form-input v-model="editedPfleger.password" placeholder="Neues Passwort"></b-form-input>
+                    <b-form-input v-model="editedCarer.password" placeholder="Neues Passwort"></b-form-input>
                   </b-col>
                   <b-col cols="4" md="3">
-                    <b-form-input v-model="editedPfleger.name" placeholder="Neue XY"></b-form-input>
+                    <b-form-input v-model="editedCarer.name" placeholder="Neue XY"></b-form-input>
                   </b-col>
                   <b-col cols="2" md="2">
                     <b-button
-                      v-on:click="editPfleger(xxyy)"
-                      v-b-toggle.collapse-editPfleger-inner
+                      v-on:click="editCarer(xxyy)"
+                      v-b-toggle.collapse-editCarer-inner
                       size="md"
                     >Ändern!</b-button>
                   </b-col>
@@ -131,7 +131,7 @@
             </b-col>
             <!-- Name -->
             <b-col cols="4">
-              <!-- {{ pfleger[index-1] }} -->
+              <!-- {{ carer[index-1] }} -->
               <h3>Test Testen</h3>
             </b-col>
 
@@ -140,13 +140,13 @@
               <b-row>
                 <b-col cols="6" sm="4" offset-sm="2" offset-md="4" offset-lg="7" md="4" lg="2">
                   <b-card-text>
-                    <b-button v-b-toggle.collapse-editPfleger pill>Bearbeiten</b-button>
+                    <b-button v-b-toggle.collapse-editCarer pill>Bearbeiten</b-button>
                   </b-card-text>
                 </b-col>
                 <b-col cols="6" md="4" lg="2">
                   <b-card-text>
-                    <!--  <b-button v-on:click="deletepfleger(pfleger[index-1]) pill variant="outline-danger"> -->
-                    <b-button v-on:click="deletePfleger(xxyy)" pill variant="danger">Entfernen</b-button>
+                    <!--  <b-button v-on:click="deleteCarer(carer[index-1]) pill variant="outline-danger"> -->
+                    <b-button v-on:click="deleteCarer(xxyy)" pill variant="danger">Entfernen</b-button>
                   </b-card-text>
                 </b-col>
               </b-row>
@@ -154,19 +154,19 @@
           </b-row>
           <!-- Collapse -->
           <div>
-            <b-collapse id="collapse-editPfleger" class="mt-2">
+            <b-collapse id="collapse-editCarer" class="mt-2">
               <b-card>
                 <b-row class="justify-content-center">
                   <b-col cols="4" md="3">
-                    <b-form-input v-model="editedPfleger.password" placeholder="Neues Passwort"></b-form-input>
+                    <b-form-input v-model="editedCarer.password" placeholder="Neues Passwort"></b-form-input>
                   </b-col>
                   <b-col cols="4" md="3">
-                    <b-form-input v-model="editedPfleger.name" placeholder="Neue XY"></b-form-input>
+                    <b-form-input v-model="editedCarer.name" placeholder="Neue XY"></b-form-input>
                   </b-col>
                   <b-col cols="2" md="2">
                     <b-button
-                      v-on:click="editPfleger(xxyy)"
-                      v-b-toggle.collapse-editpfleger-inner
+                      v-on:click="editCarer(xxyy)"
+                      v-b-toggle.collapse-editCarer-inner
                       size="md"
                     >Ändern!</b-button>
                   </b-col>
@@ -191,15 +191,15 @@ export default {
   },
   data() {
     return {
-      pfleger: [],
-      newPfleger: {
+      carer: [],
+      newCarer: {
         name: "",
         pflegername: "",
         email: "test@web.de",
         password: "123",
         mmd_id: "1234"
       },
-      editedPfleger: {
+      editedCarer: {
         name: "",
         pflegername: "",
         email: "",
@@ -211,13 +211,13 @@ export default {
   },
   methods: {
     // add new Member/Angehoerigen to database
-    addNewPfleger() {
+    addNewCarer() {
       axios
-        .post("http://139.6.102.67:8080/pfleger", this.newMember)
+        .post("http://139.6.102.67:8080/carer", this.newCarer)
         .then(res => {
           if (res.status == 200) {
             console.log(res);
-            this.pfleger = this.pfleger.concat(this.newMember.name);
+            this.carer = this.carer.concat(this.newCarer.name);
             // M.toast({
             //   html: "<b>Added new pfleger @" + this.newpfleger.name + "</b>",
             //   classes: "green white-text"
@@ -225,19 +225,12 @@ export default {
             this.toggleElements("createpfleger");
           }
         })
-        .catch(err => {
-          if (err.response.status == 404 || err.response.status == 401) {
-            M.toast({
-              html: "<b>Could not add new pfleger @" + this.newpfleger.name + "</b>",
-              classes: "red white-text"
-            });
-          }
-        });
+        .catch(err => console.log("Hey! Axios error for addNewPfleger: " + err));
     },
     // Edit Existing pfleger
-    editPfleger(id) {
+    editCarer(id) {
       axios
-        .patch("http://139.6.102.67:8080/pflegers" + id, this.editedPfleger)
+        .patch("http://139.6.102.67:8080/carer" + id, this.editedCarer)
         .then(res => {
           if (res.status == 200) {
             M.toast({
@@ -253,21 +246,21 @@ export default {
         .catch(err => {
           if (err.response.status == 404 || err.response.status == 401) {
             M.toast({
-              html: "<b>Could not edit pfleger @" + this.editedpfleger.name + "</b>",
+              html: "<b>Could not edit pfleger @" + this.editedCarer.name + "</b>",
               classes: "red white-text"
             });
           }
         });
     },
     // Delete pfleger with given ID
-    deletePfleger(id) {
+    deleteCarer(id) {
       console.log("delete pfleger with ID: " + id);
       axios
-        .delete("http://139.6.102.67:8080/pflegers/" + id)
+        .delete("http://139.6.102.67:8080/carer/" + id)
         .then(res => {
           if (res.status == 200) {
             console.log(res);
-            this.pfleger = this.pfleger.filter(pfleger => pfleger !== id);
+            this.carer = this.carer.filter(carer => carer !== id);
             //  M.toast({
             //   html: "<b>Deleted pfleger @" + id + "</b>",
             //   classes: "green white-text"
@@ -290,10 +283,10 @@ export default {
   },
   created() {
     axios
-      .get("http://139.6.102.67:8080/pfleger")
+      .get("http://139.6.102.67:8080/carer/")
       .then(res => {
         console.log(res.data);
-        this.pfleger = res.data;
+        this.carer = res.data;
       })
       .catch(err => console.log("Hey! Axios error for pflegers: " + err));
   }
