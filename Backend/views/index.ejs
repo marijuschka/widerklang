@@ -1,0 +1,57 @@
+<!DOCTYPE html> 
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Node File Uploads</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1> File Upload</h1>
+            <form action="/material" method="POST" enctype="multipart/form-data">
+                <div class="input-field col s12">
+                        <input placeholder="Benne deine Datei" id="name" name="name" type="text" class="validate">
+                        <label for="first_name">Name</label>
+                      </div>
+                      <div class="input-field col s12">
+                            <input placeholder="Kategorie wählen" id="category" name="category" type="text" class="validate">
+                            <label for="first_name">Kategorie</label>
+                          </div>
+                          <div class="input-field col s12">
+                                <input placeholder="Beschreibung/Gruß" id="description" name="description" type="text" class="validate">
+                                <label for="first_name">Beschreibung</label>
+                              </div>
+                              <div class="input-field col s12">
+                                <input placeholder="mmd_id" id="mmd_id" name="mmd_id" type="text" class="validate">
+                                <label for="first_name">mmd_id</label>
+                              </div>  
+                    </br>
+                <div class="file-field input-field">
+                    <div class="btn grey">
+                        <span>File</span>
+                        <input name="myImage" type="file">
+                    </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+                </div>
+                <button type="submit" class="btn"> Submit </button>
+            </form>
+        </div>
+
+
+        <div class="container">
+            
+            <div class="input-field col s4">
+            <img src="/material/myImage-1564497839506.png"  class="responsive-img"/>
+            </div>
+        </div>
+
+
+            <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </body>
+</html>
