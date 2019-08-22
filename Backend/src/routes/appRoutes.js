@@ -5,6 +5,11 @@ module.exports = function (app) {
     var materialController = require('../controllers/materialController');
     var carerController = require('../controllers/carerController');
     var mmd_memberController = require('../controllers/mmd_memberController');
+    var genericController = require('../controllers/genericController');
+    var familyController = require('../controllers/familyController');
+    var heimatController = require('../controllers/heimatController');
+    var natureController = require('../controllers/natureController');
+    var freizeitController = require('../controllers/freizeitController');
 
 /*Hier schreiben wir später die Routen, die wir brauchen
 
@@ -75,7 +80,7 @@ app.route('/carer/:carer_id')
 app.route('/carer/')
 
                 // GET ALL CARER
-        //.get(carerController.get_all_carer) // TO BE IMPLEMENTED
+        .get(carerController.get_all_carer) 
 
 
 

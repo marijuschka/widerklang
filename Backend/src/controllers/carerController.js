@@ -53,6 +53,14 @@ exports.delete_a_carer = function(req,res) {
     });
 }
 
+exports.get_all_carer = function(req,res) {
+    Carer.getAllCarer( function(err,all_carer){
+        if (err)
+            res.send(err)
+        res.json(all_carer)
+    });
+}
+
 exports.get_carer = function(req,res) {
     Carer.getCarerById(req.params.carer_id, function (err, resCarer) {
         if (err)
