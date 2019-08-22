@@ -37,9 +37,9 @@
                 <b-col cols="11" md="4" lg="3">
                   <b-form-input v-model="newCarer.password" placeholder="Password"></b-form-input>
                 </b-col>
-                <b-col cols="11" md="4" lg="3">
+                <!--<b-col cols="11" md="4" lg="3">
                   <b-form-input v-model="newCarer.mmd_id" placeholder="mmd_id"></b-form-input>
-                </b-col>
+                </b-col> -->
                 <b-col cols="6" md="4" lg="2">
                   <!-- <b-col cols="auto"> -->
                   <b-button
@@ -165,8 +165,9 @@
                   </b-col>
                   <b-col cols="2" md="2">
                     <b-button
+                    
+                      v-b-toggle.collapse-editCarer
                       v-on:click="editCarer(xxyy)"
-                      v-b-toggle.collapse-editCarer-inner
                       size="md"
                     >Ändern!</b-button>
                   </b-col>
@@ -196,8 +197,8 @@ export default {
         name: "",
         pflegername: "",
         email: "test@web.de",
-        password: "123",
-        mmd_id: "1234"
+        password: "123"
+        //mmd_id: "1234"
       },
       editedCarer: {
         name: "",
@@ -213,7 +214,7 @@ export default {
     // add new Member/Angehoerigen to database
     addNewCarer() {
       axios
-        .post("http://139.6.102.67:8080/carer", this.newCarer)
+        .post("http://139.6.102.67:8080/carer/", this.newCarer)
         .then(res => {
           if (res.status == 200) {
             console.log(res);

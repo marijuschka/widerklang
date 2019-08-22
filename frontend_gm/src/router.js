@@ -12,9 +12,9 @@ export default new Router({
       component: () => import('./views/Login.vue')
     },
     {
-      path: '/user',
-      name: 'user',
-      component: () => import('./views/User.vue')
+      path: '/mmd',
+      name: 'mmd',
+      component: () => import('./views/Mmd.vue')
     },
     {
       path: '/pfleger',

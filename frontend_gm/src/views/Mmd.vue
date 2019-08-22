@@ -1,5 +1,5 @@
 <template>
-  <div class="user">
+  <div class="Mmd">
     <Header />
     <br />
     <b-row class="justify-content-center">
@@ -96,8 +96,7 @@
     </div>
     <!--  Dynamisches Erzeugen der User Liste -->
 
-   <!-- <div v-for="index in user.length"> -->
-      For Schleife funktioniert
+    <div v-for="index in mmd.length">
       <b-row class="justify-content-center userlist" id="UserSpalte">
         <b-col cols="12" md="11">
           <b-card no-body class="overflow-hidden">
@@ -109,8 +108,7 @@
               </b-col>
               <!-- Name -->
               <b-col cols="5">
-                <!-- {{ user[index-1] }} -->
-                <!--<h3>{{user[index-1].username}} - ID= {{user[index-1].id}} - Role= {{user[index-1].role}}</h3>-->
+                <h3>Name: {{mmd[index-1].name}} , Alter: {{mmd[index-1].age}}</h3>
               </b-col>
 
               <!-- buttons-->
@@ -118,21 +116,25 @@
                 <b-row>
                   <b-col cols="6" sm="4" offset-sm="2" offset-md="4" offset-lg="7" md="4" lg="2">
                     <b-card-text>
-                      <b-button v-b-toggle.collapse pill>Bearbeiten</b-button>
+                      <b-button v-b-toggle="'collapse-edit-'+mmd[index-1].mmd_id" pill>Bearbeiten</b-button>
                     </b-card-text>
                   </b-col>
                   <b-col cols="6" md="4" lg="2">
                     <b-card-text>
                       <!--  <b-button v-on:click="deleteUser(user[index-1]) pill variant="outline-danger"> -->
-                      <b-button v-on:click="deleteMMD(XY)" pill variant="danger">Entfernen</b-button>
+                      <b-button
+                        v-on:click="deleteMMD(mmd[index-1].mmd_id)"
+                        pill
+                        variant="danger"
+                      >Entfernen</b-button>
                     </b-card-text>
                   </b-col>
                 </b-row>
               </b-col>
             </b-row>
             <!-- Collapse -->
-            <div>
-              <b-collapse id="collapse-editUser" class="mt-2">
+            <div> <!--id="collapse-editUser" -->
+              <b-collapse v-bind:id="'collapse-edit-'+mmd[index-1].mmd_id"  class="mt-2">
                 <b-card>
                   <b-row class="justify-content-center">
                     <b-col cols="4" md="3">
@@ -143,8 +145,8 @@
                     </b-col>
                     <b-col cols="2" md="2">
                       <b-button
-                        v-on:click="editMember(xxyy)"
-                        v-b-toggle.collapse-editUser-inner
+                        v-on:click="editMMD(mmd[index-1].mmd_id)"
+                        v-b-toggle="'collapse-edit-'+mmd[index-1].mmd_id"
                         size="md"
                       >Ändern!</b-button>
                     </b-col>
@@ -155,65 +157,7 @@
           </b-card>
         </b-col>
       </b-row>
-   <!-- </div> -->
-
-    <b-row class="justify-content-center" id="UserSpalte">
-      <b-col cols="12" md="11">
-        <b-card no-body class="overflow-hidden">
-          <!-- Hier ist die CENTER anweisung -->
-          <b-row align-v="center" align-h="between" no-gutters>
-            <!-- Bild -->
-            <b-col cols="2" md="1">
-              <b-card-img src="https://picsum.photos/400/400/?image=20"></b-card-img>
-            </b-col>
-            <!-- Name -->
-            <b-col cols="4">
-              <!-- {{ user[index-1] }} -->
-              <h3>Test Testen</h3>
-            </b-col>
-
-            <!-- buttons-->
-            <b-col cols="5" md="7">
-              <b-row>
-                <b-col cols="6" sm="4" offset-sm="2" offset-md="4" offset-lg="7" md="4" lg="2">
-                  <b-card-text>
-                    <b-button v-b-toggle.collapse-editUser pill>Bearbeiten</b-button>
-                  </b-card-text>
-                </b-col>
-                <b-col cols="6" md="4" lg="2">
-                  <b-card-text>
-                    <!--  <b-button v-on:click="deleteUser(user[index-1]) pill variant="outline-danger"> -->
-                    <b-button v-on:click="deleteUser(xxyy)" pill variant="danger">Entfernen</b-button>
-                  </b-card-text>
-                </b-col>
-              </b-row>
-            </b-col>
-          </b-row>
-          <!-- Collapse -->
-          <div>
-            <b-collapse id="collapse-editUser" class="mt-2">
-              <b-card>
-                <b-row class="justify-content-center">
-                  <b-col cols="4" md="3">
-                    <b-form-input v-model="password" placeholder="Neues Passwort"></b-form-input>
-                  </b-col>
-                  <b-col cols="4" md="3">
-                    <b-form-input v-model="xy" placeholder="Neue XY"></b-form-input>
-                  </b-col>
-                  <b-col cols="2" md="2">
-                    <b-button
-                      v-on:click="editUser(xxyy)"
-                      v-b-toggle.collapse-editUser-inner
-                      size="md"
-                    >Ändern!</b-button>
-                  </b-col>
-                </b-row>
-              </b-card>
-            </b-collapse>
-          </div>
-        </b-card>
-      </b-col>
-    </b-row>
+    </div>
   </div>
 </template>
 
@@ -222,7 +166,7 @@ import Header from "../components/Header.vue";
 import axios from "axios";
 
 export default {
-  name: "user",
+  name: "mmd",
   components: {
     Header
   },
@@ -240,10 +184,6 @@ export default {
         password: "123",
         mmd_id: "1234"
       },
-      newMMD: {
-        name: "",
-        age: ""
-      },
       editedMember: {
         name: "",
         username: "",
@@ -251,6 +191,14 @@ export default {
         password: "",
         mmd_name: "",
         user_id: ""
+      },
+      newMMD: {
+        name: "",
+        age: ""
+      },
+      editedMMD: {
+        name: "",
+        age: ""
       },
 
       password: "",
@@ -273,41 +221,15 @@ export default {
             this.toggleElements("createUser");
           }
         })
-        .catch(err => console.log("Hey! Axios error for addNewMMD: " + err));
-        //.catch(err => {
-        //  if (err.response.status == 404 || err.response.status == 401) {
-        //    M.toast({
-        //      html: "<b>Could not add new user @" + this.newUser.name + "</b>",
-        //      classes: "red white-text"
-        //    });
-        //  }
-        //});
-    },
-    // Add New MMD to DB
-    addNewMMD() {
-      axios
-        .post("http://139.6.102.67:8080/mmd", this.newMMD)
-        .then(res => {
-          if (res.status == 200) {
-            console.log(res);
-           // this.mmd = this.mmd.concat(this.newMMD.name);
-            // this.user = this.user.concat(this.newMMD.name);
-            // M.toast({
-            //   html: "<b>Added new user @" + this.newMMD.name + "</b>",
-            //   classes: "green white-text"
-            // });
-            this.toggleElements("createUser");
-          }
-        })
-        .catch(err => console.log("Hey! Axios error for addNewMMD: " + err));
-        //.catch(err => {
-        //  if (err.response.status == 404 || err.response.status == 401) {
-         //   M.toast({
-         //     html: "<b>Could not add new user @" + this.newMMD.name + "</b>",
-        //      classes: "red white-text"
-        //    });
-        // }
-       // });
+        .catch(err => console.log("Hey! Axios error for addNewMember: " + err));
+      //.catch(err => {
+      //  if (err.response.status == 404 || err.response.status == 401) {
+      //    M.toast({
+      //      html: "<b>Could not add new user @" + this.newUser.name + "</b>",
+      //      classes: "red white-text"
+      //    });
+      //  }
+      //});
     },
     // Edit Existing USER
     editMember(id) {
@@ -325,14 +247,39 @@ export default {
             this.toggleElements("editUser" + id);
           }
         })
-        .catch(err => {
-          if (err.response.status == 404 || err.response.status == 401) {
-            M.toast({
-              html: "<b>Could not edit user @" + this.editedMember.name + "</b>",
-              classes: "red white-text"
-            });
+        .catch(err => console.log("Hey! Axios error for editMember: " + err));
+    },
+
+    // Add New MMD to DB
+    addNewMMD() {
+      axios
+        .post("http://139.6.102.67:8080/mmd", this.newMMD)
+        .then(res => {
+          if (res.status == 200) {
+            console.log(res);
+            this.mmd = this.mmd.concat(this.newMMD);
           }
-        });
+        })
+        .catch(err => console.log("Hey! Axios error for addNewMMD: " + err));
+    },
+    // Edit Existing USER
+    editMMD(id) {
+      axios
+      // Funktioniert noch nicht da Router was anderes vorsieht
+        .put("http://139.6.102.67:8080/mmd/" + id, this.editedMMD)
+        .then(res => {
+          if (res.status == 200) {
+            M.toast({
+              html:
+                "<b>Edited user @" +
+                document.getElementById("icon_editPassword" + id).placeholder +
+                "</b>",
+              classes: "green white-text"
+            });
+            this.toggleElements("editUser" + id);
+          }
+        })
+        .catch(err => console.log("Hey! Axios error for editMember: " + err));
     },
     // Delete User with given ID
     deleteMMD(id) {
@@ -343,24 +290,9 @@ export default {
           if (res.status == 200) {
             console.log(res);
             this.user = this.user.filter(user => user !== id);
-            //  M.toast({
-            //   html: "<b>Deleted user @" + id + "</b>",
-            //   classes: "green white-text"
-            //  });
-            //  var elem = document.getElementById(id);
-            //  var instance = M.Modal.getInstance(elem);
-            //  instance.close();
           }
         })
-        .catch(err => {
-          if (err.response.status == 404 || err.response.status == 401) {
-            //  M.toast({
-            //    html: "<b>Could not delete user @" + id + "</b>",
-            //    classes: "red white-text"
-            //  });
-            console.log("Delete User with Error: " + err);
-          }
-        });
+        .catch(err => console.log("Hey! Axios error for deleteMMD: " + err));
     }
   },
   created() {
@@ -371,7 +303,7 @@ export default {
         console.log(res.data);
         this.mmd = res.data;
       })
-      .catch(err => console.log("Hey! Axios error for Users: " + err));
+      .catch(err => console.log("Hey! Axios error for Created MMD: " + err));
 
     axios
       .get("http://139.6.102.67:8080/mmd_member/")
@@ -379,7 +311,9 @@ export default {
         console.log(res.data);
         this.angehoerige = res.data;
       })
-      .catch(err => console.log("Hey! Axios error for Users: " + err));
+      .catch(err =>
+        console.log("Hey! Axios error for Created MMD_Member: " + err)
+      );
 
     axios
       .get("http://139.6.102.67:8080/carer/")
@@ -387,15 +321,7 @@ export default {
         console.log(res.data);
         this.pfleger = res.data;
       })
-      .catch(err => console.log("Hey! Axios error for Users: " + err));
-      
-   // axios
-    //  .get("http://139.6.102.67:8080/users")
-    //  .then(res => {
-    //    console.log(res.data);
-    //    this.user = res.data;
-    //  })
-    //  .catch(err => console.log("Hey! Axios error for Users: " + err));
+      .catch(err => console.log("Hey! Axios error for Created Carer: " + err));
   }
 };
 </script>

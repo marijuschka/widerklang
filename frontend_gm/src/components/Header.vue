@@ -13,7 +13,7 @@
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
             <b-nav-item href="#">
-              <router-link to="/user" id="user">Nutzer</router-link>
+              <router-link to="/mmd" id="mmd">Nutzer</router-link>
             </b-nav-item>
             <b-nav-item href="#">
               <router-link to="/pfleger" id="pfleger">Pfleger</router-link>
