@@ -124,11 +124,26 @@ app.route('/mmd/')
                 // UPDATE A MMD
         .put(mmdController.update_a_mmd);
 
-//Material 
-app.route('/material/:generic')
+//Material   
+app.route('/material/')
         .get(materialController.get_all_material)
-        .post(materialController.create_a_material);
+        .post(materialController.upload_material);
+
+app.route('/generic/')
+        .get(genericController.get_all_generic)
+        .post(genericController.upload_generic);
+
+ //Stack
+app.route('/familie/')
+        .post(familyController.set_to_stack);  
+app.route('/natur/')
+        .post(natureController.set_to_stack); 
+app.route('/freizeit/')
+        .post(freizeitController.set_to_stack);  
+app.route('/heimat/')
+        .post(heimatController.set_to_stack);        
 };
+
 
 
 

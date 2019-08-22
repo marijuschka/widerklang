@@ -99,7 +99,10 @@ User.login = function login(username, password, result){
                           'auth': true,          
                           'userid': user.id,
                           'name': user.username,
-                          'email': user.email});
+                          'email': user.email,
+                          'role': user.role,
+                          'role_id': user.role_id,
+                          'name': 'dummy'});
         } else{
             result(null, {'token': false, 'message': 'Username or password is not correct'});
         }

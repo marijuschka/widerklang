@@ -8,10 +8,22 @@ var Material = function (id, material) {
     this.description = material.description;
     this.path = material.path;
     this.type = material.type;
-    this.generic = material.generic;
 };
 
-Material.createMaterial = function createMaterial(material, result) {
+
+
+Material.uploadFile = function uploadFile(material, result){
+    sql.query("INSERT INTO material SET ?", material, function (err, res) {
+        if (err) {
+            result(err, null);
+        }
+        else {
+            result(null, material.name);
+        }
+    });
+}
+
+/*Material.createMaterial = function createMaterial(material, result) {
     sql.query("INSERT INTO material SET ?", material, function (err, res) {
         if (err) {
             result(err, null);
@@ -20,18 +32,23 @@ Material.createMaterial = function createMaterial(material, result) {
             result(null, material.id);
         }
     });
-};
+};*/
 
-Material.getAllMaterial = function getAllMaterial(generic, result) {
-    if(generic == true){
-    sql.query("SELECT * FROM material WHERE generic = ?", generic, function (err, res) {
+
+Material.getAllMaterial = function getAllMaterial(list, result) {
+    var arr = list.map( function(el) { return el.material_id; });
+    sql.query("SELECT * FROM material WHERE id IN (?)", [arr], function (err, res) {
         if (err) {
             result(null, err);
         }
         else {
+            console.log(res);
             result(null, res);
         }
-    });
- } 
+    }); 
 };
+
+
 module.exports = Material;
+
+
