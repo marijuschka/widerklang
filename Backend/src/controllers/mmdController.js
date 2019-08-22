@@ -14,6 +14,27 @@ exports.get_a_mmd = function(req,res) {
     })
 };
 
+exports.update_a_mmd = function (req, res) {
+    var updated_mmd = {
+        id: req.body.mmd_id,
+        name: req.body.name,
+        age: req.body.age
+    }
+
+    if (!updated_mmd.name || !updated_mmd.age) {
+        res.status(400).send({ error: true, message: 'Please provide all necessary fields!' });
+    }
+    else {
+        MmD.updateById(updated_mmd, function (err, resMmd) {
+            if (err)
+                res.send(err);
+            res.json(resMmd);
+        });
+    }
+
+
+}
+
 exports.get_all_mmd = function (req, res) {
     /*   ensureToken(req, res);
        jwt.verify(req.token, 'my_secret_key', function (err, data) {
@@ -41,7 +62,14 @@ exports.get_all_mmd = function (req, res) {
                 res.json({ message: 'MmD"name successfully deleted' });
 //           });
 //       };
-    });
+            });
+            // Here we have to delete all the content out of the three categories (freizeit,heimat,natur,spaß) 
+            //
+            //
+            //
+            //
+            //
+            //
 }
 
    exports.create_a_mmd = function (req, res) {

@@ -31,27 +31,27 @@ app.route('/users/:user_id')
 
 app.route('/mmd_member/:mmd_member_id')
 
-                // UEBER ID AUF Mmd_member ZUGREIFEN
+                // GET A MMD_MEMBER BY ID
         .get(mmd_memberController.get_a_mmd_member)
 
-                // LOESCHEN
+                // DELETE A MMD_MEMBER
         .delete(mmd_memberController.delete_a_mmd_member);
 
 
 app.route('/mmd_member/')
 
-                // ALLE Mmd_member AUSGEBEN
+                // GET ALL MMD_MEMBER
         .get(mmd_memberController.get_all_mmd_member)
 
 
         // Verwalten //
 
-                // HINZUFUEGEN
+                // CREATE A MMD_MEMBER
         .post(mmd_memberController.create_a_mmd_member)
 
 
 
-                // BEARBEITEN
+                // UPDATE A MMD_MEMBER
         .put(mmd_memberController.update_a_mmd_member);
 
 
@@ -61,11 +61,33 @@ app.route('/mmd_member/')
 ///////////////////////////////////Carer/////////////////////////////////////////////
 
         // Zugriff //
+app.route('/carer/:carer_id')
+
+                // GET A USER BY ID
+        .get(carerController.get_carer) 
+
+
+                // DELETE
+        .delete(carerController.delete_a_carer); 
+
+
+
 app.route('/carer/')
 
-        // 
-        //.get(carerController.get_all_carer)
-        .post(carerController.create_a_carer);
+                // GET ALL CARER
+        //.get(carerController.get_all_carer) // TO BE IMPLEMENTED
+
+
+
+        // Verwalten
+
+                // CREATE A CARER
+        .post(carerController.create_a_carer)
+
+        
+                // UPDATE A CARER
+        .put(carerController.update_a_carer); 
+
 
 
 
@@ -77,20 +99,30 @@ app.route('/carer/')
 // Es ist zu beachten, dass wenn ein MmD geloescht wird sich auch der gesamte Inhalt aus der Datenbank loescht, sprich:
 // Alle Tabellen eintrege von Materialen etc. muessen auch geloescht werden
 
-// Wird der MmD gelöscht wer
         
         // Zugriff //
 app.route('/mmd/:mmd_id')
+
+                // GET A MMD BY ID
         .get(mmdController.get_a_mmd) 
+
+                // DELETE A MMD AND ALL THE CONTENT
         .delete(mmdController.delete_a_mmd); 
 
 
 app.route('/mmd/')
+
+                // GET ALL MMD 
         .get(mmdController.get_all_mmd)
 
 
-        
-        .post(mmdController.create_a_mmd);
+        // Manage
+
+                // CREATE A MMD
+        .post(mmdController.create_a_mmd)
+
+                // UPDATE A MMD
+        .put(mmdController.update_a_mmd);
 
 //Material 
 app.route('/material/:generic')

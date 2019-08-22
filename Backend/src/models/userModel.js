@@ -57,7 +57,6 @@ User.getUserByMmd_memberId = function getUserByMmd_memberId(mmd_member_id,result
 }
 
 User.updateById = function updateById(input, result) {
-    console.log("model", input)
     sql.query("UPDATE user SET username = ?, password = ?, email = ?  WHERE id = ?", [input.username, input.password, input.email, input.id], function (err, res) {
         if (err) {
             result(null, err);

@@ -36,7 +36,7 @@ Mmd_member.getMmd_memberById = function getMmd_memberById(mmd_member_id,result) 
             result(null, err);
         }
         else {
-            result(null, res);
+            result(null, res[0]);
         }
     });
 }
@@ -53,7 +53,7 @@ Mmd_member.updateById = function updateById(input,result) {
 }
 
 Mmd_member.remove = function remove(id, result) {
-    sql.query("DELETE FROM mmd_member WHERE id = ?", id, function (err, res) {
+    sql.query("DELETE  FROM mmd_member WHERE id = ?", id, function (err, res) {
 
         if (err) {
             result(null, err);

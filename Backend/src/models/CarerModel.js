@@ -6,8 +6,41 @@ var jwt = require('jsonwebtoken');
 var Carer = function (id, carer) {
     this.id = id;
     this.name = carer.name;
-    this.email = carer.email;
 };
+
+
+Carer.updateById = function updateById(input,result) {
+    sql.query("UPDATE carer SET name = ? WHERE id = ?",[input.name, input.id], function (err,res){
+        if (err) {
+            result(null, err);
+        }
+        else {
+            result(null, res);
+        }
+    });
+
+}
+
+Carer.remove = function remove(carer_id,result) {
+    sql.query("DELETE FROM carer WHERE id = ?",carer_id, function (err, res) {
+        if (err) {
+            result(err, null);
+        }
+        else {
+            result(null, carer_id);
+        }
+    });
+}
+Carer.getCarerById = function getCarerById(carer_id,result) {
+    sql.query("SELECT * FROM carer WHERE id = ?",carer_id, function ( err, res) {
+        if (err) {
+            result(err, null);
+        }
+        else {
+            result(null,res)
+        }
+    });
+}
 
 Carer.createCarer = function createCarer(carer, result) {
     sql.query("INSERT INTO carer SET ?", carer, function (err, res) {
@@ -19,5 +52,6 @@ Carer.createCarer = function createCarer(carer, result) {
         }
     });
 };
+
 
 module.exports = Carer;

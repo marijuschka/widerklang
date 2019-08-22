@@ -8,34 +8,60 @@ var bcrypt = require('bcrypt-nodejs');
 function generateUniqueId() {
     return Math.random().toString(36).substr(2, 10);
 }
+var res_mmd_member = {
+    name: null,
+    username: null,
+    email: null,
+    mmd_id: null,
+    mmd_name: null
+};
 
 
 // Gibt einen Mmd_member anhand der ID zurück
-exports.get_a_mmd_member = function (req,res) {
+exports.get_a_mmd_member = function (req, res) {
 
-    var res_mmd_member = null;
+    var res_mmd_member = {
+        name: null,
+        username: null,
+        email: null,
+        mmd_id: null,
+        mmd_name: null
+    };
 
-    Mmd_member.getMmd_memberById(req.params.mmd_member_id,function (err,mmd_member) {
+    Mmd_member.getMmd_memberById(req.params.mmd_member_id, function (err, mmd_member) {
         if (err) {
             res.send(err);
         }
         else if (mmd_member == null) {
             res.send("Mmd_member does not exist!");
         } else {
-            res_mmd_member = mmd_member;
+            res_mmd_member.name = mmd_member.name;
+            res_mmd_member.mmd_id = mmd_member.mmd_id;
         }
-    });
 
-    User.getUserByMmd_memberId(req.params.mmd_member_id, function (err,user) {
-        if (err) {
-            res.send(err);
-        }
-        else if (user == null) {
-            res.send("Mmd_member does not exist!");
-        } else {
-            var ob = Object.assign({},res_mmd_member,user)
-            res.json(ob);
-        }
+        User.getUserByMmd_memberId(req.params.mmd_member_id, function (err, user) {
+            if (err) {
+                res.send(err);
+            }
+            else if (user == null) {
+                res.send("Mmd_member does not exist!");
+            } else {
+                res_mmd_member.username = user.username;
+                res_mmd_member.email = user.email;
+            }
+
+            MmD.getAMmdById(res_mmd_member.mmd_id, function (err, mmd) {
+                if (err) {
+                    res.send(err);
+                }
+                else if (mmd == null) {
+                    res.send("Mmd_member does not exist!");
+                } else {
+                    res_mmd_member.mmd_name = mmd[0].name;
+                    res.json(res_mmd_member);
+                }
+            });
+        });
     });
 }
 
@@ -46,40 +72,101 @@ exports.get_all_mmd_member = function (req, res) {
            if (err) {
                res.sendStatus(403);
            } else {*/
-            Mmd_member.getAllMmd_member(function (err, mmd_member) {
-                   if (err)
-                       res.send(err);
-                   res.send(mmd_member);
-               });
-      /*     }
-       })*/
+    var mmd_member_array = null;
+    var user_array = null;
+    var mmd_array = null;
+    var res_array = [];
+
+    Mmd_member.getAllMmd_member(function (err, mmd_member) {
+        if (err)
+            res.send(err);
+        mmd_member_array = mmd_member;
+
+
+        for (var i = 0; i < mmd_member_array.length; i++) {
+
+            var res_mmd_member = {
+                name: mmd_member_array[i].name,
+                username: null,
+                email: null,
+                mmd_id: mmd_member_array[i].mmd_id,
+                mmd_name: null
+            };
+
+            User.getUserByMmd_memberId(mmd_member_array[i].id, function (err, user) {
+                if (err) {
+                    res.send(err);
+                }
+                else if (user == null) {
+                    res.send("Mmd_member does not exist!");
+                } else {
+
+                    res_mmd_member.username = user.username;
+                    res_mmd_member.email = user.email;
+
+                }
+
+                MmD.getAMmdById(res_mmd_member.mmd_id, function (err, mmd) {
+                    if (err) {
+                        res.send(err);
+                    }
+                    else if (mmd == null) {
+                        res.send("Mmd_member does not exist!");
+                    } else {
+                        res_mmd_member.mmd_name = mmd.name;
+                        console.log(mmd_member_array)
+                    }
+
+                });
+            });
+
+
+    
+
+
+
+            res_array.push(res_mmd_member);
+
+        };
+        res.json(res_array);
+    });
+
+
+
+    
+
+
+    /*     }
+     })*/
 }
+
+
 exports.delete_a_mmd_member = function (req, res) {
     //ensureToken(req, res);
     //jwt.verify(req.token, 'my_secret_key', function (err, data) {
-        //if (err) {
-            //res.sendStatus(403);
-        //} else {
-            Mmd_member.remove(req.params.mmd_member_id, function (err, user) {
-                if (err)
-                    res.send(err);
-                res.json({ message: 'MmD-Member successfully deleted' });
-            });
+    //if (err) {
+    //res.sendStatus(403);
+    //} else {
+    Mmd_member.remove(req.params.mmd_member_id, function (err, user) {
+        if (err)
+            res.send(err);
+        res.json({ message: 'MmD-Member successfully deleted' });
+    });
 
-            User.remove(req.body.user_id, function (err,user) {
-                if (err)
-                    res.send(err);
-                res.json({ message1: 'User successfully deleted' });
-            });
-            //});
-        //};
+    User.remove(req.body.user_id, function (err, user) {
+        if (err)
+            res.send(err);
+        res.json({ message1: 'User successfully deleted' });
+    });
+    //});
+    //};
     //});
 }
 
-exports.update_a_mmd_member = function (req,res) {
+exports.update_a_mmd_member = function (req, res) {
 
     var updated_mmd_member = {
-        id: req.body.mmd_member_id,
+        id: req.body.id,
         name: req.body.name
     }
     var updated_user = {
@@ -93,17 +180,16 @@ exports.update_a_mmd_member = function (req,res) {
         res.status(400).send({ error: true, message: 'Please provide all necessary fields!' });
     }
     else {
-
-        Mmd_member.updateById(updated_mmd_member, function (err,resMmd_member){
+        Mmd_member.updateById(updated_mmd_member, function (err, resMmd_member) {
             if (err)
-            res.send(err);
+                res.send(err);
             res.json(resMmd_member);
         })
-        
-        User.updateById(updated_user, function (err, resUser){
-            if(err)
-            res.send(err);
-            res.json(resUser) 
+
+        User.updateById(updated_user, function (err, resUser) {
+            if (err)
+                res.send(err);
+            res.json(resUser)
         })
 
     }
@@ -124,7 +210,7 @@ exports.create_a_mmd_member = function (req, res) {
         password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10)),
         role: "Mmd_member",
         role_id: mmd_member_id
-      //  profile_img: req.body.profile_img
+        //  profile_img: req.body.profile_img
     }
 
     if (!mmd_member.name || !user.username || !user.email || !user.password || !mmd_member.mmd_id) {
@@ -139,7 +225,7 @@ exports.create_a_mmd_member = function (req, res) {
         User.createUser(user, function (err, resUser) {
             if (err)
                 res.send(err);
-            res.json(resUser);        
+            res.json(resUser);
         });
     }
 };
