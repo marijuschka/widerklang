@@ -70,7 +70,6 @@ exports.get_a_user = function (req, res) {
                         email: req.body.email,
                         password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10)),
                         profile_img: req.body.profile_img,
-                        role: req.body.role
                     }
                     User.updateById(updated_user, function (err, user) {
                         if (err) {

@@ -7,6 +7,7 @@ var User = function (id, user) {
     this.id = id;
     this.username = user.username;
     this.password = user.password;
+    this.email = user.email;
     this.role = user.role;
 };
 
@@ -44,9 +45,19 @@ User.getUserById = function getUserById(userId, result) {
     });
 };
 
+User.getUserByMmd_memberId = function getUserByMmd_memberId(mmd_member_id,result) {
+    sql.query("SELECT * FROM user WHERE role_id = ?",mmd_member_id, function (err,res) {
+        if (err) {
+            result(err, null);
+        }
+        else {
+            result(null, res[0]);
+        }
+    });
+}
+
 User.updateById = function updateById(input, result) {
-    console.log("model", input)
-    sql.query("UPDATE user SET username = ?, password = ?, email = ?, role = ? WHERE id = ?", [input.username, input.password, input.email, input.role], function (err, res) {
+    sql.query("UPDATE user SET username = ?, password = ?, email = ?  WHERE id = ?", [input.username, input.password, input.email, input.id], function (err, res) {
         if (err) {
             result(null, err);
         }
