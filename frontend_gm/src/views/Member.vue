@@ -1,5 +1,5 @@
 <template>
-  <div class="Mmd">
+  <div class="Member">
     <Header />
     <br />
     <b-row class="justify-content-center">
@@ -10,7 +10,7 @@
           </b-col>
           <b-col cols="auto">
             <b-button
-              v-b-toggle.collapse-newMMD
+              v-b-toggle.collapse-newMember
               variant="success"
             >Neuen Menschen mit Demenz hinzufügen</b-button>
           </b-col>
@@ -61,42 +61,9 @@
       </b-row>
     </div>
 
-    <div>
-      <b-row class="justify-content-center" id="addUser">
-        <b-col cols="12" md="11">
-          <b-collapse id="collapse-newMMD" class="mt-2 collapse1">
-            <b-card>
-              <b-row align-v="center" class="justify-content-center">
-                <b-col cols="2" md="1" lg="1">
-                  <img
-                    class="addUserIcon"
-                    alt="newMMD"
-                    src="https://cdn.onlinewebfonts.com/svg/img_227643.png"
-                  />
-                </b-col>
-                <b-col cols="11" md="3" lg="3">
-                  <b-form-input v-model="newMMD.name" placeholder="Name"></b-form-input>
-                </b-col>
-                <b-col cols="11" md="4" lg="3">
-                  <b-form-input v-model="newMMD.age" placeholder="Alter"></b-form-input>
-                </b-col>
-                <b-col cols="6" md="4" lg="2">
-                  <!-- <b-col cols="auto"> -->
-                  <b-button
-                    v-on:click="addNewMMD()"
-                    v-b-toggle.collapse-newMember-inner
-                    size="md"
-                  >Nutzer hinzufügen</b-button>
-                </b-col>
-              </b-row>
-            </b-card>
-          </b-collapse>
-        </b-col>
-      </b-row>
-    </div>
     <!--  Dynamisches Erzeugen der User Liste -->
 
-    <div v-for="index in mmd.length">
+    <div v-for="index in member.length">
       <b-row class="justify-content-center userlist" id="UserSpalte">
         <b-col cols="12" md="11">
           <b-card no-body class="overflow-hidden">
@@ -108,44 +75,33 @@
               </b-col>
               <!-- Name -->
               <b-col cols="5">
-                <h3>Name: {{mmd[index-1].name}}, Alter: {{mmd[index-1].age}}</h3>
+                <h3>Name: {{member[index-1].name}}, Alter: {{member[index-1].username}}</h3>
               </b-col>
 
               <!-- buttons-->
               <b-col cols="5" md="6">
                 <b-row>
-                  <!-- Bearbeiten von MMD's ist ja eigentlich unnötig, da Name & Alter eigentlich gleich bleiben sollten 
+                  <!-- Bearbeiten von Angehoerigen-->
                   <b-col cols="6" sm="4" offset-sm="2" offset-md="4" offset-lg="7" md="4" lg="2">
                     <b-card-text>
-                      <b-button v-b-toggle="'collapse-edit-'+mmd[index-1].mmd_id" pill>Bearbeiten</b-button>
+                      <b-button v-b-toggle="'collapse-edit-'+member[index-1].name" pill>Bearbeiten</b-button>
                     </b-card-text>
-                  </b-col>-->
-                  <b-col cols="6" sm="4" offset-sm="2" offset-md="4" offset-lg="7" md="4" lg="2">
-                    <b-button v-b-modal="'edit-modal-'+mmd[index-1].mmd_id" pill>Angehoerige</b-button>
-                    <!-- Pop-Up zur Delete Anfrage -->
-                    <b-modal
-                      @ok="editMMD(mmd[index-1].mmd_id)"
-                      v-bind:id="'edit-modal-'+mmd[index-1].mmd_id"
-                      title="MMD bearbeiten"
-                    >
-                      <p class="my-4">Dies sind die Angehoerigen von {{mmd[index-1].name}}:</p>
-                    </b-modal>
                   </b-col>
                   <b-col cols="6" md="4" lg="2">
                     <b-card-text>
                       <!--  <b-button v-on:click="deleteUser(user[index-1]) pill variant="outline-danger"> -->
                       <b-button
-                        v-b-modal="'delete-modal-'+mmd[index-1].mmd_id"
+                        v-b-modal="'delete-modal-'+member[index-1].name"
                         pill
                         variant="danger"
                       >Entfernen</b-button>
                       <!-- Pop-Up zur Delete Anfrage -->
                       <b-modal
-                        @ok="deleteMMD(mmd[index-1].mmd_id)"
-                        v-bind:id="'delete-modal-'+mmd[index-1].mmd_id"
-                        title="MMD entfernen"
+                        @ok="deleteMember(member[index-1].mmd_id)"
+                        v-bind:id="'delete-modal-'+member[index-1].name"
+                        title="Angehoeriger entfernen"
                       >
-                        <p class="my-4">Soll {{mmd[index-1].name}} gelöscht werden?</p>
+                        <p class="my-4">Soll {{member[index-1].name}} gelöscht werden?</p>
                       </b-modal>
                     </b-card-text>
                   </b-col>
@@ -155,19 +111,19 @@
             <!-- Collapse -->
             <div>
               <!--id="collapse-editUser" -->
-              <b-collapse v-bind:id="'collapse-edit-'+mmd[index-1].mmd_id" class="mt-2">
+              <b-collapse v-bind:id="'collapse-edit-'+member[index-1].name" class="mt-2">
                 <b-card>
                   <b-row class="justify-content-center">
                     <b-col cols="4" md="3">
-                      <b-form-input v-model="password" placeholder="Neues Passwort"></b-form-input>
+                      <b-form-input v-model="editedMember.password" placeholder="Neues Passwort"></b-form-input>
                     </b-col>
                     <b-col cols="4" md="3">
-                      <b-form-input v-model="xy" placeholder="Neue XY"></b-form-input>
+                      <b-form-input v-model="editedMember.email" placeholder="Neue EMail"></b-form-input>
                     </b-col>
                     <b-col cols="2" md="2">
                       <b-button
-                        v-on:click="editMMD(mmd[index-1].mmd_id)"
-                        v-b-toggle="'collapse-edit-'+mmd[index-1].mmd_id"
+                        v-on:click="editMember(member[index-1].username)"
+                        v-b-toggle="'collapse-edit-'+member[index-1].username"
                         size="md"
                       >Ändern!</b-button>
                     </b-col>
@@ -187,15 +143,13 @@ import Header from "../components/Header.vue";
 import axios from "axios";
 
 export default {
-  name: "mmd",
+  name: "member",
   components: {
     Header
   },
   data() {
     return {
       member: [],
-      mmd: [],
-      carer: [],
 
       newMember: {
         name: "",
@@ -205,24 +159,14 @@ export default {
         mmd_id: "1234"
       },
       editedMember: {
+        angehoeriger_id: "",
         name: "",
         username: "",
         email: "",
         password: "",
         mmd_name: "",
         user_id: ""
-      },
-      newMMD: {
-        name: "",
-        age: ""
-      },
-      editedMMD: {
-        name: "",
-        age: ""
-      },
-
-      password: "",
-      xy: ""
+      }
     };
   },
   methods: {
@@ -242,64 +186,26 @@ export default {
     // Edit Existing USER
     editMember(id) {
       axios
-        .patch("http://139.6.102.67:8080/angehoeriger" + id, this.editedMember)
-        .then(res => {})
-        .catch(err => console.log("Hey! Axios error for editMember: " + err));
-    },
-
-    // Add New MMD to DB
-    addNewMMD() {
-      axios
-        .post("http://139.6.102.67:8080/mmd", this.newMMD)
+        .put("http://139.6.102.67:8080/mmd_member/" + id, this.editedMember)
         .then(res => {
-          if (res.status == 200) {
-            console.log(res);
-            this.mmd = this.mmd.concat(this.newMMD);
-          }
-        })
-        .catch(err => console.log("Hey! Axios error for addNewMMD: " + err));
-    },
-    // Edit Existing USER
-    editMMD(id) {
-      axios
-        // Funktioniert noch nicht da Router was anderes vorsieht
-        .put("http://139.6.102.67:8080/mmd/" + id, this.editedMMD)
-        .then(res => {
-          if (res.status == 200) {
-            M.toast({
-              html:
-                "<b>Edited user @" +
-                document.getElementById("icon_editPassword" + id).placeholder +
-                "</b>",
-              classes: "green white-text"
-            });
-            this.toggleElements("editUser" + id);
-          }
-        })
-        .catch(err => console.log("Hey! Axios error for editMember: " + err));
-    },
-    // Delete User with given ID
-    deleteMMD(id) {
-      console.log("delete MmD with ID: " + id);
-      axios
-        .delete("http://139.6.102.67:8080/mmd/" + id)
-        .then(res => {
+          console.log("Member mit ID " + id + " wurde bearbeitet.");
           console.log(res);
-          this.mmd = this.mmd.filter(mmd => mmd.mmd_id !== id);
         })
-        .catch(err => console.log("Hey! Axios error for deleteMMD: " + err));
+        .catch(err => console.log("Hey! Axios error for editMember: " + err));
+    },
+    // Delete Existing USER
+    deleteMember(id) {
+      axios
+        .delete("http://139.6.102.67:8080/mmd_member/" + id)
+        .then(res => {
+          console.log("Member mit ID " + id + " wurde entfernt.");
+          console.log(res);
+          this.member = this.member.filter(member => member.mmd_id !== id);
+        })
+        .catch(err => console.log("Hey! Axios error for deleteMember: " + err));
     }
   },
   created() {
-    axios
-      .get("http://139.6.102.67:8080/mmd/")
-      .then(res => {
-        console.log("MMD: ");
-        console.log(res.data);
-        this.mmd = res.data;
-      })
-      .catch(err => console.log("Hey! Axios error for Created MMD: " + err));
-
     axios
       .get("http://139.6.102.67:8080/mmd_member/")
       .then(res => {
@@ -310,15 +216,6 @@ export default {
       .catch(err =>
         console.log("Hey! Axios error for Created MMD_Member: " + err)
       );
-
-    axios
-      .get("http://139.6.102.67:8080/carer/")
-      .then(res => {
-        console.log("Carer: ");
-        console.log(res.data);
-        this.carer = res.data;
-      })
-      .catch(err => console.log("Hey! Axios error for Created Carer: " + err));
   }
 };
 </script>

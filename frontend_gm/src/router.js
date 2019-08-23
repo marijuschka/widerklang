@@ -22,6 +22,11 @@ export default new Router({
       component: () => import('./views/Carer.vue')
     },
     {
+      path: '/member',
+      name: 'member',
+      component: () => import('./views/Member.vue')
+    },
+    {
       path: '/tablet',
       name: 'tablet',
       component: () => import('./views/Tablet.vue')

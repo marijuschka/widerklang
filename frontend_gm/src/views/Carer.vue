@@ -69,7 +69,7 @@
               </b-col>
               <!-- Name dynamisch -->
               <b-col cols="5">
-                <h3>{{carer[index-1].name}} --> {{carer[index-1].id}}</h3>
+                <h3>{{carer[index-1].name}}</h3>
               </b-col>
 
               <!-- Buttons Bearbeiten und Löschen -->
