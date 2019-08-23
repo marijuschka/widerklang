@@ -123,10 +123,14 @@
                     <b-card-text>
                       <!--  <b-button v-on:click="deleteUser(user[index-1]) pill variant="outline-danger"> -->
                       <b-button
-                        v-on:click="deleteMMD(mmd[index-1].mmd_id)"
+                        v-b-modal="'delete-modal-'+mmd[index-1].mmd_id"
                         pill
                         variant="danger"
                       >Entfernen</b-button>
+                      <!-- Pop-Up zur Delete Anfrage -->
+                     <b-modal @ok="deleteMMD(mmd[index-1].mmd_id)"  v-bind:id="'delete-modal-'+mmd[index-1].mmd_id" title="Pfleger entfernen">
+                        <p class="my-4">Soll {{mmd[index-1].name}} gelöscht werden?</p>
+                      </b-modal>
                     </b-card-text>
                   </b-col>
                 </b-row>

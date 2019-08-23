@@ -69,7 +69,7 @@
               </b-col>
               <!-- Name dynamisch -->
               <b-col cols="5">
-                <h3>{{carer[index-1].name}}   --> {{carer[index-1].id}}</h3>
+                <h3>{{carer[index-1].name}} --> {{carer[index-1].id}}</h3>
               </b-col>
 
               <!-- Buttons Bearbeiten und Löschen -->
@@ -82,8 +82,17 @@
                   </b-col>
                   <b-col cols="6" md="4" lg="2">
                     <b-card-text>
-                      
-                      <b-button v-on:click="deleteCarer(carer[index-1].id)" pill variant="danger">Entfernen</b-button>
+                      <div></div> <!-- v-on:click="deleteCarer(carer[index-1].id)" -->
+                      <b-button
+                        v-b-modal="'delete-modal-'+carer[index-1].id"
+                        
+                        pill
+                        variant="danger"
+                      >Entfernen</b-button>
+                      <!-- Pop-Up zur Delete Anfrage -->
+                     <b-modal @ok="deleteCarer(carer[index-1].id)"  v-bind:id="'delete-modal-'+carer[index-1].id" title="Pfleger entfernen">
+                        <p class="my-4">Soll {{carer[index-1].name}} gelöscht werden?</p>
+                      </b-modal>
                     </b-card-text>
                   </b-col>
                 </b-row>
@@ -177,8 +186,8 @@ export default {
       axios
         .delete("http://139.6.102.67:8080/carer/" + id)
         .then(res => {
-            console.log(res);
-            this.carer = this.carer.filter(carer => carer.id !== id);
+          console.log(res);
+          this.carer = this.carer.filter(carer => carer.id !== id);
         })
         .catch(err => console.log("Hey! Axios error for deleteCarer: " + err));
     }
