@@ -108,7 +108,7 @@
               </b-col>
               <!-- Name -->
               <b-col cols="5">
-                <h3>Name: {{mmd[index-1].name}} , Alter: {{mmd[index-1].age}}</h3>
+                <h3>Name: {{mmd[index-1].name}}, Alter: {{mmd[index-1].age}}</h3>
               </b-col>
 
               <!-- buttons-->
@@ -133,8 +133,9 @@
               </b-col>
             </b-row>
             <!-- Collapse -->
-            <div> <!--id="collapse-editUser" -->
-              <b-collapse v-bind:id="'collapse-edit-'+mmd[index-1].mmd_id"  class="mt-2">
+            <div>
+              <!--id="collapse-editUser" -->
+              <b-collapse v-bind:id="'collapse-edit-'+mmd[index-1].mmd_id" class="mt-2">
                 <b-card>
                   <b-row class="justify-content-center">
                     <b-col cols="4" md="3">
@@ -174,8 +175,7 @@ export default {
     return {
       member: [],
       mmd: [],
-      angehoerige: [],
-      pfleger: [],
+      carer: [],
 
       newMember: {
         name: "",
@@ -213,39 +213,18 @@ export default {
         .then(res => {
           if (res.status == 200) {
             console.log(res);
-            this.member = this.member.concat(this.newMember.name);
-            // M.toast({
-            //   html: "<b>Added new user @" + this.newUser.name + "</b>",
-            //   classes: "green white-text"
-            // });
-            this.toggleElements("createUser");
+            this.member = this.member.concat(this.newMember);
+            // this.toggleElements("createUser");
           }
         })
         .catch(err => console.log("Hey! Axios error for addNewMember: " + err));
-      //.catch(err => {
-      //  if (err.response.status == 404 || err.response.status == 401) {
-      //    M.toast({
-      //      html: "<b>Could not add new user @" + this.newUser.name + "</b>",
-      //      classes: "red white-text"
-      //    });
-      //  }
-      //});
+
     },
     // Edit Existing USER
     editMember(id) {
       axios
         .patch("http://139.6.102.67:8080/angehoeriger" + id, this.editedMember)
         .then(res => {
-          if (res.status == 200) {
-            M.toast({
-              html:
-                "<b>Edited user @" +
-                document.getElementById("icon_editPassword" + id).placeholder +
-                "</b>",
-              classes: "green white-text"
-            });
-            this.toggleElements("editUser" + id);
-          }
         })
         .catch(err => console.log("Hey! Axios error for editMember: " + err));
     },
@@ -265,7 +244,7 @@ export default {
     // Edit Existing USER
     editMMD(id) {
       axios
-      // Funktioniert noch nicht da Router was anderes vorsieht
+        // Funktioniert noch nicht da Router was anderes vorsieht
         .put("http://139.6.102.67:8080/mmd/" + id, this.editedMMD)
         .then(res => {
           if (res.status == 200) {
@@ -283,14 +262,12 @@ export default {
     },
     // Delete User with given ID
     deleteMMD(id) {
-      console.log("delete User with ID: " + id);
+      console.log("delete MmD with ID: " + id);
       axios
         .delete("http://139.6.102.67:8080/mmd/" + id)
         .then(res => {
-          if (res.status == 200) {
-            console.log(res);
-            this.user = this.user.filter(user => user !== id);
-          }
+          console.log(res);
+          this.mmd = this.mmd.filter(mmd => mmd.mmd_id !== id);
         })
         .catch(err => console.log("Hey! Axios error for deleteMMD: " + err));
     }
@@ -308,8 +285,9 @@ export default {
     axios
       .get("http://139.6.102.67:8080/mmd_member/")
       .then(res => {
+        console.log("Mmd_Member: ");
         console.log(res.data);
-        this.angehoerige = res.data;
+        this.member = res.data;
       })
       .catch(err =>
         console.log("Hey! Axios error for Created MMD_Member: " + err)
@@ -318,8 +296,9 @@ export default {
     axios
       .get("http://139.6.102.67:8080/carer/")
       .then(res => {
+        console.log("Carer: ");
         console.log(res.data);
-        this.pfleger = res.data;
+        this.carer = res.data;
       })
       .catch(err => console.log("Hey! Axios error for Created Carer: " + err));
   }

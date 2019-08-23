@@ -17,9 +17,9 @@ export default new Router({
       component: () => import('./views/Mmd.vue')
     },
     {
-      path: '/pfleger',
-      name: 'pfleger',
-      component: () => import('./views/Pfleger.vue')
+      path: '/carer',
+      name: 'carer',
+      component: () => import('./views/Carer.vue')
     },
     {
       path: '/tablet',
