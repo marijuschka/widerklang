@@ -3,7 +3,7 @@
     <div class="margin-top-60">
       <b-navbar toggleable="lg" type="light" variant="light">
         <b-navbar-brand href="#">
-          <router-link to="/" id="login">
+          <router-link to="/schnellzugriff" id="schnellzugriff">
             <img alt="Vue logo" src="../assets/WiderklangLogo.png" />
           </router-link>
         </b-navbar-brand>
