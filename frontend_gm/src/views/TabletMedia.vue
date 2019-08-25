@@ -12,15 +12,15 @@
       </b-row>
       <b-row v-bind:class="theme" class="fill">
         <!-- vorheriges Bild -->
-        <b-col cols="4">
+        <b-col cols="4 reset-padding">
           <img class="stack stack-pos-side" @click="previousOnStack()" v-bind:src="stack[stackLeft].path" v-bind:alt="stack[stackLeft].path">
         </b-col>
         <!-- aktuelles Bild - startet Video bei anklicken wenn Video -->
-        <b-col cols="4">
-          <img class="stack" v-bind:src="stack[stackFocus].path" v-bind:alt="stack[stackFocus].path">
+        <b-col cols="4 reset-padding">
+          <img class="stack stack-pos-middle" v-bind:src="stack[stackFocus].path" v-bind:alt="stack[stackFocus].path">
         </b-col>
         <!-- nächstes Bild -->
-        <b-col cols="4">
+        <b-col cols="4 reset-padding">
           <img class="stack stack-pos-side" @click="nextOnStack()" v-bind:src="stack[stackRight].path" v-bind:alt="stack[stackRight].path">
         </b-col>
       </b-row>
@@ -144,21 +144,30 @@ export default {
 .top-row {
   height: 30vh;
 }
+.reset-padding{
+  padding: 0px;
+}
 #back-button {
   margin-top: 12vh;
   margin-left: 12vh;
 }
-.stack {
-  height: 40vh;
-  width: auto;
+.stack {  
   margin-top: 0px;
   padding-top: 0%;
   padding-bottom: 0%;
+  box-shadow: 10px 10px 10px black;
 }
 .fill {
   height: 70vh;
 }
 .stack-pos-side {
-  opacity: 0.7;
+  opacity: 0.5;
+  height: 36vh;
+  width: auto;
+  margin-top: 4vh;
+}
+.stack-pos-middle{
+  height: 44vh;
+  width: auto;
 }
 </style>
