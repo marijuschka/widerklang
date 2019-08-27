@@ -6,14 +6,60 @@
       <b-col cols="12" md="11">
         <b-row align-h="start">
           <b-col cols="auto">
-            <router-link to="/mmd" id="mmd"><b-button variant="success">Zurück</b-button>
-         </router-link> </b-col>
+            <b-button v-b-toggle.collapse-newMember variant="success">Neuen Angehörigen hinzufügen</b-button>
+          </b-col>
+          <b-col cols="auto">
+            <b-button
+              v-b-toggle.collapse-newMember
+              variant="success"
+            >Neuen Menschen mit Demenz hinzufügen</b-button>
+          </b-col>
         </b-row>
       </b-col>
     </b-row>
-
-    <h2>Angehoerige von {{mmd_id}}</h2>
     <br />
+    <div>
+      <b-row class="justify-content-center" id="addUser">
+        <b-col cols="12" md="11">
+          <b-collapse id="collapse-newMember" class="mt-2 collapse1">
+            <b-card>
+              <b-row align-v="center" class="justify-content-center">
+                <b-col cols="2" md="1" lg="1">
+                  <img
+                    class="addUserIcon"
+                    alt="newMember"
+                    src="https://cdn.onlinewebfonts.com/svg/img_227643.png"
+                  />
+                </b-col>
+                <b-col cols="11" md="3" lg="3">
+                  <b-form-input v-model="newMember.name" placeholder="Name"></b-form-input>
+                </b-col>
+                <b-col cols="11" md="4" lg="3">
+                  <b-form-input v-model="newMember.username" placeholder="Username"></b-form-input>
+                </b-col>
+                <b-col cols="11" md="4" lg="3">
+                  <b-form-input v-model="newMember.email" placeholder="E-Mail"></b-form-input>
+                </b-col>
+                <b-col cols="11" md="4" lg="3">
+                  <b-form-input v-model="newMember.password" placeholder="Password"></b-form-input>
+                </b-col>
+                <b-col cols="11" md="4" lg="3">
+                  <b-form-input v-model="newMember.mmd_id" placeholder="mmd_id"></b-form-input>
+                </b-col>
+                <b-col cols="6" md="4" lg="2">
+                  <!-- <b-col cols="auto"> -->
+                  <b-button
+                    v-on:click="addNewMember()"
+                    v-b-toggle.collapse-newMember-inner
+                    size="md"
+                  >Nutzer hinzufügen</b-button>
+                </b-col>
+              </b-row>
+            </b-card>
+          </b-collapse>
+        </b-col>
+      </b-row>
+    </div>
 
     <!--  Dynamisches Erzeugen der User Liste -->
 
@@ -95,8 +141,10 @@
 
 
 <script>
+
 import Header from "../components/Header.vue";
 import axios from "axios";
+
 
 export default {
   name: "member",
@@ -106,8 +154,6 @@ export default {
   data() {
     return {
       member: [],
-      mmd:'',
-      mmd_id: this.$route.query.id,
 
       newMember: {
         name: "",
@@ -129,6 +175,7 @@ export default {
   },
 
   methods: {
+    
     // Add new Member
     addNewMember() {
       axios
@@ -171,16 +218,6 @@ export default {
         console.log("Mmd_Member: ");
         console.log(res.data);
         this.member = res.data;
-      })
-      .catch(err =>
-        console.log("Hey! Axios error for Created MMD_Member: " + err)
-      );
-      axios
-      .get("http://139.6.102.67:8080/mmd/"+this.mmd_id)
-      .then(res => {
-        console.log("Get this mmd: "+this.mmd_id);
-        console.log(res.data);
-        this.mmd = res.data;
       })
       .catch(err =>
         console.log("Hey! Axios error for Created MMD_Member: " + err)

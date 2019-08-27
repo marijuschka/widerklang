@@ -121,7 +121,8 @@
                     </b-card-text>
                   </b-col>-->
                   <b-col cols="6" sm="4" offset-sm="2" offset-md="4" offset-lg="7" md="4" lg="2">
-                    <b-button v-b-modal="'edit-modal-'+mmd[index-1].mmd_id" pill>Angehoerige</b-button>
+                    <!--<b-button v-b-modal="'edit-modal-'+mmd[index-1].mmd_id" pill>Angehoerige</b-button> -->
+                     <b-button v-on:click="editMMD(mmd[index-1].mmd_id)" pill>Angehoerige</b-button>
                     <!-- Pop-Up zur Delete Anfrage -->
                     <b-modal
                       @ok="editMMD(mmd[index-1].mmd_id)"
@@ -261,22 +262,23 @@ export default {
     },
     // Edit Existing USER
     editMMD(id) {
-      axios
+      this.$router.push('/member?id='+id)
+     // axios
         // Funktioniert noch nicht da Router was anderes vorsieht
-        .put("http://139.6.102.67:8080/mmd/" + id, this.editedMMD)
-        .then(res => {
-          if (res.status == 200) {
-            M.toast({
-              html:
-                "<b>Edited user @" +
-                document.getElementById("icon_editPassword" + id).placeholder +
-                "</b>",
-              classes: "green white-text"
-            });
-            this.toggleElements("editUser" + id);
-          }
-        })
-        .catch(err => console.log("Hey! Axios error for editMember: " + err));
+      //  .put("http://139.6.102.67:8080/mmd/" + id, this.editedMMD)
+      //  .then(res => {
+       //   if (res.status == 200) {
+        //    M.toast({
+         //     html:
+          //      "<b>Edited user @" +
+           //     document.getElementById("icon_editPassword" + id).placeholder +
+            //    "</b>",
+             // classes: "green white-text"
+            //});
+            //this.toggleElements("editUser" + id);
+          //}
+        //})
+        //.catch(err => console.log("Hey! Axios error for editMember: " + err));
     },
     // Delete User with given ID
     deleteMMD(id) {
