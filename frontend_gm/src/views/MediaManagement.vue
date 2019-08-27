@@ -103,6 +103,8 @@ body {
 .upload {
   width: 100px;
   height: 100px;
+  background-position: center;
+  background-size: 150px 150px;
   background-image: url("../assets/plus.jpg");  /* Bild austauschen? */
 }
 
