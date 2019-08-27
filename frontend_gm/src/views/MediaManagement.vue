@@ -14,7 +14,31 @@
           <button>Persönlich</button>
         </div>
         <div class="image-gallery">
-          <img src='../assets/plus.jpg' alt="" class="image-gallery__image">
+          
+          
+          <!--<img src='../assets/plus.jpg' alt="" class="image-gallery__image">
+          -->
+
+
+        <body>
+          <div class="upload">
+            <input type="file" name="uploadFile">
+          </div>
+        </body>
+
+
+          
+
+
+
+          <!--         
+          <div>
+            <label for ="file"> Datei auswählen</label>
+            <input type="file" >
+          </div>
+          -->
+
+
           <img src='../assets/gelb.png' alt="" class="image-gallery__image">
           <img src='../assets/gelb.png' alt="" class="image-gallery__image">
           <img src='../assets/gelb.png' alt="" class="image-gallery__image">
@@ -74,6 +98,23 @@ export default {
 body {
     margin: 0;
 }
+
+
+.upload {
+  width: 100px;
+  height: 100px;
+  background-image: url("../assets/plus.jpg");  /* Bild austauschen? */
+}
+
+.upload input {
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+}
+
 
 .container {
   height: 95vh;
