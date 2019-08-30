@@ -82,8 +82,6 @@ app.route('/carer/')
                 // GET ALL CARER
         .get(carerController.get_all_carer) 
 
-
-
         // Verwalten
 
                 // CREATE A CARER

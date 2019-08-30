@@ -76,6 +76,13 @@ exports.get_all_mmd_member = function (req, res) {
     var user_array = null;
     var mmd_array = null;
     var res_array = [];
+    var res_mmd_member = {
+        name: "",
+        username: "dummy",
+        email: "dummy",
+        mmd_id: "",
+        mmd_name: "dummy"
+    };
 
     Mmd_member.getAllMmd_member(function (err, mmd_member) {
         if (err)
@@ -85,12 +92,12 @@ exports.get_all_mmd_member = function (req, res) {
 
         for (var i = 0; i < mmd_member_array.length; i++) {
 
-            var res_mmd_member = {
+             res_mmd_member = {
                 name: mmd_member_array[i].name,
-                username: null,
-                email: null,
+                username: "dummy",
+                email: "dummy",
                 mmd_id: mmd_member_array[i].mmd_id,
-                mmd_name: null
+                mmd_name: "dummy"
             };
 
             User.getUserByMmd_memberId(mmd_member_array[i].id, function (err, user) {
@@ -220,12 +227,11 @@ exports.create_a_mmd_member = function (req, res) {
         Mmd_member.createMmd_member(mmd_member, function (err, resMmd_member) {
             if (err)
                 res.send(err);
-            res.json(resMmd_member);
-        });
         User.createUser(user, function (err, resUser) {
             if (err)
                 res.send(err);
             res.json(resUser);
         });
+    });
     }
 };
