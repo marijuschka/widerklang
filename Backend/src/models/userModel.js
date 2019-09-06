@@ -67,6 +67,19 @@ User.updateById = function updateById(input, result) {
     });
 };
 
+User.removeByRoleID = function removeByRolerID(id,result){
+    sql.query("DELETE FROM user WHERE role_id = ?",id, function (err, res) {
+
+        if (err) {
+            result(null, err);
+        }
+        else {
+            result(null, res);
+        }
+    });
+}
+
+
 User.remove = function remove(id, result) {
     sql.query("DELETE FROM user WHERE id = ?", [id], function (err, res) {
 

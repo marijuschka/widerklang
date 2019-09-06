@@ -22,8 +22,6 @@ exports.get_a_mmd_member = function (req, res) {
 
     var res_mmd_member = {
         name: null,
-        username: null,
-        email: null,
         mmd_id: null,
         mmd_name: null
     };
@@ -35,56 +33,36 @@ exports.get_a_mmd_member = function (req, res) {
         else if (mmd_member == null) {
             res.send("Mmd_member does not exist!");
         } else {
+
             res_mmd_member.name = mmd_member.name;
             res_mmd_member.mmd_id = mmd_member.mmd_id;
         }
-
-        User.getUserByMmd_memberId(req.params.mmd_member_id, function (err, user) {
+        MmD.getAMmdById(res_mmd_member.mmd_id, function (err, mmd) {
             if (err) {
                 res.send(err);
             }
-            else if (user == null) {
+            else if (mmd == null) {
                 res.send("Mmd_member does not exist!");
             } else {
-                res_mmd_member.username = user.username;
-                res_mmd_member.email = user.email;
+                res_mmd_member.mmd_name = mmd.name;
+                res.json(res_mmd_member);
             }
-
-            MmD.getAMmdById(res_mmd_member.mmd_id, function (err, mmd) {
-                if (err) {
-                    res.send(err);
-                }
-                else if (mmd == null) {
-                    res.send("Mmd_member does not exist!");
-                } else {
-                    res_mmd_member.mmd_name = mmd[0].name;
-                    res.json(res_mmd_member);
-                }
-            });
         });
     });
+
 }
 
 // Gibt alle in der Datenbank exestierenden Mmd_member in einer JSON-Liste zuruek
-exports.get_all_mmd_member = function (req, res) {
+exports.get_all_mmd_member = async function (req, res) {
     /*   ensureToken(req, res);
        jwt.verify(req.token, 'my_secret_key', function (err, data) {
            if (err) {
                res.sendStatus(403);
            } else {*/
     var mmd_member_array = null;
-    var user_array = null;
-    var mmd_array = null;
-    var res_array = [];
-    var res_mmd_member = {
-        name: "",
-        username: "dummy",
-        email: "dummy",
-        mmd_id: "",
-        mmd_name: "dummy"
-    };
+    
 
-    Mmd_member.getAllMmd_member(function (err, mmd_member) {
+    await Mmd_member.getAllMmd_member( async function (err, mmd_member) {
         if (err)
             res.send(err);
         mmd_member_array = mmd_member;
@@ -92,59 +70,40 @@ exports.get_all_mmd_member = function (req, res) {
 
         for (var i = 0; i < mmd_member_array.length; i++) {
 
-             res_mmd_member = {
+            res_mmd_member = {
                 name: mmd_member_array[i].name,
-                username: "dummy",
-                email: "dummy",
-                mmd_id: mmd_member_array[i].mmd_id,
+                mmd_id: mmd_member_array[i].mmdid,
                 mmd_name: "dummy"
             };
+            
+            // await User.getUserByMmd_memberId(mmd_member_array[i].id, function (err, user) {
+            //     if (err) {
+            //         res.send(err);
+            //     }
+            //     else if (user == null) {
+            //         res.send("Mmd_member does not exist!");
+            //     } else {
 
-            User.getUserByMmd_memberId(mmd_member_array[i].id, function (err, user) {
+            //         res_mmd_member.username = user.username;
+            //         res_mmd_member.email = user.email;
+
+            //     }
+            // });
+            await MmD.getAMmdById(res_mmd_member.mmd_id, function (err, mmd) {
                 if (err) {
                     res.send(err);
                 }
-                else if (user == null) {
+                else if (mmd == null) {
                     res.send("Mmd_member does not exist!");
                 } else {
-
-                    res_mmd_member.username = user.username;
-                    res_mmd_member.email = user.email;
-
+                    res_mmd_member.mmd_name = mmd.name;
                 }
-
-                MmD.getAMmdById(res_mmd_member.mmd_id, function (err, mmd) {
-                    if (err) {
-                        res.send(err);
-                    }
-                    else if (mmd == null) {
-                        res.send("Mmd_member does not exist!");
-                    } else {
-                        res_mmd_member.mmd_name = mmd.name;
-                        console.log(mmd_member_array)
-                    }
-
-                });
             });
 
-
-    
-
-
-
-            res_array.push(res_mmd_member);
-
-        };
-        res.json(res_array);
+        }
+        // Returns the whole array
+        res.json(mmd_member_array);
     });
-
-
-
-    
-
-
-    /*     }
-     })*/
 }
 
 
@@ -160,7 +119,7 @@ exports.delete_a_mmd_member = function (req, res) {
         res.json({ message: 'MmD-Member successfully deleted' });
     });
 
-    User.remove(req.body.user_id, function (err, user) {
+    User.removeByRoleID(req.params.mmd_member_id, function (err, user) {
         if (err)
             res.send(err);
         res.json({ message1: 'User successfully deleted' });
@@ -227,11 +186,11 @@ exports.create_a_mmd_member = function (req, res) {
         Mmd_member.createMmd_member(mmd_member, function (err, resMmd_member) {
             if (err)
                 res.send(err);
-        User.createUser(user, function (err, resUser) {
-            if (err)
-                res.send(err);
-            res.json(resUser);
+            User.createUser(user, function (err, resUser) {
+                if (err)
+                    res.send(err);
+                res.json(resUser);
+            });
         });
-    });
     }
 };

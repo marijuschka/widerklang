@@ -32,6 +32,7 @@ Carer.remove = function remove(carer_id,result) {
     });
 }
 
+
 Carer.getAllCarer = function getAllCarer(result) {
     sql.query("SELECT * FROM carer", function( err, res) {
         if (err) {

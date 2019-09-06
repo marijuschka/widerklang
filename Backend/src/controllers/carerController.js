@@ -40,16 +40,19 @@ exports.update_a_carer = function (req,res) {
     }
 }
 exports.delete_a_carer = function(req,res) {
+
+
+
+    User.removeByRoleID(req.params.carer_id, function (err, user_id) {
+        if (err)
+            res.send(err);
+        res.json(user_id);
+    });
+
     Carer.remove(req.params.carer_id, function (err, resCarer_id) {
         if (err)
             res.send(err);
         res.json(resCarer_id);
-    });
-
-    User.remove(req.body.user_id, function (err, user_id) {
-        if (err)
-            res.send(err);
-        res.json(user_id);
     });
 }
 

@@ -68,7 +68,7 @@ app.route('/mmd_member/')
         // Zugriff //
 app.route('/carer/:carer_id')
 
-                // GET A USER BY ID
+                // GET A Carer BY ID
         .get(carerController.get_carer) 
 
 
