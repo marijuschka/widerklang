@@ -203,7 +203,7 @@ export default {
         username: "",
         email: "test@web.de",
         password: "123",
-        mmd_id: "1234"
+        id: "1234"
       },
       editedMember: {
         name: "",
