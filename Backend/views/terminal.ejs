@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    </head>
+    <body>
+<ul id="messages"></ul>
+<button onclick="buttonClicked('Familie')">Familie</button>
+<button onclick="buttonClicked('Natur')">Natur</button>
+<button onclick="buttonClicked('Freizeit')">Freizeit</button>
+<button onclick="buttonClicked('Regional')">Regional</button>
+
+    </body>
+
+
+<script>
+    fetch(axio)
+    var data = {
+        category: "",
+        tv: [],
+        bild1path: res.body.tablet1,
+        bild2path: "bildpath2",
+        bild3path: "bildpath3",
+    }
+var socket = io();
+function buttonClicked(tmp){
+    data.category = tmp;
+    console.log(data.category);
+    socket.emit('message', data, {for: 'everyone'})
+    window.location.href = "/slider";
+			 }
+$(function() {
+    socket.on('user join', function (msg){
+    });
+});   
+
+    </script>
+</html>

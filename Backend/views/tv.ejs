@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    </head>
+    <body>
+<ul id="messages">
+</ul>
+
+    </body>
+
+
+    <script>
+       
+            $(function() {
+                var imagepath = "";
+                var socket = io();
+             socket.on('user join', function (msg){
+                });
+                socket.on('reMessage', function (data){
+                    if(data.category === 'Natur'){
+                    document.body.style.background = 'green';
+                    } 
+                    if(data.category === 'Familie'){
+                    document.body.style.background = 'red';
+                    } 
+                    if(data.category === 'Regional'){
+                    document.body.style.background = 'orange';
+                    } 
+                    if(data.category === 'Freizeit'){
+                    document.body.style.background = 'blue';
+                    } 
+                    imagepath = data.bild1path;
+                    alert(imagepath);
+                });
+            });   
+                </script>
+</html>

@@ -1,4 +1,5 @@
 var express = require('express');
+var expressVue = require("express-vue");
 var bodyParser = require('body-parser');
 var ejs = require('ejs');
 
@@ -26,7 +27,11 @@ app.use(express.static('./public'));
 
 
 
-app.get('/', (req, res ) => res.render('index'));
+//app.get('/', (req, res ) => res.render('index'));
+app.get('/', (req, res, next) => {
+    res.renderVue('./views/vue/App.vue', data, req.vueOptions);
+})
+
 app.listen(port, function () {
     console.log('Example app listening on port 8080!');
 });
