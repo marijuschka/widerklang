@@ -43,11 +43,4 @@ exports.set_to_stack = function (req, res) {
                     });
                 }
             });
-                //if (result == null)
-                    /* INSERT new Eintrag*/
-                //else
-                    /* UPDATE material_id, relation WHERE mmd_id= AND display= AND stacknr= */    
-               
-      /*     }
-       })*/
    };

@@ -42,6 +42,11 @@ export default new Router({
       component: () => import('./views/MediaManagement.vue')
     },
     {
+      path: '/mediaManagement2',
+      name: 'mediaManagement2',
+      component: () => import('./views/MediaManagement_dynamischeAbfrageVersuch.vue')
+    },
+    {
       path: '/schnellzugriff',
       name: 'schnellzugriff',
       component: () => import('./views/Schnellzugriff.vue')

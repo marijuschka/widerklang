@@ -21,8 +21,6 @@ const upload = multer({
 }).single('myImage');
 
 exports.get_all_generic = function (req, res) {
-    var list = [];
-    var mat = [];
     /*   ensureToken(req, res);
        jwt.verify(req.token, 'my_secret_key', function (err, data) {
            if (err) {

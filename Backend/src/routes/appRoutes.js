@@ -5,6 +5,11 @@ module.exports = function (app) {
     var materialController = require('../controllers/materialController');
     var carerController = require('../controllers/carerController');
     var mmd_memberController = require('../controllers/mmd_memberController');
+    var genericController = require('../controllers/genericController');
+    var familyController = require('../controllers/familyController');
+    var freizeitController = require('../controllers/freizeitController');
+    var heimatController = require('../controllers/heimatController');
+    var natureController = require('../controllers/natureController');
 
 /*Hier schreiben wir später die Routen, die wir brauchen
 

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    </head>
+    <body>
+<ul id="messages"></ul>
+<button onclick="buttonClicked('Familie')">Vor</button>
+<button onclick="buttonClicked('Natur')">Zurück</button>
+
+    </body>
+
+
+<script>
+var socket = io();
+function buttonClicked(tmp){
+    socket.emit('message', tmp, {for: 'everyone'})
+			 }
+$(function() {
+    socket.on('user join', function (msg){
+    });
+});   
+
+    </script>
+</html>
