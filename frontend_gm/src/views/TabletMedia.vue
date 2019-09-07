@@ -31,6 +31,7 @@
 
 <script>
 import Header from "../components/Header.vue";
+import io from 'socket.io-client';
 
 export default {
   name: "tablet",
@@ -41,7 +42,7 @@ export default {
     return {
       // Das momentane Themengebiet, was des Stack und die Farbe bestimmt
       theme: this.$route.query.theme,
-
+      socket : io('localhost:8081'),
       // Stack Positionen vom mittleren, linken und rechten Bild beim öffnen der Seite. 
       // Stack wird immer resetted wenn man auf TabletMedia geht,
       // vielleicht nicht ideal und globaler festlegen bzw. speichern wenn geändert.
@@ -78,7 +79,6 @@ export default {
     previousOnStack: function() {
     // Verschiebt die Anwahl des Stacks um eine Stelle nach vorne/zurück , also schiebt die Bilder um einen nach rechts
       console.log('previousOnStack -> ');
-
       if (this.stackLeft === 0) {
         console.log('stackLeft reached beginning of Stack.');
         this.stackLeft = this.stack.length-1;
@@ -102,6 +102,7 @@ export default {
         this.stackLeft--;
         this.stackRight--;        
       }
+      this.socket.emit('tvStack', this.stackFocus, {for: 'everyone'})
       console.log('stackFocus is at Stack Position: ' + this.stackFocus);
     },
     nextOnStack: function() {
@@ -131,6 +132,7 @@ export default {
         this.stackLeft++;
         this.stackRight++;        
       }
+       this.socket.emit('tvStack', this.stackFocus, {for: 'everyone'})
       console.log('stackFocus is at Stack Position: ' + this.stackFocus);
     }
   }
