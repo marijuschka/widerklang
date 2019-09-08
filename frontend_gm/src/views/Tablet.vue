@@ -83,7 +83,8 @@ export default {
             user: '',
             message: '',
             messages: [],
-            socket : io('localhost:8081')
+            socket : io('http://139.6.102.67:8080')  //on Server: 'http://139.6.102.67:8080'
+            
         }
     },
     methods: {

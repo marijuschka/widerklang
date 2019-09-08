@@ -42,7 +42,7 @@ export default {
     return {
       // Das momentane Themengebiet, was des Stack und die Farbe bestimmt
       theme: this.$route.query.theme,
-      socket : io('localhost:8081'),
+      socket : io('http://139.6.102.67:8080'),  // on Server: 'http://139.6.102.67:8080'
       // Stack Positionen vom mittleren, linken und rechten Bild beim öffnen der Seite. 
       // Stack wird immer resetted wenn man auf TabletMedia geht,
       // vielleicht nicht ideal und globaler festlegen bzw. speichern wenn geändert.

@@ -47,23 +47,12 @@ Family.update = function update(material, result){
 }
 
 Family.getStackById = function getStackById(mmd_id, result) {
-    var end = [];
     sql.query("SELECT * FROM familie WHERE mmd_id = ?", mmd_id, function (err,res) {
         if (err) {
             result(null, err);
         }
         else {
-            var arr = res.map( function(el) { return el.materials_id; });
-            sql.query("SELECT * FROM material WHERE id IN (?)", [arr], function (err, res) {
-                if (err) {
-                    result(null, err);
-                }
-                else {
-                    console.log(res);
-                    this.end = res;
-                }
-            });  
-            result(null, end);
+            result(null, res);
         }
     });
 };

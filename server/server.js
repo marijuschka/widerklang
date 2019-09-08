@@ -1,10 +1,11 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var ejs = require('ejs');
+var history = require('connect-history-api-fallback');
 
 
 //var jwt = require('jsonwebtoken');
-port = process.env.PORT || 8081;
+port = process.env.PORT || 8080;
 var app = express();
 
 
@@ -21,19 +22,30 @@ app.use(function(req, res, next) {
     next();
 });
 // Public Folder
-app.use(express.static('./'));
-app.get('/', (req, res ) => res.render('index'));
-app.get('/terminal', (req, res ) => res.render('terminal'));
-app.get('/slider', (req, res ) => res.render('slider'));
-app.get('/tv', (req, res ) => res.render('tv'));
-app.get('/bild1', (req, res ) => res.render('bild1'));
-app.get('/bild2', (req, res ) => res.render('bild2'));
-app.get('/bild3', (req, res ) => res.render('bild3'));
 
-/*
-if(process.env.NODE_ENV == 'production'){
-    app.use(express.static(__dirname + '/public/'))
-}*/
+
+
+const staticFileMiddleware = express.static('./public');
+
+// 1st call for unredirected requests 
+app.use(staticFileMiddleware);
+
+//displays --> in vuejs umwandeln
+app.get('/imageUpload', (req, res ) => res.render('../views/index'));
+app.get('/terminal', (req, res ) => res.render('../views/terminal'));
+app.get('/slider', (req, res ) => res.render('../views/slider'));
+app.get('/tv', (req, res ) => res.render('../views/tv'));
+app.get('/bild1', (req, res ) => res.render('../views/bild1'));
+app.get('/bild2', (req, res ) => res.render('../views/bild2'));
+app.get('/bild3', (req, res ) => res.render('../views/bild3'));
+
+// Support history api 
+app.use(history({
+  index: '/index.html'
+}));
+
+// 2nd call for redirected requests
+app.use(staticFileMiddleware);
 
 
 var server = app.listen(port, function () {

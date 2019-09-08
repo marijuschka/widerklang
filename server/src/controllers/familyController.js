@@ -47,10 +47,16 @@ exports.set_to_stack = function (req, res) {
    };
 
    exports.getStack = function (req, res) {
-    Family.getStackById(req.params.mmd_id, function(err, stack) {
+    Family.getStackById(req.params.mmd_id, async function(err, stackData) {
         if (err)
             res.send(err);
-        console.log(stack)
-    res.send(stack);
-})
-   }
+    Material.getStackMaterial(stackData, async function(err, materialData){
+            res.json({
+                data: {
+                    stackData,
+                    materialData
+                }
+            })
+        })
+ })
+}

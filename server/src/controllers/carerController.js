@@ -1,6 +1,6 @@
 'use strict';
 
-var Carer = require('../models/carerModel.js');
+var Carer = require('../models/CarerModel.js');
 var User = require('../models/userModel.js');
 //var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt-nodejs');

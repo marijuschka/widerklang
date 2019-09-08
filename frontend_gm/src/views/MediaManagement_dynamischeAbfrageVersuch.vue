@@ -15,10 +15,8 @@
         </div>
         <div class="image-gallery">
           
-          
           <!--<img src='../assets/plus.jpg' alt="" class="image-gallery__image">
           -->
-
 
         <body>
           <div class="upload">
@@ -33,10 +31,12 @@
           </div>-->
          
           <div>
-            <img v-for="(image, item) in generic_material" :key="item.id" v-bind:src="'http://139.6.102.67:8080/' + image.path" :alt="image.name" />
-          </div>
-             
+
+           <img src="http://139.6.102.67:8080/material/crumb2D.png" />
           
+           <!-- <img v-for="(image, item) in generic_material" :key="item.id" v-bind:src="'http://139.6.102.67:8080/' + image.materialData.path" :alt="image.name" /> -->
+          </div>
+            
          
         </div>
       </div>
@@ -63,12 +63,9 @@ export default {
   },
   created() {
     axios
-      .get("http://139.6.102.67:8080/generic", {
-        category: "Natur"
-      })
+      .get("http://139.6.102.67:8080/familie/f13nht21d")
       .then(res => {
         this.generic_material = res.data;
-         console.log(res.data)
       })
       .catch(err =>
         console.log("Hey! Axios error for Created MMD_Member: " + err)
