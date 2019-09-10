@@ -54,6 +54,10 @@ export default {
   methods: {
     // Log out User
     logout() {
+      localStorage.setItem("token", null);
+      localStorage.setItem("role", null);
+      localStorage.setItem("auth", null);
+      localStorage.setItem("userid", null);
     }
   }
 };
@@ -80,7 +84,7 @@ img {
   width: 70px;
 }
 /* Für Abstand auf jeder Seite mit Header */
-.margin-top-60 {  
+.margin-top-60 {
   margin-top: 10px;
 }
 </style>
