@@ -51,7 +51,7 @@
                       >Entfernen</b-button>
                       <!-- Pop-Up zur Delete Anfrage -->
                       <b-modal
-                        @ok="deleteMember(member[index-1].mmd_id)"
+                        @ok="deleteMember(member[index-1].id)"
                         v-bind:id="'delete-modal-'+member[index-1].name"
                         title="Angehoeriger entfernen"
                       >
@@ -114,7 +114,7 @@ export default {
         username: "",
         email: "test@web.de",
         password: "123",
-        mmd_id: "1234"
+        mmd_id: this.$route.query.id
       },
       editedMember: {
         angehoeriger_id: "",

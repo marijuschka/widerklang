@@ -7,7 +7,7 @@
 
         <!-- Linke Seite -->
         <b-col cols="12" sm="6" class="footroom" id="links">
-          <router-link to="/user" id="user"><h2>NUTZER</h2></router-link>
+          <router-link to="/user" id="user"><h2>Menschen mit Demenz</h2></router-link>
           <hr />
           <h3>Schnellzugriff</h3>
           <b-row class="justify-content-center first-row">

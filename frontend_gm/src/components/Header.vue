@@ -13,13 +13,10 @@
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
             <b-nav-item href="#">
-              <router-link to="/mmd" id="mmd">Nutzer</router-link>
+              <router-link to="/mmd" id="mmd">MmD</router-link>
             </b-nav-item>
             <b-nav-item href="#">
               <router-link to="/carer" id="carer">Pfleger</router-link>
-            </b-nav-item>
-            <b-nav-item href="#">
-              <router-link to="/member" id="member">Angehoeriger</router-link>
             </b-nav-item>
             <b-nav-item href="#">
               <router-link to="/schnellzugriff" id="SZugriff">SZugriff</router-link>

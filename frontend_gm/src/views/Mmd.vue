@@ -114,19 +114,13 @@
               <!-- buttons-->
               <b-col cols="5" md="6">
                 <b-row>
-                  <!-- Bearbeiten von MMD's ist ja eigentlich unnötig, da Name & Alter eigentlich gleich bleiben sollten 
-                  <b-col cols="6" sm="4" offset-sm="2" offset-md="4" offset-lg="7" md="4" lg="2">
-                    <b-card-text>
-                      <b-button v-b-toggle="'collapse-edit-'+mmd[index-1].mmd_id" pill>Bearbeiten</b-button>
-                    </b-card-text>
-                  </b-col>-->
                   <b-col cols="6" sm="4" offset-sm="2" offset-md="4" offset-lg="7" md="4" lg="2">
                     <!--<b-button v-b-modal="'edit-modal-'+mmd[index-1].mmd_id" pill>Angehoerige</b-button> -->
-                     <b-button v-on:click="editMMD(mmd[index-1].mmd_id)" pill>Angehoerige</b-button>
+                     <b-button v-on:click="editMMD(mmd[index-1].id)" pill>Angehoerige</b-button>
                     <!-- Pop-Up zur Delete Anfrage -->
                     <b-modal
-                      @ok="editMMD(mmd[index-1].mmd_id)"
-                      v-bind:id="'edit-modal-'+mmd[index-1].mmd_id"
+                      @ok="editMMD(mmd[index-1].id)"
+                      v-bind:id="'edit-modal-'+mmd[index-1].id"
                       title="MMD bearbeiten"
                     >
                       <p class="my-4">Dies sind die Angehoerigen von {{mmd[index-1].name}}:</p>
@@ -136,14 +130,14 @@
                     <b-card-text>
                       <!--  <b-button v-on:click="deleteUser(user[index-1]) pill variant="outline-danger"> -->
                       <b-button
-                        v-b-modal="'delete-modal-'+mmd[index-1].mmd_id"
+                        v-b-modal="'delete-modal-'+mmd[index-1].id"
                         pill
                         variant="danger"
                       >Entfernen</b-button>
                       <!-- Pop-Up zur Delete Anfrage -->
                       <b-modal
-                        @ok="deleteMMD(mmd[index-1].mmd_id)"
-                        v-bind:id="'delete-modal-'+mmd[index-1].mmd_id"
+                        @ok="deleteMMD(mmd[index-1].id)"
+                        v-bind:id="'delete-modal-'+mmd[index-1].id"
                         title="MMD entfernen"
                       >
                         <p class="my-4">Soll {{mmd[index-1].name}} gelöscht werden?</p>
@@ -156,7 +150,7 @@
             <!-- Collapse -->
             <div>
               <!--id="collapse-editUser" -->
-              <b-collapse v-bind:id="'collapse-edit-'+mmd[index-1].mmd_id" class="mt-2">
+              <b-collapse v-bind:id="'collapse-edit-'+mmd[index-1].id" class="mt-2">
                 <b-card>
                   <b-row class="justify-content-center">
                     <b-col cols="4" md="3">
@@ -167,8 +161,8 @@
                     </b-col>
                     <b-col cols="2" md="2">
                       <b-button
-                        v-on:click="editMMD(mmd[index-1].mmd_id)"
-                        v-b-toggle="'collapse-edit-'+mmd[index-1].mmd_id"
+                        v-on:click="editMMD(mmd[index-1].id)"
+                        v-b-toggle="'collapse-edit-'+mmd[index-1].id"
                         size="md"
                       >Ändern!</b-button>
                     </b-col>
@@ -287,7 +281,7 @@ export default {
         .delete("http://139.6.102.67:8080/mmd/" + id)
         .then(res => {
           console.log(res);
-          this.mmd = this.mmd.filter(mmd => mmd.mmd_id !== id);
+          this.mmd = this.mmd.filter(mmd => mmd.id !== id);
         })
         .catch(err => console.log("Hey! Axios error for deleteMMD: " + err));
     }
