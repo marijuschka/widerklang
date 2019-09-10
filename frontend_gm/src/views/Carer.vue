@@ -157,7 +157,7 @@ export default {
     };
   },
   methods: {
-    // add new Member/Angehoerigen to database
+    // add new Pfleger/Carer to database
     addNewCarer() {
       axios
         .post("http://139.6.102.67:8080/carer/", this.newCarer)
@@ -172,7 +172,7 @@ export default {
     // Edit Existing pfleger
     editCarer(id) {
       axios
-        .patch("http://139.6.102.67:8080/carer" + id, this.editedCarer)
+        .put("http://139.6.102.67:8080/carer/" + id, this.editedCarer)
         .then(res => {
           if (res.status == 200) {
             console.log("Update Carer was successfull.");

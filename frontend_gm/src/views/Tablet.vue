@@ -8,7 +8,7 @@
 
       <div class="container">
         <div class="row margin-top">
-          <div class="col 6 theme-frame">
+          <div class="col 6 theme-frame" v-on:click="greet('Familie')">
             <router-link :to="{ path: '/tabletMedia', query: { theme: 'red-theme' }}" id="tabletMedia">
               <a href="#" class="">
                 <div class="col 6 theme-boxes red-theme">
@@ -20,7 +20,7 @@
               </a>
             </router-link>
           </div>
-          <div class="col 6 theme-frame">
+          <div class="col 6 theme-frame" v-on:click="greet('Regional')">
             <router-link :to="{ path: '/tabletMedia', query: { theme: 'blue-theme' }}" id="tabletMedia">
               <a href="#" class="">
                 <div class="col 6 theme-boxes blue-theme">
@@ -34,7 +34,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col 6 theme-frame">
+          <div class="col 6 theme-frame" v-on:click="greet('Natur')">
             <router-link :to="{ path: '/tabletMedia', query: { theme: 'green-theme' }}" id="tabletMedia">
               <a href="#" class="">
                 <div class="col 6 theme-boxes green-theme">
@@ -46,7 +46,7 @@
               </a>
             </router-link>
           </div>
-          <div class="col 6 theme-frame">
+          <div class="col 6 theme-frame" v-on:click="greet('Freizeit')">
             <router-link :to="{ path: '/tabletMedia', query: { theme: 'orange-theme' }}" id="tabletMedia">
               <a href="#" class="">
                 <div class="col 6 theme-boxes orange-theme">
@@ -65,13 +65,38 @@
 </template>
 
 <script>
-import Header from "../components/Header.vue";
+import io from 'socket.io-client';
 
+var data = {
+        category: "",
+        tv: [],
+        bild1path: "bildpath1",
+        bild2path: "bildpath2",
+        bild3path: "bildpath3",
+    }
 export default {
   name: "tablet",
   components: {
-    Header
-  }
+  }, 
+    data() {
+        return {
+            user: '',
+            message: '',
+            messages: [],
+            socket : io('http://139.6.102.67:8080')  //on Server: 'http://139.6.102.67:8080'
+            
+        }
+    },
+    methods: {
+        sendMessage(e) {
+            e.preventDefault();
+        },
+    greet: function (tmp){
+    data.category = tmp;
+    console.log(data.category);
+    this.socket.emit('message', data, {for: 'everyone'})
+			 }
+    },
 };
 </script>
 

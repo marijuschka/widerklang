@@ -30,6 +30,9 @@
             <b-nav-item href="#">
               <router-link to="/mediaManagement" id="mediaManagement">Medien</router-link>
             </b-nav-item>
+            <b-nav-item href="#">
+              <router-link to="/mediaManagement2" id="mediaManagement2">Medien2</router-link>
+            </b-nav-item>
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->

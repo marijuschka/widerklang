@@ -15,10 +15,8 @@
         </div>
         <div class="image-gallery">
           
-          
           <!--<img src='../assets/plus.jpg' alt="" class="image-gallery__image">
           -->
-
 
         <body>
           <div class="upload">
@@ -30,12 +28,15 @@
           <div>
             <label for ="file"> Datei auswählen</label>
             <input type="file" >
+          </div>-->
+         
+          <div>
+
+           <img src="http://139.6.102.67:8080/material/crumb2D.png" />
+          
+           <!-- <img v-for="(image, item) in generic_material" :key="item.id" v-bind:src="'http://139.6.102.67:8080/' + image.materialData.path" :alt="image.name" /> -->
           </div>
-          -->
-          <div v-for="index in generic_material.length">
-            <img v-bind:src="generic_material[index].path" alt="../assets/gelb.png" class="image-gallery__image">
-          </div>
-        
+            
          
         </div>
       </div>
@@ -54,19 +55,26 @@ export default {
   },
   data() {
     return {
-      generic_material: []
+      generic_material: [],
+      generic:{
+        category: "Natur"
+      }
     };
   },
   created() {
     axios
-      .get("http://139.6.102.67:8080/material/")
+      .get("http://139.6.102.67:8080/familie/f13nht21d")
       .then(res => {
-        console.log(res.data);
         this.generic_material = res.data;
       })
-      .catch(err => console.log("Hey! Axios error for GetMaterial: " + err));
+      .catch(err =>
+        console.log("Hey! Axios error for Created MMD_Member: " + err)
+      );
   }
-};
+  };
+
+
+
 </script>
 
 <style lang="css" scoped>
