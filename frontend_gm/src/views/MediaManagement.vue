@@ -155,10 +155,7 @@ export default {
               );
     } else{
        axios
-            .get("http://139.6.102.67:8080/material", {
-                category: this.oberkategorie,
-                mmd_id: "xxxxxxx"
-              })
+            .get("http://139.6.102.67:8080/material/xxxxx/" + this.currentCategory)
               .then(res => {
                 this.images = res.data;
               })

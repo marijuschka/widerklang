@@ -130,12 +130,14 @@ app.route('/mmd/')
         .put(mmdController.update_a_mmd);
 
 //Material   
-app.route('/material/')
+app.route('/material/:mmdid/:category')
         .get(materialController.get_all_material)
+app.route('/material/')
         .post(materialController.upload_material);
 
 app.route('/generic/:category')
         .get(genericController.get_all_generic)
+app.route('/generic/')   
         .post(genericController.upload_generic);
 
  //Stack
