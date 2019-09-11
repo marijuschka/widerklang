@@ -26,7 +26,8 @@ exports.get_all_generic = function (req, res) {
            if (err) {
                res.sendStatus(403);
            } else {*/
-               Generic.getAllGeneric(req.body.category, function (err, generic) {
+            console.log(req.params.category)
+               Generic.getAllGeneric(req.params.category, function (err, generic) {
                    if (err)
                        res.send(err);
                 res.json(generic);

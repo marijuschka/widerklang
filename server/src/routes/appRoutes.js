@@ -134,7 +134,7 @@ app.route('/material/')
         .get(materialController.get_all_material)
         .post(materialController.upload_material);
 
-app.route('/generic/')
+app.route('/generic/:category')
         .get(genericController.get_all_generic)
         .post(genericController.upload_generic);
 

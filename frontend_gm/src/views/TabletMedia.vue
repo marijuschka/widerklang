@@ -135,7 +135,19 @@ export default {
        this.socket.emit('tvStack', this.stackFocus, {for: 'everyone'})
       console.log('stackFocus is at Stack Position: ' + this.stackFocus);
     }
-  }
+  },
+   created() {
+    axios
+      .get("http://139.6.102.67:8080/generic", {
+        category: "Natur"
+      })
+      .then(res => {
+        this.stack = res.data;
+      })
+      .catch(err =>
+        console.log("Hey! Axios error for Created MMD_Member: " + err)
+      );
+  },
 };
 </script>
 

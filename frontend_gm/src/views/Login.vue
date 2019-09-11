@@ -95,10 +95,10 @@ export default {
             localStorage.setItem("role", res.data.role);
             localStorage.setItem("auth", res.data.auth);
             localStorage.setItem("userid", res.data.user_id);
-
             console.log("Token: "+localStorage.getItem("token")+" ___ Role: "+localStorage.getItem("role")+" ___ Role: "+localStorage.getItem("auth"))
           }
         });
+        this.$router.push('tablet')
     }
   }
 };

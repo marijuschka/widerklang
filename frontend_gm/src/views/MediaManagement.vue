@@ -33,10 +33,11 @@
           <img
             v-for="(image, index) in this.images"
             :key="index"
-            :src="'/assets/' + image.path"
+            :src="'http://139.6.102.67:8080/' + image.path"
             alt="123"
             class="image-gallery__image"
           />
+          {{images}}
         </div>
       </div>
     </div>
@@ -45,7 +46,6 @@
 
 <script>
 import Header from "../components/Header.vue";
-import { METHODS } from "http";
 import axios from "axios";
 
 export default {
@@ -54,25 +54,26 @@ export default {
     return {
       images: [],
       generisch: true,
+      currentCategory: "",
       kategorien: [
         {
-          name: "Kategorie 1",
+          name: "Familie",
           farbe: "rot",
           selected: false
         },
         {
-          name: "Kategorie 2",
+          name: "Natur",
           farbe: "gruen",
           selected: false,
 
         },
         {
-          name: "Kategorie 3",
+          name: "Freizeit",
           farbe: "gelb",
           selected: false
         },
         {
-          name: "Kategorie 4",
+          name: "Regional",
           farbe: "blau",
           selected: false
         }
@@ -86,25 +87,34 @@ export default {
   },
   mounted() {
     this.getKategorieImages("rot");
+    this.fetchImages();
   },
   components: {
     "my-header": Header
   },
+  created(){
+  
+  },
   methods: {
     setGenerisch() {
       this.generisch = true;
+      this.fetchImages();
+      console.log(this.images)
     },
     setPersoenlich() {
       this.generisch = false;
+      this.fetchImages();
     },
     getKategorieImages(color) {
       this.kategorien.forEach(element => element.selected = false);
       let index = this.kategorien.findIndex(element => element.farbe === color);
       this.kategorien[index].selected = true;
+      this.currentCategory = this.kategorien[index].name;
+      this.fetchImages();
 
-      console.log(this.kategorien);
+   /*    console.log(this.kategorien);
       console.log(`${color} Kategorie von ${this.oberkategorie}`);
-      this.images = [
+     this.images = [
         {
           name: "Bild 1",
           path: `${color}.png`,
@@ -130,7 +140,32 @@ export default {
           path: `${color}.png`,
           kategorie: this.oberkategorie
         }
-      ];
+      ]; */
+    }, 
+    fetchImages(){
+    if(this.generisch == true){
+        axios
+            .get("http://139.6.102.67:8080/generic/"+ this.currentCategory)
+              .then(res => {
+                console.log()
+                this.images = res.data;
+              })
+              .catch(err =>
+                console.log("Hey! Axios error for Created MMD_Member: " + err)
+              );
+    } else{
+       axios
+            .get("http://139.6.102.67:8080/material", {
+                category: this.oberkategorie,
+                mmd_id: "xxxxxxx"
+              })
+              .then(res => {
+                this.images = res.data;
+              })
+              .catch(err =>
+                console.log("Hey! Axios error for Created MMD_Member: " + err)
+              );
+    }
     }
   }
 };

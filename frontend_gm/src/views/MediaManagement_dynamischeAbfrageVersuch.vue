@@ -19,8 +19,8 @@
           -->
 
         <body>
-          <div class="upload">
-            <input type="file" name="uploadFile">
+          <div class="upload" >
+            <input type="file" name="uploadFile" @change="onFileSelected">
           </div>
         </body>
 
@@ -55,21 +55,31 @@ export default {
   },
   data() {
     return {
+      selectedFile: null,
       generic_material: [],
       generic:{
         category: "Natur"
       }
     };
   },
-  created() {
+ created() {
     axios
-      .get("http://139.6.102.67:8080/familie/f13nht21d")
+      .get("http://139.6.102.67:8080/material", {
+        category: "Natur"
+      })
       .then(res => {
         this.generic_material = res.data;
+        console.log("hallloooo")
+        console.log(this.generic_material)
       })
       .catch(err =>
         console.log("Hey! Axios error for Created MMD_Member: " + err)
       );
+  },
+  methods: {
+    onFileSelected(event){
+        this.selectedFile = event.target.files[0]
+    }
   }
   };
 
