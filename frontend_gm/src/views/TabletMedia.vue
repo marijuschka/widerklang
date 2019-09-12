@@ -30,13 +30,12 @@
 </template>
 
 <script>
-import Header from "../components/Header.vue";
 import io from 'socket.io-client';
+import axios from "axios";
 
 export default {
   name: "tablet",
   components: {
-    Header
   },
   data() {
     return {
@@ -136,19 +135,20 @@ export default {
       console.log('stackFocus is at Stack Position: ' + this.stackFocus);
     }
   },
-   created() {
-    axios
-      .get("http://139.6.102.67:8080/generic", {
-        category: "Natur"
-      })
-      .then(res => {
-        this.stack = res.data;
-      })
-      .catch(err =>
-        console.log("Hey! Axios error for Created MMD_Member: " + err)
-      );
-  },
-};
+  created:{
+  fetchImages(){
+        axios
+            .get("http://139.6.102.67:8080/" + this.$route.query.theme + "/xxxxx" )
+              .then(res => {
+                console.log()
+                this.images = res.data;
+              })
+              .catch(err =>
+                console.log("Hey! Axios error for Created MMD_Member: " + err)
+              );
+    } 
+}
+}
 </script>
 
 <style scoped>
