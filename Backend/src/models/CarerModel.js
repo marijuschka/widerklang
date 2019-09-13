@@ -34,7 +34,7 @@ Carer.remove = function remove(carer_id,result) {
 
 
 Carer.getAllCarer = function getAllCarer(result) {
-    sql.query("SELECT * FROM carer", function( err, res) {
+    sql.query("SELECT name,username,email,password FROM carer, user WHERE user.role_id = carer.id", function( err, res) {
         if (err) {
             result(err, null);
         }
@@ -46,12 +46,12 @@ Carer.getAllCarer = function getAllCarer(result) {
     
 };
     Carer.getCarerById = function getCarerById(carer_id,result) {
-    sql.query("SELECT * FROM carer WHERE id = ?",carer_id, function ( err, res) {
+    sql.query("SELECT name,username,email,password FROM carer, user WHERE user.role_id = carer.id AND carer.id = ?",carer_id, function ( err, res) {
         if (err) {
             result(err, null);
         }
         else {
-            result(null,res)
+            result(null,res[0])
         }
     });
 }

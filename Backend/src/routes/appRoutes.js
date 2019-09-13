@@ -43,9 +43,14 @@ app.route('/mmd_member/:mmd_member_id')
         .delete(mmd_memberController.delete_a_mmd_member);
 
 
+app.route('/mmd_member/mmd/:mmd_id')
+        // GET ALL MMD_MEMBER
+        .get(mmd_memberController.get_all_mmd_member_by_mmd_id)
+
 app.route('/mmd_member/')
 
-                // GET ALL MMD_MEMBER
+
+
         .get(mmd_memberController.get_all_mmd_member)
 
 
@@ -69,7 +74,7 @@ app.route('/mmd_member/')
 app.route('/carer/:carer_id')
 
                 // GET A Carer BY ID
-        .get(carerController.get_carer) 
+        .get(carerController.get_a_carer) 
 
 
                 // DELETE
@@ -128,7 +133,7 @@ app.route('/mmd/')
         .put(mmdController.update_a_mmd);
 
 //Material   
-app.route('/material/')
+app.route('/material/:mmd_id')
         .get(materialController.get_all_material)
         .post(materialController.upload_material);
 

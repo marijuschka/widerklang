@@ -62,7 +62,7 @@ exports.get_all_material = function (req, res) {
     var list = [];
     var mmdmat = {
        category: req.body.category,
-       mmd_id: req.body.mmdid
+       mmd_id: req.params.mmd_id
     }
     /*   ensureToken(req, res);
        jwt.verify(req.token, 'my_secret_key', function (err, data) {

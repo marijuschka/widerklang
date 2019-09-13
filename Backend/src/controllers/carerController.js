@@ -15,13 +15,12 @@ exports.update_a_carer = function (req,res) {
         name: req.body.name
     }
     var updated_user = {
-        id: req.body.user_id,
         email: req.body.email,
         username: req.body.username,
         password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10)),
     }
 
-    if (!updated_carer.id || !updated_carer.name || !updated_user.id || !updated_user.email || !updated_user.username || !updated_user.password) {
+    if (!updated_carer.id || !updated_carer.name || !updated_user.email || !updated_user.username || !updated_user.password) {
         res.status(400).send({ error: true, message: 'Please provide all necessary fields!' });
     }
     else {
@@ -31,7 +30,7 @@ exports.update_a_carer = function (req,res) {
             res.json(resCarer);
         })
         
-        User.updateById(updated_user, function (err, resUser){
+        User.updateById(updated_user,req.body.id, function (err, resUser){
             if(err)
                 res.send(err);
             res.json(resUser) 
@@ -64,7 +63,7 @@ exports.get_all_carer = function(req,res) {
     });
 }
 
-exports.get_carer = function(req,res) {
+exports.get_a_carer = function(req,res) {
     Carer.getCarerById(req.params.carer_id, function (err, resCarer) {
         if (err)
             res.send(err);
