@@ -199,8 +199,7 @@ export default {
   height: 44vh;
   width: auto;
 }
-.trigger{
-  margin-top: 0; 
+.trigger{ 
   height: 8vh;
 }
 .switch-mode{
