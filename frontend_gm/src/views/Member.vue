@@ -13,6 +13,51 @@
     </b-row>
 
     <h2>Angehoerige von {{mmd_id}}</h2>
+     <b-col cols="auto">
+            <b-button v-b-toggle.collapse-newMember variant="success">Neuen Angehörigen hinzufügen</b-button>
+          </b-col>
+             <div>
+      <b-row class="justify-content-center" id="addUser">
+        <b-col cols="12" md="11">
+          <b-collapse id="collapse-newMember" class="mt-2 collapse1">
+            <b-card>
+              <b-row align-v="center" class="justify-content-center">
+                <b-col cols="2" md="1" lg="1">
+                  <img
+                    class="addUserIcon"
+                    alt="newMember"
+                    src="https://cdn.onlinewebfonts.com/svg/img_227643.png"
+                  />
+                </b-col>
+                <b-col cols="11" md="3" lg="3">
+                  <b-form-input v-model="newMember.name" placeholder="Name"></b-form-input>
+                </b-col>
+                <b-col cols="11" md="4" lg="3">
+                  <b-form-input v-model="newMember.username" placeholder="Username"></b-form-input>
+                </b-col>
+                <b-col cols="11" md="4" lg="3">
+                  <b-form-input v-model="newMember.email" placeholder="E-Mail"></b-form-input>
+                </b-col>
+                <b-col cols="11" md="4" lg="3">
+                  <b-form-input v-model="newMember.password" placeholder="Password"></b-form-input>
+                </b-col>
+                <b-col cols="11" md="4" lg="3">
+                  <b-form-input v-model="newMember.mmd_id" placeholder="mmd_id"></b-form-input>
+                </b-col>
+                <b-col cols="6" md="4" lg="2">
+                  <!-- <b-col cols="auto"> -->
+                  <b-button
+                    v-on:click="addNewMember()"
+                    v-b-toggle.collapse-newMember-inner
+                    size="md"
+                  >Nutzer hinzufügen</b-button>
+                </b-col>
+              </b-row>
+            </b-card>
+          </b-collapse>
+        </b-col>
+      </b-row>
+    </div>
     <br />
 
     <!--  Dynamisches Erzeugen der User Liste -->

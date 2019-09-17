@@ -6,9 +6,6 @@
       <b-col cols="12" md="11">
         <b-row align-h="start">
           <b-col cols="auto">
-            <b-button v-b-toggle.collapse-newMember variant="success">Neuen Angehörigen hinzufügen</b-button>
-          </b-col>
-          <b-col cols="auto">
             <b-button
               v-b-toggle.collapse-newMMD
               variant="success"

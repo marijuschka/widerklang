@@ -17,11 +17,6 @@ export default new Router({
       component: () => import('./views/LoginTerminal.vue')
     },
     {
-      path: '/drag',
-      name: 'dragdrop',
-      component: () => import('./views/DragDrop.vue')
-    },
-    {
       path: '/mmd',
       name: 'mmd',
       component: () => import('./views/Mmd.vue')
