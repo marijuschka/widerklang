@@ -50,7 +50,7 @@
       </draggable>
         </div>
          <div class="col-3">
-      <h3>Draggable 2</h3>
+      <h3>Fernseher</h3>
       <draggable
         class="dragArea list-group"
         :list="tv"
@@ -60,6 +60,69 @@
         <div
           class="list-group-item"
           v-for="element in tv"
+          :key="element.id"
+        >
+            <img
+            :key="index"
+            :src="'http://139.6.102.67:8080/' + element.path"
+            alt="123"
+            class="image-gallery__image"
+          />
+        </div>
+      </draggable>
+      </div>
+              <div class="col-3">
+      <h2>Bilderwand</h2>
+      <h3>Bild1</h3>
+      <draggable
+        class="dragArea list-group"
+        :list="bild1"
+        group="people"
+        @change="log"
+      >
+        <div
+          class="list-group-item"
+          v-for="element in bild1"
+          :key="element.id"
+        >
+            <img
+            :key="index"
+            :src="'http://139.6.102.67:8080/' + element.path"
+            alt="123"
+            class="image-gallery__image"
+          />
+        </div>
+      </draggable>
+            <h3>Bild2</h3>
+      <draggable
+        class="dragArea list-group"
+        :list="bild2"
+        group="people"
+        @change="log"
+      >
+        <div
+          class="list-group-item"
+          v-for="element in bild2"
+          :key="element.id"
+        >
+            <img
+            :key="index"
+            :src="'http://139.6.102.67:8080/' + element.path"
+            alt="123"
+            class="image-gallery__image"
+          />
+        </div>
+      </draggable>
+            <h3>Bild3</h3>
+      <draggable
+        class="dragArea list-group"
+        :list="bild3"
+        group="people"
+        @change="log"
+      >
+        <div
+          class="list-group-item"
+          v-for="element in bild3"
           :key="element.id"
         >
             <img
