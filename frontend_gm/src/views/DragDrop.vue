@@ -3,22 +3,6 @@
     <my-header></my-header>
     {{this.oberkategorie}}
     <div class="container">
-      <div class="image-sidebar">
-        <button
-          v-for="(kategorie, index) in kategorien"
-          :key="index"
-          class="btn-sidebar"
-          @click="getKategorieImages(kategorie.farbe)"
-          :style="!kategorie.selected ? 'opacity:0.5;' : ''"
-        >
-          <img
-            id="sidebarImage1"
-            :src="'/assets/' + kategorie.farbe + '.png'"
-            alt
-            class="image-sidebar__image"
-          />
-        </button>
-      </div>
       <div class="image-grid">
         <div class="image-navbar">
           <button @click="setGenerisch">Generisch</button>
@@ -29,67 +13,36 @@
           <div class="upload">
             <input type="file" name="uploadFile" />
           </div>
-      <draggable
-        class="dragArea list-group"
-        :list="images"
-        :group="{ name: 'people', pull: 'clone', put: false }"
-        @change="log"
-      >
-        <div
-          class="list-group-item"
-          v-for="element in images"
-          :key="element.id"
-        >
-         <img
+          <img
+            v-for="(image, index) in this.images"
             :key="index"
-            :src="'http://139.6.102.67:8080/' + element.path"
+            :src="'http://139.6.102.67:8080/' + image.path"
             alt="123"
             class="image-gallery__image"
           />
         </div>
-      </draggable>
-        </div>
-         <div class="col-3">
-      <h3>Draggable 2</h3>
-      <draggable
-        class="dragArea list-group"
-        :list="tv"
-        group="people"
-        @change="log"
-      >
-        <div
-          class="list-group-item"
-          v-for="element in tv"
-          :key="element.id"
-        >
-            <img
-            :key="index"
-            :src="'http://139.6.102.67:8080/' + element.path"
-            alt="123"
-            class="image-gallery__image"
-          />
-        </div>
-      </draggable>
+        <Card />
       </div>
-    </div>
     </div>
   </div>
 </template>
 
 <script>
 import Header from "../components/Header.vue";
+import TabletMedia from "../components/TabletMedia.vue";
 import axios from "axios";
- import draggable from 'vuedraggable'
+import draggable from 'vuedraggable'
+import Board from '../components/Board';
+import Card from '../components/Card';
+
 
 export default {
   name: "mediaManagement",
   data() {
     return {
       images: [],
-      tv:[],
-      bild1:[],
-      bild2:[],
-      bild3:[],
+      exampleList: ["material/familie.png", "material/familie.png", "material/familie.png", "material/familie.png", "material/familie.png"],
+       exampleList2: ["test1", "test2", "test3", "test4"],
       generisch: true,
       currentCategory: "",
       kategorien: [
@@ -128,21 +81,18 @@ export default {
   },
   components: {
     "my-header": Header,
-     draggable
+    "TabletMedia": TabletMedia,
+     draggable,
+     Board,
+     Card
   },
   created(){
-      axios
-          .get("http://139.6.102.67:8080/"+ this.currentCategory + "xxxxx")
-              .then(res => {
-                console.log()
-                this.tv = res.data;
-              })
-              .catch(err =>
-                console.log("Hey! Axios error for Created MMD_Member: " + err)
-              );
   
   },
   methods: {
+    log: function(...e) {
+      console.log(...e);
+      },
     setGenerisch() {
       this.generisch = true;
       this.fetchImages();
@@ -158,8 +108,6 @@ export default {
       this.kategorien[index].selected = true;
       this.currentCategory = this.kategorien[index].name;
       this.fetchImages();
-
-  
     }, 
     fetchImages(){
     if(this.generisch == true){
@@ -277,4 +225,30 @@ body {
   max-width: 100px;
   max-height: 100px;
 }
+/*test */
+.bigger-area > span {
+  min-height: 90vh;
+  display: block;
+}
+.bigger-area2 > span {
+  min-height: 90vh;
+  margin-left: 100%;
+  display: block;
+}
+.drag-item {
+  padding: 15px 10px;
+  background-color: whitesmoke;
+  min-width: 30vw;
+  max-width: 90vw;
+  margin: 0 auto 10px;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+  cursor: grab;
+  transition: transform 0.25s cubic-bezier(0.02, 1.01, 0.94, 1.01);
+  will-change: transform;
+}
+.list-complete-enter,
+.list-complete-leave-active {
+  opacity: 0;
+} 
 </style> 

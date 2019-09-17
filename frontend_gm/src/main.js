@@ -4,8 +4,10 @@ import router from './router'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import draggable from 'vue-draggable'
 
 Vue.use(BootstrapVue);
+Vue.use(draggable);
 
 Vue.config.productionTip = false
 

@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <Header />
+  <Header /> 
     <br />
     <img class="logo" alt="Vue logo Responsive image" src="../assets/WiderklangLogo.png" />
     <br />
@@ -79,6 +79,16 @@ export default {
       loginData: { username: "", password: "" }
     };
   },
+mounted(){
+       if(localStorage.getItem("auth") == true){
+            if(localStorage.getItem("role") === "Carer"){
+              console.log("gehe hier rein")
+              this.$router.push('schnellzugriff')
+            } if(localStorage.getItem("role") === "Mmd_member"){
+               this.$router.push('mediaManagement')
+            }
+            }
+  },
   methods: {
     login() {
       axios
@@ -89,16 +99,26 @@ export default {
         })
         .then(res => {
           {
-            console.log(res.data)
+            console.log("gehe hier rein")
             console.log("Token for "+this.loginData.username+" is: "+res.data.token);
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("role", res.data.role);
             localStorage.setItem("auth", res.data.auth);
-            localStorage.setItem("userid", res.data.user_id);
+            localStorage.setItem("userid", res.data.userid);
             console.log("Token: "+localStorage.getItem("token")+" ___ Role: "+localStorage.getItem("role")+" ___ Role: "+localStorage.getItem("auth"))
+            if(res.data.auth == true){
+            if(res.data.role === "Carer"){
+              console.log("gehe hier rein")
+              this.$router.push('schnellzugriff')
+            } if(res.data.role === "Mmd_member"){
+               this.$router.push('mediaManagement')
+            }
+            }
           }
+        })
+       .catch(error => {
+       alert(error.response)
         });
-        this.$router.push('tablet')
     }
   }
 };
