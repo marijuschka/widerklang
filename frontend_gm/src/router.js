@@ -56,5 +56,12 @@ export default new Router({
       name: 'imageUpload',
       component: () => import('./views/ImageUpload.vue')
     }
+    
+    /*,
+    {
+      path: '/popup',
+      name: 'popup',
+      component: () => import('./views/Popup.vue')
+    } */
   ]
 })
