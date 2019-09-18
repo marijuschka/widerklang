@@ -78,7 +78,7 @@
         class="dragArea list-group"
         :list="bild1"
         group="people"
-        @change="log"
+        @change="setBild(1)"
       >
         <div
           class="list-group-item"
@@ -197,7 +197,7 @@ export default {
       axios
           .get("http://139.6.102.67:8080/"+ this.currentCategory + "xxxxx")
               .then(res => {
-                console.log()
+                console.log(res.data)
                 this.tv = res.data;
               })
               .catch(err =>
@@ -245,8 +245,23 @@ export default {
                 console.log("Hey! Axios error for Created MMD_Member: " + err)
               );
     }
+    },
+    setBild(tmp){
+      var image = {
+        mmd_id: "xxxxx",
+        relation: "generisch",
+        materials_id: this.bild1[0].id,
+        display: 1,
+        stacknr: 0
+      }
+      axios
+      .post("http://139.6.102.67:8080/familie", image)
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => console.log("Hey! Axios error for editMember: " + err));
+    },
     }
-  }
 };
 </script>
 
