@@ -26,22 +26,40 @@
         </div>
         <div class="image-gallery">
           <!-- upload -->
+         <div>
+          <b-button v-b-modal.modal-1><div class="upload">
+            
+          </div>
+    </b-button>
+
+  <b-modal id="modal-1" title="Image Upload">  
+
+      <form ref="form" @submit.stop.prevent="handleSubmit">
+        <b-form-group :state="nameState" label="Titel" label-for="name-input" invalid-feedback="Name is required">
+          <b-form-input id="name-input" v-model="name" :state="nameState" required>
+        </b-form-input>
+        </b-form-group>
+         <b-form-group :state="nameState" label="Nachricht" label-for="name-input" invalid-feedback="Name is required">
+          <b-form-input id="name-input" v-model="name" :state="nameState" required>
+        </b-form-input>
+        </b-form-group>
+      </form>
+
+  
+
+    <input type="file" name="uploadFile" />
+  </b-modal>
+</div>
          
-         <button>
-           Popup
-           <Popup/>
-           </button>
          <!-- <v-flex> <Popup /></v-flex>
           <Popup /> -->
-          <div class="upload">
-            <input type="file" name="uploadFile" />
-          </div>
+          
       </div>
       <draggable
         class="dragArea list-group"
         :list="images"
         :group="{ name: 'people', pull: 'clone', put: false }"
-        @change="log"
+        @change=""
       >
         <div
           class="list-group-item"
@@ -63,7 +81,7 @@
         class="dragArea list-group"
         :list="tv"
         group="people"
-        @change="log"
+        @change="setBild(1)"
       >
         <div
           class="list-group-item"
@@ -106,7 +124,7 @@
         class="dragArea list-group"
         :list="bild2"
         group="people"
-        @change="log"
+        @change="setBild(1)"
       >
         <div
           class="list-group-item"
@@ -126,7 +144,7 @@
         class="dragArea list-group"
         :list="bild3"
         group="people"
-        @change="log"
+        @change="setBild(1)"
       >
         <div
           class="list-group-item"
@@ -257,6 +275,7 @@ export default {
     }
     },
     setBild(tmp){
+      console.log(this.bild1[0].id)
       var image = {
         mmd_id: "xxxxx",
         relation: "generisch",
