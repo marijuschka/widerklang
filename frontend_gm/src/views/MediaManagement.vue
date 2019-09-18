@@ -26,9 +26,17 @@
         </div>
         <div class="image-gallery">
           <!-- upload -->
+         
+         <button>
+           Popup
+           <Popup/>
+           </button>
+         <!-- <v-flex> <Popup /></v-flex>
+          <Popup /> -->
           <div class="upload">
             <input type="file" name="uploadFile" />
           </div>
+      </div>
       <draggable
         class="dragArea list-group"
         :list="images"
@@ -133,18 +141,20 @@
           />
         </div>
       </draggable>
-      </div>
+      
     </div>
     </div>
   </div>
 </template>
 
 <script>
+import Popup from "./Popup.vue";
 import Header from "../components/Header.vue";
 import axios from "axios";
- import draggable from 'vuedraggable'
+import draggable from 'vuedraggable'
 
 export default {
+  components: { Popup},
   name: "mediaManagement",
   data() {
     return {
@@ -354,5 +364,11 @@ body {
 .image-gallery__image {
   max-width: 100px;
   max-height: 100px;
+}
+
+.dragArea list-group {
+  background-color: brown;
+  max-width: 200px;
+  max-height: 200px;
 }
 </style> 
