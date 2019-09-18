@@ -26,123 +26,104 @@
         </div>
         <div class="image-gallery">
           <!-- upload -->
-         
-         <button>
-           Popup
-           <Popup/>
-           </button>
-         <!-- <v-flex> <Popup /></v-flex>
-          <Popup /> -->
+
+
+
+
+
+<div id="app">
+  <button id="show-modal" @click="showModal = true">Show Modal</button>
+  <!-- use the modal component, pass in the prop -->
+  <modal v-if="showModal" @close="showModal = false">
+    <!--
+      you can use custom content here to overwrite
+      default content
+    -->
+    <h3 slot="header">custom header</h3>
+  </modal>
+</div>
+
+
+
+
+
+
+
+          <button>
+            Popup
+            <Popup />
+          </button>
+          <!-- <v-flex> <Popup /></v-flex>
+          <Popup />-->
           <div class="upload">
             <input type="file" name="uploadFile" />
           </div>
+        </div>
+        <draggable
+          class="dragArea list-group"
+          :list="images"
+          :group="{ name: 'people', pull: 'clone', put: false }"
+          @change="log"
+        >
+          <div class="list-group-item" v-for="element in images" :key="element.id">
+            <img
+              :key="index"
+              :src="'http://139.6.102.67:8080/' + element.path"
+              alt="123"
+              class="image-gallery__image"
+            />
+          </div>
+        </draggable>
       </div>
-      <draggable
-        class="dragArea list-group"
-        :list="images"
-        :group="{ name: 'people', pull: 'clone', put: false }"
-        @change="log"
-      >
-        <div
-          class="list-group-item"
-          v-for="element in images"
-          :key="element.id"
-        >
-         <img
-            :key="index"
-            :src="'http://139.6.102.67:8080/' + element.path"
-            alt="123"
-            class="image-gallery__image"
-          />
-        </div>
-      </draggable>
-        </div>
-         <div class="col-3">
-      <h3>Fernseher</h3>
-      <draggable
-        class="dragArea list-group"
-        :list="tv"
-        group="people"
-        @change="log"
-      >
-        <div
-          class="list-group-item"
-          v-for="element in tv"
-          :key="element.id"
-        >
+      <div class="col-3">
+        <h3>Fernseher</h3>
+        <draggable class="dragArea list-group" :list="tv" group="people" @change="log">
+          <div class="list-group-item" v-for="element in tv" :key="element.id">
             <img
-            :key="index"
-            :src="'http://139.6.102.67:8080/' + element.path"
-            alt="123"
-            class="image-gallery__image"
-          />
-        </div>
-      </draggable>
+              :key="index"
+              :src="'http://139.6.102.67:8080/' + element.path"
+              alt="123"
+              class="image-gallery__image"
+            />
+          </div>
+        </draggable>
       </div>
-              <div class="col-3">
-      <h2>Bilderwand</h2>
-      <h3>Bild1</h3>
-      <draggable
-        class="dragArea list-group"
-        :list="bild1"
-        group="people"
-        @change="log"
-      >
-        <div
-          class="list-group-item"
-          v-for="element in bild1"
-          :key="element.id"
-        >
+      <div class="col-3">
+        <h2>Bilderwand</h2>
+        <h3>Bild1</h3>
+        <draggable class="dragArea list-group" :list="bild1" group="people" @change="log">
+          <div class="list-group-item" v-for="element in bild1" :key="element.id">
             <img
-            :key="index"
-            :src="'http://139.6.102.67:8080/' + element.path"
-            alt="123"
-            class="image-gallery__image"
-          />
-        </div>
-      </draggable>
-            <h3>Bild2</h3>
-      <draggable
-        class="dragArea list-group"
-        :list="bild2"
-        group="people"
-        @change="log"
-      >
-        <div
-          class="list-group-item"
-          v-for="element in bild2"
-          :key="element.id"
-        >
+              :key="index"
+              :src="'http://139.6.102.67:8080/' + element.path"
+              alt="123"
+              class="image-gallery__image"
+            />
+          </div>
+        </draggable>
+        <h3>Bild2</h3>
+        <draggable class="dragArea list-group" :list="bild2" group="people" @change="log">
+          <div class="list-group-item" v-for="element in bild2" :key="element.id">
             <img
-            :key="index"
-            :src="'http://139.6.102.67:8080/' + element.path"
-            alt="123"
-            class="image-gallery__image"
-          />
-        </div>
-      </draggable>
-            <h3>Bild3</h3>
-      <draggable
-        class="dragArea list-group"
-        :list="bild3"
-        group="people"
-        @change="log"
-      >
-        <div
-          class="list-group-item"
-          v-for="element in bild3"
-          :key="element.id"
-        >
+              :key="index"
+              :src="'http://139.6.102.67:8080/' + element.path"
+              alt="123"
+              class="image-gallery__image"
+            />
+          </div>
+        </draggable>
+        <h3>Bild3</h3>
+        <draggable class="dragArea list-group" :list="bild3" group="people" @change="log">
+          <div class="list-group-item" v-for="element in bild3" :key="element.id">
             <img
-            :key="index"
-            :src="'http://139.6.102.67:8080/' + element.path"
-            alt="123"
-            class="image-gallery__image"
-          />
-        </div>
-      </draggable>
-      
-    </div>
+              :key="index"
+              :src="'http://139.6.102.67:8080/' + element.path"
+              alt="123"
+              class="image-gallery__image"
+            />
+          </div>
+        </draggable>
+      </div>
     </div>
   </div>
 </template>
@@ -151,18 +132,29 @@
 import Popup from "./Popup.vue";
 import Header from "../components/Header.vue";
 import axios from "axios";
-import draggable from 'vuedraggable'
+import draggable from "vuedraggable";
+
+/* WENN DAS FOLGENDE NICHT KOMMENTIERT IST WIRD DIE MEDIA MANAGEMENT SEITE NICHT MEHR ANGEZEIGT IM BROWSER
+new Vue({
+  el: '#app',
+  data: {
+    showModal: false
+  }
+})
+*/
+
+
 
 export default {
-  components: { Popup},
+  components: { Popup },
   name: "mediaManagement",
   data() {
     return {
       images: [],
-      tv:[],
-      bild1:[],
-      bild2:[],
-      bild3:[],
+      tv: [],
+      bild1: [],
+      bild2: [],
+      bild3: [],
       generisch: true,
       currentCategory: "",
       kategorien: [
@@ -174,8 +166,7 @@ export default {
         {
           name: "Natur",
           farbe: "gruen",
-          selected: false,
-
+          selected: false
         },
         {
           name: "Freizeit",
@@ -201,60 +192,59 @@ export default {
   },
   components: {
     "my-header": Header,
-     draggable
+    draggable
   },
-  created(){
-      axios
-          .get("http://139.6.102.67:8080/"+ this.currentCategory + "xxxxx")
-              .then(res => {
-                console.log()
-                this.tv = res.data;
-              })
-              .catch(err =>
-                console.log("Hey! Axios error for Created MMD_Member: " + err)
-              );
-  
+  created() {
+    axios
+      .get("http://139.6.102.67:8080/" + this.currentCategory + "xxxxx")
+      .then(res => {
+        console.log();
+        this.tv = res.data;
+      })
+      .catch(err =>
+        console.log("Hey! Axios error for Created MMD_Member: " + err)
+      );
   },
   methods: {
     setGenerisch() {
       this.generisch = true;
       this.fetchImages();
-      console.log(this.images)
+      console.log(this.images);
     },
     setPersoenlich() {
       this.generisch = false;
       this.fetchImages();
     },
     getKategorieImages(color) {
-      this.kategorien.forEach(element => element.selected = false);
+      this.kategorien.forEach(element => (element.selected = false));
       let index = this.kategorien.findIndex(element => element.farbe === color);
       this.kategorien[index].selected = true;
       this.currentCategory = this.kategorien[index].name;
       this.fetchImages();
-
-  
-    }, 
-    fetchImages(){
-    if(this.generisch == true){
+    },
+    fetchImages() {
+      if (this.generisch == true) {
         axios
-            .get("http://139.6.102.67:8080/generic/"+ this.currentCategory)
-              .then(res => {
-                console.log()
-                this.images = res.data;
-              })
-              .catch(err =>
-                console.log("Hey! Axios error for Created MMD_Member: " + err)
-              );
-    } else{
-       axios
-            .get("http://139.6.102.67:8080/material/xxxxx/" + this.currentCategory)
-              .then(res => {
-                this.images = res.data;
-              })
-              .catch(err =>
-                console.log("Hey! Axios error for Created MMD_Member: " + err)
-              );
-    }
+          .get("http://139.6.102.67:8080/generic/" + this.currentCategory)
+          .then(res => {
+            console.log();
+            this.images = res.data;
+          })
+          .catch(err =>
+            console.log("Hey! Axios error for Created MMD_Member: " + err)
+          );
+      } else {
+        axios
+          .get(
+            "http://139.6.102.67:8080/material/xxxxx/" + this.currentCategory
+          )
+          .then(res => {
+            this.images = res.data;
+          })
+          .catch(err =>
+            console.log("Hey! Axios error for Created MMD_Member: " + err)
+          );
+      }
     }
   }
 };
@@ -352,8 +342,94 @@ body {
 }
 
 .dragArea list-group {
+  width: 200px;
+  height: 300px;
+  background: brown;
   background-color: brown;
-  max-width: 200px;
+  max-width: 20ßpx;
   max-height: 200px;
+}
+
+.list-group-item {
+  background-color: blue;
+}
+
+.dragArea list-group {
+  width: 120px;
+  height: 120px;
+}
+
+.col-3 {
+  max-width: 20%;
+}
+
+
+
+
+
+
+
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: table;
+  transition: opacity .3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.modal-container {
+  width: 300px;
+  margin: 0px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+  transition: all .3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.modal-header h3 {
+  margin-top: 0;
+  color: #42b983;
+}
+
+.modal-body {
+  margin: 20px 0;
+}
+
+.modal-default-button {
+  float: right;
+}
+
+/*
+ * The following styles are auto-applied to elements with
+ * transition="modal" when their visibility is toggled
+ * by Vue.js.
+ *
+ * You can easily play with the modal transition by editing
+ * these styles.
+ */
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
 </style> 
