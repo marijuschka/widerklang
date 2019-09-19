@@ -215,7 +215,7 @@ export default {
       .then(res => {
         console.log("Get this mmd: "+this.mmd_id);
         console.log(res.data);
-        this.mmd = res.data;
+        this.member = res.data;
       })
       .catch(err =>
         console.log("Hey! Axios error for Created MMD_Member: " + err)
