@@ -43,9 +43,14 @@ app.route('/mmd_member/:mmd_member_id')
         .delete(mmd_memberController.delete_a_mmd_member);
 
 
+app.route('/mmd_member/mmd/:mmd_id')
+        // GET ALL MMD_MEMBER
+        .get(mmd_memberController.get_all_mmd_member_by_mmd_id)
+
 app.route('/mmd_member/')
 
-                // GET ALL MMD_MEMBER
+
+
         .get(mmd_memberController.get_all_mmd_member)
 
 
@@ -68,8 +73,8 @@ app.route('/mmd_member/')
         // Zugriff //
 app.route('/carer/:carer_id')
 
-                // GET A USER BY ID
-        .get(carerController.get_carer) 
+                // GET A Carer BY ID
+        .get(carerController.get_a_carer) 
 
 
                 // DELETE
@@ -80,9 +85,7 @@ app.route('/carer/:carer_id')
 app.route('/carer/')
 
                 // GET ALL CARER
-        //.get(carerController.get_all_carer) // TO BE IMPLEMENTED
-
-
+        .get(carerController.get_all_carer) 
 
         // Verwalten
 
@@ -130,12 +133,14 @@ app.route('/mmd/')
         .put(mmdController.update_a_mmd);
 
 //Material   
-app.route('/material/')
+app.route('/material/:mmdid/:category')
         .get(materialController.get_all_material)
+app.route('/material/')
         .post(materialController.upload_material);
 
-app.route('/generic/')
+app.route('/generic/:category')
         .get(genericController.get_all_generic)
+app.route('/generic/')   
         .post(genericController.upload_generic);
 
  //Stack
@@ -152,6 +157,6 @@ app.route('/heimat/')
         .post(heimatController.set_to_stack);        
 };
 
-
+//page Views
 
 

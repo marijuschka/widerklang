@@ -61,15 +61,10 @@ exports.upload_material = function(req, res){
 exports.get_all_material = function (req, res) {
     var list = [];
     var mmdmat = {
-       category: req.body.category,
-       mmd_id: req.body.mmdid
+       category: req.params.category,
+       mmd_id: req.params.mmdid
     }
     console.log(req.body.mmdid)
-    /*   ensureToken(req, res);
-       jwt.verify(req.token, 'my_secret_key', function (err, data) {
-           if (err) {
-               res.sendStatus(403);
-           } else {*/
                Mmd_Material.getAllMaterial(mmdmat, function (err, generic) {
                    if (err)
                        res.send(err);
@@ -81,6 +76,4 @@ exports.get_all_material = function (req, res) {
                  res.json(selected); 
                    });
                 });
-      /*     }
-       })*/
    };

@@ -60,6 +60,18 @@
           </div>
         </div>
       </div>
+
+      <div>
+        <b-row class="trigger" @click="trigger()">
+          <b-col col lg="9">
+          </b-col>
+          <b-col col lg="3">
+            <router-link to="/mediaManagement" id="mediaManagement">
+              <b-button class="switch-mode" v-if="seen === true"> Betreuer-Modus </b-button>
+            </router-link>
+          </b-col>
+        </b-row>
+      </div>
     </div>
   </div>
 </template>
@@ -83,7 +95,8 @@ export default {
             user: '',
             message: '',
             messages: [],
-            socket : io('http://139.6.102.67:8080')  //on Server: 'http://139.6.102.67:8080'
+            socket : io('http://139.6.102.67:8080'),  //on Server: 'http://139.6.102.67:8080'
+            seen: false
             
         }
     },
@@ -96,6 +109,11 @@ export default {
     console.log(data.category);
     this.socket.emit('message', data, {for: 'everyone'})
 			 }
+    },
+    trigger: function () {
+      console.log('trigger');
+      console.log(this.seen);
+      this.seen = !this.seen;
     },
 };
 </script>
@@ -138,5 +156,9 @@ a:hover {
 }
 .theme-position-green {
   padding-left: 8vw !important;
+}
+.trigger{ 
+  height: 8vh;
+  margin-top: 10vh;
 }
 </style>

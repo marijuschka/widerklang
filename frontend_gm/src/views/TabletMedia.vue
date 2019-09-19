@@ -24,19 +24,28 @@
           <img class="stack stack-pos-side" @click="nextOnStack()" v-bind:src="stack[stackRight].path" v-bind:alt="stack[stackRight].path">
         </b-col>
       </b-row>
+      
     </div>
+    <b-row class="trigger" @click="trigger()" v-bind:class="theme">
+      <b-col col lg="9">
+      </b-col>
+      <b-col col lg="3">
+        <router-link to="/mediaManagement" id="mediaManagement">
+          <b-button class="switch-mode" v-if="seen === true"> Betreuer-Modus </b-button>
+        </router-link>
+      </b-col>
+    </b-row>    
 
   </div>
 </template>
 
 <script>
-import Header from "../components/Header.vue";
 import io from 'socket.io-client';
+import axios from "axios";
 
 export default {
-  name: "tablet",
+  name: "tabletmedia",
   components: {
-    Header
   },
   data() {
     return {
@@ -49,6 +58,7 @@ export default {
       stackFocus: 1,
       stackLeft: 0,
       stackRight: 2,
+      seen: false,
 
       /* Hier sollte dann der richtige Stack in Abhängigkeit der Themen und des Users geladen werden */
       stack: [
@@ -108,7 +118,6 @@ export default {
     nextOnStack: function() {
     // Verschiebt die Anwahl des Stacks um eine Stelle nach hinten/weiter , also schiebt die Bilder um einen nach links
       console.log('nextOnStack -> ')
-
       if (this.stackRight === this.stack.length-1) {
         console.log('stackRight reached end of Stack.');
         this.stackLeft++;
@@ -134,9 +143,27 @@ export default {
       }
        this.socket.emit('tvStack', this.stackFocus, {for: 'everyone'})
       console.log('stackFocus is at Stack Position: ' + this.stackFocus);
+    },
+    trigger: function () {
+      console.log('trigger');
+      console.log(this.seen);
+      this.seen = !this.seen;
     }
-  }
-};
+  },
+  created:{
+  fetchImages(){
+        axios
+            .get("http://139.6.102.67:8080/" + this.$route.query.theme + "/xxxxx" )
+              .then(res => {
+                console.log()
+                this.images = res.data;
+              })
+              .catch(err =>
+                console.log("Hey! Axios error for Created MMD_Member: " + err)
+              );
+    } 
+}
+}
 </script>
 
 <style scoped>
@@ -144,7 +171,7 @@ export default {
   margin-top: 0px !important;
 }
 .top-row {
-  height: 30vh;
+  height: 26vh;
 }
 .reset-padding{
   padding: 0px;
@@ -160,7 +187,7 @@ export default {
   box-shadow: 10px 10px 10px black;
 }
 .fill {
-  height: 70vh;
+  height: 66vh;
 }
 .stack-pos-side {
   opacity: 0.5;
@@ -171,5 +198,12 @@ export default {
 .stack-pos-middle{
   height: 44vh;
   width: auto;
+}
+.trigger{ 
+  height: 8vh;
+}
+.switch-mode{
+  height: 6vh;
+  margin-top: 1vh;
 }
 </style>

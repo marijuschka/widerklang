@@ -12,6 +12,11 @@ export default new Router({
       component: () => import('./views/Login.vue')
     },
     {
+      path: '/loginTerminal',
+      name: 'loginTerminal',
+      component: () => import('./views/LoginTerminal.vue')
+    },
+    {
       path: '/mmd',
       name: 'mmd',
       component: () => import('./views/Mmd.vue')
@@ -42,11 +47,6 @@ export default new Router({
       component: () => import('./views/MediaManagement.vue')
     },
     {
-      path: '/mediaManagement2',
-      name: 'mediaManagement2',
-      component: () => import('./views/MediaManagement_dynamischeAbfrageVersuch.vue')
-    },
-    {
       path: '/schnellzugriff',
       name: 'schnellzugriff',
       component: () => import('./views/Schnellzugriff.vue')
@@ -56,5 +56,12 @@ export default new Router({
       name: 'imageUpload',
       component: () => import('./views/ImageUpload.vue')
     }
+    
+    /*,
+    {
+      path: '/popup',
+      name: 'popup',
+      component: () => import('./views/Popup.vue')
+    } */
   ]
 })

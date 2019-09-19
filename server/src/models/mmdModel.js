@@ -3,7 +3,7 @@ var sql = require('../../config/db');
 var jwt = require('jsonwebtoken');
 //User object constructor
 var MmD = function (id, mmd) {
-    this.mmd_id = id;
+    this.id = id;
     this.name = mmd.name;
     this.age = mmd.age;
 };
