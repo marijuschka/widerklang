@@ -10,21 +10,21 @@
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-        <b-collapse id="nav-collapse" is-nav>
+        <b-collapse id="nav-collapse" is-nav >
           <b-navbar-nav>
-            <b-nav-item href="#">
-              <router-link to="/mmd" id="mmd">Angehoeriger</router-link>
+            <b-nav-item v-if="Carer=='true'" href="#">
+              <router-link to="/mmd" id="mmd">Benutzer</router-link>
             </b-nav-item>
-            <b-nav-item href="#">
+            <b-nav-item v-if="Carer=='true'" href="#">
               <router-link to="/carer" id="carer">Pfleger</router-link>
             </b-nav-item>
-            <b-nav-item href="#">
+            <b-nav-item v-if="Carer=='true'" href="#">
               <router-link to="/schnellzugriff" id="SZugriff">SZugriff</router-link>
             </b-nav-item>
-            <b-nav-item href="#">
+            <b-nav-item v-if="Carer=='true'" href="#">
               <router-link to="/tablet" id="tablet">TABLET</router-link>
             </b-nav-item>
-            <b-nav-item href="#">
+            <b-nav-item v-if="Carer!='null'"  href="#">
               <router-link to="/mediaManagement" id="mediaManagement">Medien</router-link>
             </b-nav-item>
           </b-navbar-nav>
@@ -45,18 +45,23 @@ export default {
   data() {
     return {
       user: [],
-      newUser: { name: "", password: "" }
+      newUser: { name: "", password: "" },
+      Carer: localStorage.getItem("role")
     };
   },
   methods: {
     // Log out User
     logout() {
-      localStorage.setItem("token", null);
-      localStorage.setItem("role", null);
-      localStorage.setItem("auth", null);
-      localStorage.setItem("userid", null);
+      localStorage.setItem("token", 'null');
+      localStorage.setItem("role", 'null');
+      this.$router.push('/')
     }
-  }
+  },
+  //created(){
+  //  if (localStorage.getItem("token")==null){
+  //    this.$router.push('login')
+  //  }
+  //}
 };
 </script>
 
