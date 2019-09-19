@@ -33,7 +33,6 @@
     </b-button>
 
   <b-modal id="modal-1" title="Image Upload">  
-
       <form ref="form" @submit.stop.prevent="handleSubmit">
         <b-form-group :state="nameState" label="Titel" label-for="name-input" invalid-feedback="Name is required">
           <b-form-input id="name-input" v-model="name" :state="nameState" required>
@@ -44,9 +43,6 @@
         </b-form-input>
         </b-form-group>
       </form>
-
-  
-
     <input type="file" name="uploadFile" />
   </b-modal>
 </div>
@@ -74,7 +70,7 @@
           />
         </div>
       </draggable>
-        </div>
+        
          <div class="col-3">
       <h3>Fernseher</h3>
       <draggable
@@ -83,20 +79,17 @@
         group="people"
         @change="setBild(1)"
       >
-        <div
-          class="list-group-item"
-          v-for="element in tv"
-          :key="element.id"
-        >
+          <div class="list-group-item" v-for="element in tv" :key="element.id">
             <img
-            :key="index"
-            :src="'http://139.6.102.67:8080/' + element.path"
-            alt="123"
-            class="image-gallery__image"
-          />
-        </div>
-      </draggable>
+              :key="index"
+              :src="'http://139.6.102.67:8080/' + element.path"
+              alt="123"
+              class="image-gallery__image"
+            />
+          </div>
+        </draggable>
       </div>
+    </div>
               <div class="col-3">
       <h2>Bilderwand</h2>
       <h3>Bild1</h3>
@@ -159,8 +152,7 @@
           />
         </div>
       </draggable>
-      
-    </div>
+      </div>
     </div>
   </div>
 </template>
@@ -169,18 +161,25 @@
 import Popup from "./Popup.vue";
 import Header from "../components/Header.vue";
 import axios from "axios";
-import draggable from 'vuedraggable'
-
+import draggable from "vuedraggable";
+/*
+new Vue({
+  el: '#app',
+  data: {
+    showModal: false
+  }
+})
+*/
 export default {
-  components: { Popup},
+  components: { Popup },
   name: "mediaManagement",
   data() {
     return {
       images: [],
-      tv:[],
-      bild1:[],
-      bild2:[],
-      bild3:[],
+      tv: [],
+      bild1: [],
+      bild2: [],
+      bild3: [],
       generisch: true,
       currentCategory: "",
       kategorien: [
@@ -192,8 +191,7 @@ export default {
         {
           name: "Natur",
           farbe: "gruen",
-          selected: false,
-
+          selected: false
         },
         {
           name: "Freizeit",
@@ -219,63 +217,37 @@ export default {
   },
   components: {
     "my-header": Header,
-     draggable
+    draggable
   },
-  created(){
-      axios
-          .get("http://139.6.102.67:8080/"+ this.currentCategory + "xxxxx")
-              .then(res => {
-                console.log(res.data)
-                this.tv = res.data;
-              })
-              .catch(err =>
-                console.log("Hey! Axios error for Created MMD_Member: " + err)
-              );
-  
+  created() {
+    axios
+      .get("http://139.6.102.67:8080/" + this.currentCategory + "xxxxx")
+      .then(res => {
+        console.log();
+        this.tv = res.data;
+      })
+      .catch(err =>
+        console.log("Hey! Axios error for Created MMD_Member: " + err)
+      );
   },
   methods: {
     setGenerisch() {
       this.generisch = true;
       this.fetchImages();
-      console.log(this.images)
+      console.log(this.images);
     },
     setPersoenlich() {
       this.generisch = false;
       this.fetchImages();
     },
     getKategorieImages(color) {
-      this.kategorien.forEach(element => element.selected = false);
+      this.kategorien.forEach(element => (element.selected = false));
       let index = this.kategorien.findIndex(element => element.farbe === color);
       this.kategorien[index].selected = true;
       this.currentCategory = this.kategorien[index].name;
       this.fetchImages();
-
-  
-    }, 
-    fetchImages(){
-    if(this.generisch == true){
-        axios
-            .get("http://139.6.102.67:8080/generic/"+ this.currentCategory)
-              .then(res => {
-                console.log()
-                this.images = res.data;
-              })
-              .catch(err =>
-                console.log("Hey! Axios error for Created MMD_Member: " + err)
-              );
-    } else{
-       axios
-            .get("http://139.6.102.67:8080/material/xxxxx/" + this.currentCategory)
-              .then(res => {
-                this.images = res.data;
-              })
-              .catch(err =>
-                console.log("Hey! Axios error for Created MMD_Member: " + err)
-              );
-    }
     },
     setBild(tmp){
-      console.log(this.bild1[0].id)
       var image = {
         mmd_id: "xxxxx",
         relation: "generisch",
@@ -290,7 +262,31 @@ export default {
         })
         .catch(err => console.log("Hey! Axios error for editMember: " + err));
     },
+    fetchImages() {
+      if (this.generisch == true) {
+        axios
+          .get("http://139.6.102.67:8080/generic/" + this.currentCategory)
+          .then(res => {
+            console.log();
+            this.images = res.data;
+          })
+          .catch(err =>
+            console.log("Hey! Axios error for Created MMD_Member: " + err)
+          );
+      } else {
+        axios
+          .get(
+            "http://139.6.102.67:8080/material/xxxxx/" + this.currentCategory
+          )
+          .then(res => {
+            this.images = res.data;
+          })
+          .catch(err =>
+            console.log("Hey! Axios error for Created MMD_Member: " + err)
+          );
+      }
     }
+  }
 };
 </script>
 
@@ -386,8 +382,94 @@ body {
 }
 
 .dragArea list-group {
+  width: 200px;
+  height: 300px;
+  background: brown;
   background-color: brown;
-  max-width: 200px;
+  max-width: 20ßpx;
   max-height: 200px;
+}
+
+.list-group-item {
+  background-color: blue;
+}
+
+.dragArea list-group {
+  width: 120px;
+  height: 120px;
+}
+
+.col-3 {
+  max-width: 20%;
+}
+
+
+
+
+
+
+
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: table;
+  transition: opacity .3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.modal-container {
+  width: 300px;
+  margin: 0px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+  transition: all .3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.modal-header h3 {
+  margin-top: 0;
+  color: #42b983;
+}
+
+.modal-body {
+  margin: 20px 0;
+}
+
+.modal-default-button {
+  float: right;
+}
+
+/*
+ * The following styles are auto-applied to elements with
+ * transition="modal" when their visibility is toggled
+ * by Vue.js.
+ *
+ * You can easily play with the modal transition by editing
+ * these styles.
+ */
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
 </style> 
