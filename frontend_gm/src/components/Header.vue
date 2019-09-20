@@ -4,7 +4,7 @@
       <b-navbar toggleable="lg" type="light" variant="light">
         <b-navbar-brand href="#">
           <router-link to="/schnellzugriff" id="schnellzugriff">
-            <img alt="Vue logo" src="../assets/WiderklangLogo.png" />
+            <img alt="Vue logo" src="../assets/Widerklang_Logo_Bild.png" />
           </router-link>
         </b-navbar-brand>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <br />
-    <img class="logo" alt="Vue logo Responsive image" src="../assets/WiderklangLogo.png" />
+    <img class="logo" alt="Vue logo Responsive image" src="../assets/Widerklang_Logo_Bild.png" />
     <br />
     <br />
     <!-- <h1>Das wird die LOGIN Seite!</h1> -->

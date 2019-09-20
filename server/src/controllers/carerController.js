@@ -30,7 +30,7 @@ exports.update_a_carer = function (req,res) {
             res.json(resCarer);
         })
         
-        User.updateById(updated_user,req.body.id, function (err, resUser){
+        User.updateById(updated_user, req.body.id, function (err, resUser){
             if(err)
                 res.send(err);
             res.json(resUser) 
