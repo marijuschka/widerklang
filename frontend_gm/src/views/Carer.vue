@@ -90,7 +90,7 @@
                         variant="danger"
                       >Entfernen</b-button>
                       <!-- Pop-Up zur Delete Anfrage -->
-                     <b-modal @ok="deleteCarer(carer[index-1].id)"  v-bind:id="'delete-modal-'+carer[index-1].id" title="Pfleger entfernen">
+                     <b-modal @ok="deleteCarer(carer[index-1].username)"  v-bind:id="'delete-modal-'+carer[index-1].id" title="Pfleger entfernen">
                         <p class="my-4">Soll {{carer[index-1].name}} gelöscht werden?</p>
                       </b-modal>
                     </b-card-text>
@@ -100,19 +100,19 @@
             </b-row>
             <!-- Collapse (DropDown) -->
             <div>
-              <b-collapse v-bind:id="'collapse-edit-'+carer[index-1].id" class="mt-2">
+              <b-collapse v-bind:id="'collapse-edit-'+carer[index-1].username" class="mt-2">
                 <b-card>
                   <b-row class="justify-content-center">
                     <b-col cols="4" md="3">
                       <b-form-input v-model="editedCarer.password" placeholder="Neues Passwort"></b-form-input>
                     </b-col>
                     <b-col cols="4" md="3">
-                      <b-form-input v-model="editedCarer.name" placeholder="Neue XY"></b-form-input>
+                      <b-form-input v-model="editedCarer.name" placeholder="Neue E-Mail Adresse"></b-form-input>
                     </b-col>
                     <b-col cols="2" md="2">
                       <b-button
-                        v-on:click="editCarer(carer[index-1].id)"
-                        v-bind:id="'collapse-edit-'+carer[index-1].id"
+                        v-on:click="editCarer(carer[index-1].username)"
+                        v-bind:id="'collapse-edit-'+carer[index-1].username"
                         size="md"
                       >Ändern!</b-button>
                     </b-col>

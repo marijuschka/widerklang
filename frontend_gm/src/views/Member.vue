@@ -96,7 +96,7 @@
                       >Entfernen</b-button>
                       <!-- Pop-Up zur Delete Anfrage -->
                       <b-modal
-                        @ok="deleteMember(member[index-1].mmd_id)"
+                        @ok="deleteMember(member[index-1].id)"
                         v-bind:id="'delete-modal-'+member[index-1].name"
                         title="Angehoeriger entfernen"
                       >
@@ -157,9 +157,9 @@ export default {
       newMember: {
         name: "",
         username: "",
-        email: "test@web.de",
-        password: "123",
-        mmd_id: "1234"
+        email: "",
+        password: "test",
+        mmd_id: this.$route.query.id
       },
       editedMember: {
         angehoeriger_id: "",
@@ -210,22 +210,12 @@ export default {
     }
   },
   created() {
-    axios
-      .get("http://139.6.102.67:8080/mmd_member/")
-      .then(res => {
-        console.log("Mmd_Member: ");
-        console.log(res.data);
-        this.member = res.data;
-      })
-      .catch(err =>
-        console.log("Hey! Axios error for Created MMD_Member: " + err)
-      );
       axios
-      .get("http://139.6.102.67:8080/mmd/"+this.mmd_id)
+      .get('http://139.6.102.67:8080/mmd_member/mmd/'+this.mmd_id)
       .then(res => {
         console.log("Get this mmd: "+this.mmd_id);
         console.log(res.data);
-        this.mmd = res.data;
+        this.member = res.data;
       })
       .catch(err =>
         console.log("Hey! Axios error for Created MMD_Member: " + err)

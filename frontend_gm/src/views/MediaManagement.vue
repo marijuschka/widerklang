@@ -26,14 +26,34 @@
         </div>
         <div class="image-gallery">
           <!-- upload -->
-          <div class="upload">
-            <input type="file" name="uploadFile" />
+         <div>
+          <b-button v-b-modal.modal-1><div class="upload">
+            
           </div>
+    </b-button>
+
+  <b-modal id="modal-1" title="Image Upload">  
+      <form ref="form" @submit.stop.prevent="handleSubmit">
+        <b-form-group :state="nameState" label="Titel" label-for="name-input" invalid-feedback="Name is required">
+          <b-form-input id="name-input" v-model="name" :state="nameState" required>
+        </b-form-input>
+        </b-form-group>
+         <b-form-group :state="nameState" label="Nachricht" label-for="name-input" invalid-feedback="Name is required">
+          <b-form-input id="name-input" v-model="name" :state="nameState" required>
+        </b-form-input>
+        </b-form-group>
+      </form>
+    <input type="file" name="uploadFile" />
+  </b-modal>
+</div>
+         
+   
+      
       <draggable
         class="dragArea list-group"
         :list="images"
         :group="{ name: 'people', pull: 'clone', put: false }"
-        @change="log"
+        @change=""
       >
         <div
           class="list-group-item"
@@ -48,37 +68,36 @@
           />
         </div>
       </draggable>
-        </div>
+      </div>
+        
          <div class="col-3">
-      <h3>Fernseher</h3>
+     
+      </div>
+    </div>
+      <div class="col-3 dragArea">
+       <h3>Fernseher</h3>
       <draggable
         class="dragArea list-group"
         :list="tv"
         group="people"
-        @change="log"
+        @change="setTV()"
       >
-        <div
-          class="list-group-item"
-          v-for="element in tv"
-          :key="element.id"
-        >
+          <div class="list-group-item" v-for="element in tv" :key="element.id">
             <img
-            :key="index"
-            :src="'http://139.6.102.67:8080/' + element.path"
-            alt="123"
-            class="image-gallery__image"
-          />
-        </div>
-      </draggable>
-      </div>
-              <div class="col-3">
+              :key="index"
+              :src="'http://139.6.102.67:8080/' + element.path"
+              alt="123"
+              class="image-gallery__image"
+            />
+          </div>
+        </draggable>
       <h2>Bilderwand</h2>
       <h3>Bild1</h3>
       <draggable
         class="dragArea list-group"
         :list="bild1"
         group="people"
-        @change="log"
+        @change="setBild(1)"
       >
         <div
           class="list-group-item"
@@ -98,7 +117,7 @@
         class="dragArea list-group"
         :list="bild2"
         group="people"
-        @change="log"
+        @change="setBild(2)"
       >
         <div
           class="list-group-item"
@@ -118,7 +137,7 @@
         class="dragArea list-group"
         :list="bild3"
         group="people"
-        @change="log"
+        @change="setBild(3)"
       >
         <div
           class="list-group-item"
@@ -135,24 +154,23 @@
       </draggable>
       </div>
     </div>
-    </div>
   </div>
 </template>
 
 <script>
 import Header from "../components/Header.vue";
 import axios from "axios";
- import draggable from 'vuedraggable'
+import draggable from "vuedraggable";
 
 export default {
   name: "mediaManagement",
   data() {
     return {
       images: [],
-      tv:[],
-      bild1:[],
-      bild2:[],
-      bild3:[],
+      tv: [],
+      bild1: [],
+      bild2: [],
+      bild3: [],
       generisch: true,
       currentCategory: "",
       kategorien: [
@@ -164,8 +182,7 @@ export default {
         {
           name: "Natur",
           farbe: "gruen",
-          selected: false,
-
+          selected: false
         },
         {
           name: "Freizeit",
@@ -191,60 +208,97 @@ export default {
   },
   components: {
     "my-header": Header,
-     draggable
+    draggable
   },
-  created(){
-      axios
-          .get("http://139.6.102.67:8080/"+ this.currentCategory + "xxxxx")
-              .then(res => {
-                console.log()
-                this.tv = res.data;
-              })
-              .catch(err =>
-                console.log("Hey! Axios error for Created MMD_Member: " + err)
-              );
-  
+  created() {
+    axios
+      .get("http://139.6.102.67:8080/" + this.currentCategory + "xxxxx")
+      .then(res => {
+        console.log();
+        this.tv = res.data;
+      })
+      .catch(err =>
+        console.log("Hey! Axios error for Created MMD_Member: " + err)
+      );
   },
   methods: {
     setGenerisch() {
       this.generisch = true;
       this.fetchImages();
-      console.log(this.images)
+      console.log(this.images);
     },
     setPersoenlich() {
       this.generisch = false;
       this.fetchImages();
     },
     getKategorieImages(color) {
-      this.kategorien.forEach(element => element.selected = false);
+      this.kategorien.forEach(element => (element.selected = false));
       let index = this.kategorien.findIndex(element => element.farbe === color);
       this.kategorien[index].selected = true;
       this.currentCategory = this.kategorien[index].name;
       this.fetchImages();
-
-  
-    }, 
-    fetchImages(){
-    if(this.generisch == true){
+    },
+     setTV(){
+      var image = {
+        mmd_id: "xxxxx",
+        relation: "generisch",
+        materials_id: this.tv[0].id,
+        display: 0,
+        stacknr: 0
+      }
+      axios
+      .post("http://139.6.102.67:8080/familie", image)
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => console.log("Hey! Axios error for editMember: " + err));
+    },
+    setBild(tmp){
+      var bild;
+      if(tmp == 1){
+        bild = this.bild1[0].id;
+      } else if(tmp == 2) {
+        bild = this.bild2[0].id;
+      }else if(tmp == 3) {
+        bild = this.bild3[0].id;
+      }
+      var image = {
+        mmd_id: "xxxxx",
+        relation: "generisch",
+        materials_id: bild,
+        display: tmp,
+        stacknr: 0
+      }
+      axios
+      .post("http://139.6.102.67:8080/familie", image)
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => console.log("Hey! Axios error for editMember: " + err));
+    },
+    fetchImages() {
+      if (this.generisch == true) {
         axios
-            .get("http://139.6.102.67:8080/generic/"+ this.currentCategory)
-              .then(res => {
-                console.log()
-                this.images = res.data;
-              })
-              .catch(err =>
-                console.log("Hey! Axios error for Created MMD_Member: " + err)
-              );
-    } else{
-       axios
-            .get("http://139.6.102.67:8080/material/xxxxx/" + this.currentCategory)
-              .then(res => {
-                this.images = res.data;
-              })
-              .catch(err =>
-                console.log("Hey! Axios error for Created MMD_Member: " + err)
-              );
-    }
+          .get("http://139.6.102.67:8080/generic/" + this.currentCategory)
+          .then(res => {
+            console.log();
+            this.images = res.data;
+          })
+          .catch(err =>
+            console.log("Hey! Axios error for Created MMD_Member: " + err)
+          );
+      } else {
+        axios
+          .get(
+            "http://139.6.102.67:8080/material/xxxxx/" + this.currentCategory
+          )
+          .then(res => {
+            this.images = res.data;
+          })
+          .catch(err =>
+            console.log("Hey! Axios error for Created MMD_Member: " + err)
+          );
+      }
     }
   }
 };
@@ -326,6 +380,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  
 }
 
 .image-gallery {
@@ -340,4 +396,32 @@ body {
   max-width: 100px;
   max-height: 100px;
 }
+
+.dragArea list-group {
+  width: 200px;
+  height: 300px;
+  border-width: 1em;
+  border-color:black;
+  background: brown;
+  background-color: brown;
+  max-width: 20px;
+  max-height: 200px;
+  
+}
+
+.list-group-item {
+border: 0;
+float: left;
+width: 100px;
+height: 100px;
+
+}
+
+
+.col-3 {
+  max-width: 20%;
+  
+}
+
+
 </style> 
