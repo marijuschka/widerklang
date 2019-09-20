@@ -83,7 +83,7 @@ mounted(){
         })
         .then(res => {
           {
-            console.log("gehe hier rein")
+            console.log("Erfolgreich eingeloggt...")
             console.log("Token for "+this.loginData.username+" is: "+res.data.token);
             localStorage.setItem("token", res.data.token);
             

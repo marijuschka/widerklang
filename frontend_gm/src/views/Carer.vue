@@ -70,6 +70,7 @@
               <!-- Name dynamisch -->
               <b-col cols="5">
                 <h3>{{carer[index-1].name}}</h3>
+                <h4>Username: {{carer[index-1].username}}, E-Mail: {{carer[index-1].email}}</h4>
               </b-col>
 
               <!-- Buttons Bearbeiten und Löschen -->
@@ -77,20 +78,20 @@
                 <b-row>
                   <b-col cols="6" sm="4" offset-sm="2" offset-md="4" offset-lg="7" md="4" lg="2">
                     <b-card-text>
-                      <b-button v-b-toggle="'collapse-edit-'+carer[index-1].id" pill>Bearbeiten</b-button>
+                      <b-button v-b-toggle="'collapse-edit-'+carer[index-1].username" pill>Bearbeiten</b-button>
                     </b-card-text>
                   </b-col>
                   <b-col cols="6" md="4" lg="2">
                     <b-card-text>
                       <div></div> <!-- v-on:click="deleteCarer(carer[index-1].id)" -->
                       <b-button
-                        v-b-modal="'delete-modal-'+carer[index-1].id"
+                        v-b-modal="'delete-modal-'+carer[index-1].username"
                         
                         pill
                         variant="danger"
                       >Entfernen</b-button>
                       <!-- Pop-Up zur Delete Anfrage -->
-                     <b-modal @ok="deleteCarer(carer[index-1].username)"  v-bind:id="'delete-modal-'+carer[index-1].id" title="Pfleger entfernen">
+                     <b-modal @ok="deleteCarer(carer[index-1].username)"  v-bind:id="'delete-modal-'+carer[index-1].username" title="Pfleger entfernen">
                         <p class="my-4">Soll {{carer[index-1].name}} gelöscht werden?</p>
                       </b-modal>
                     </b-card-text>

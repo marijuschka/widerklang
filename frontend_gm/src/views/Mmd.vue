@@ -231,14 +231,6 @@ export default {
         })
         .catch(err => console.log("Hey! Axios error for addNewMember: " + err));
     },
-    // Edit Existing USER
-    editMember(id) {
-      axios
-        .patch("http://139.6.102.67:8080/angehoeriger" + id, this.editedMember)
-        .then(res => {})
-        .catch(err => console.log("Hey! Axios error for editMember: " + err));
-    },
-
     // Add New MMD to DB
     addNewMMD() {
       axios
@@ -252,7 +244,7 @@ export default {
         .catch(err => console.log("Hey! Axios error for addNewMMD: " + err));
     },
     // Edit Existing USER
-    editMMD(id) {
+    editMMD(id,name) {
       this.$router.push('/member?id='+id)
      // axios
         // Funktioniert noch nicht da Router was anderes vorsieht

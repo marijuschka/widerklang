@@ -23,9 +23,9 @@
             <b-nav-item v-if="Carer=='true'" href="#">
               <router-link to="/carer" id="carer">Pfleger</router-link>
             </b-nav-item>
-            <b-nav-item v-if="Carer=='true'" href="#">
+            <!--<b-nav-item v-if="Carer=='true'" href="#">
               <router-link to="/schnellzugriff" id="SZugriff">SZugriff</router-link>
-            </b-nav-item>
+            </b-nav-item>-->
             <b-nav-item v-if="Carer=='true'" href="#">
               <router-link to="/tablet" id="tablet">TABLET</router-link>
             </b-nav-item>

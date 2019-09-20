@@ -12,7 +12,7 @@
       </b-col>
     </b-row>
 
-    <h2>Angehoerige von {{mmd_id}}</h2>
+    <h2>Angehoerige von {{mmd_name}}</h2>
      <b-col cols="auto">
             <b-button v-b-toggle.collapse-newMember variant="success">Neuen Angehörigen hinzufügen</b-button>
           </b-col>
@@ -41,9 +41,9 @@
                 <b-col cols="11" md="4" lg="3">
                   <b-form-input v-model="newMember.password" placeholder="Password"></b-form-input>
                 </b-col>
-                <b-col cols="11" md="4" lg="3">
+                <!--<b-col cols="11" md="4" lg="3">
                   <b-form-input v-model="newMember.mmd_id" placeholder="mmd_id"></b-form-input>
-                </b-col>
+                </b-col> -->
                 <b-col cols="6" md="4" lg="2">
                   <!-- <b-col cols="auto"> -->
                   <b-button
@@ -72,9 +72,12 @@
               <b-col cols="2" md="1">
                 <b-card-img src="https://picsum.photos/400/400/?image=20"></b-card-img>
               </b-col>
+              <b-col cols="1">
+              </b-col>
               <!-- Name -->
-              <b-col cols="5">
-                <h3>Name: {{member[index-1].name}}, Alter: {{member[index-1].username}}</h3>
+              <b-col cols="4">
+                <h3>{{member[index-1].name}}</h3>
+                <h4>Username: {{member[index-1].username}} // E-Mail: {{member[index-1].email}}</h4>
               </b-col>
 
               <!-- buttons-->
@@ -153,12 +156,13 @@ export default {
       member: [],
       mmd:'',
       mmd_id: this.$route.query.id,
+      mmd_name:'',
 
       newMember: {
         name: "",
         username: "",
         email: "",
-        password: "test",
+        password: "",
         mmd_id: this.$route.query.id
       },
       editedMember: {
@@ -219,6 +223,16 @@ export default {
       })
       .catch(err =>
         console.log("Hey! Axios error for Created MMD_Member: " + err)
+      );
+      axios
+      .get('http://139.6.102.67:8080/mmd/'+this.mmd_id)
+      .then(res => {
+        console.log("Get this mmd: "+this.mmd_id);
+        console.log(res.data.name);
+        this.mmd_name = res.data.name;
+      })
+      .catch(err =>
+        console.log("Hey! Axios error for CREATED Get MMD: " + err)
       );
   }
 };
