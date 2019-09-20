@@ -32,7 +32,9 @@
 
         <!-- Rechte Seite -->
         <b-col cols="12" sm="6" class="footroom" id="rechts">
-          <router-link to="/mediaManagement" id="mediaManagement"><h2>MEDIEN</h2></router-link>
+          <img class="Media" alt="2" width="50%" src="../assets/Media.png"/>
+          
+          
           <hr />
           <h3>Schnellzugriff</h3>
           <b-row class="justify-content-center first-row">

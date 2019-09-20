@@ -11,7 +11,7 @@ var Mmd_member = function (id, mmd_member) {
 
 
 Mmd_member.getAllMmd_member = function getAllMmd_member(result) {
-    sql.query("SELECT name,username,email,password FROM user, mmd_member WHERE user.role_id = mmd_member.id ORDER BY name", function (err, res) {
+    sql.query("SELECT mmd_member.id,name,username,email,password FROM user, mmd_member WHERE user.role_id = mmd_member.id ORDER BY name", function (err, res) {
         if (err) {
             result(null, err);
         }
@@ -33,7 +33,7 @@ Mmd_member.createMmd_member = function createMmd_member(mmd_member, result) {
 };
 
 Mmd_member.getMmd_memberById = function getMmd_memberById(mmd_member_id,result) {
-    sql.query("SELECT name,username,email,password FROM user, mmd_member WHERE user.role_id = mmd_member.id AND mmd_member.id = ?",mmd_member_id,function (err,res) {
+    sql.query("SELECT mmd_member.id,name,username,email,password FROM user, mmd_member WHERE user.role_id = mmd_member.id AND mmd_member.id = ?",mmd_member_id,function (err,res) {
         if (err) {
             result(null, err);
         }
@@ -44,7 +44,7 @@ Mmd_member.getMmd_memberById = function getMmd_memberById(mmd_member_id,result) 
 }
 
 Mmd_member.getMmd_memberByMmd_id = function getMmd_memberByMmd_id(mmd_id,result) {
-    sql.query("SELECT name,username,email,password FROM user, mmd_member WHERE user.role_id = mmd_member.id AND mmd_id = ? ORDER BY name",mmd_id,function (err,res) {
+    sql.query("SELECT mmd_member.id,name,username,email,password FROM user, mmd_member WHERE user.role_id = mmd_member.id AND mmd_id = ? ORDER BY name",mmd_id,function (err,res) {
         if (err) {
             result(null, err);
         }
