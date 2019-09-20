@@ -2,8 +2,13 @@
   <header>
     <div class="margin-top-60">
       <b-navbar toggleable="lg" type="light" variant="light">
-        <b-navbar-brand href="#">
+        <b-navbar-brand v-if="Carer=='true'" href="#">
           <router-link to="/schnellzugriff" id="schnellzugriff">
+            <img alt="Vue logo" src="../assets/WiderklangLogo.png" />
+          </router-link>
+        </b-navbar-brand>
+        <b-navbar-brand v-if="Carer=='null'" href="#">
+          <router-link to="/" id="login">
             <img alt="Vue logo" src="../assets/WiderklangLogo.png" />
           </router-link>
         </b-navbar-brand>
@@ -31,7 +36,7 @@
 
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
-            <b-button v-on:click="logout" v-b-toggle.collapse-1 variant="danger">Abmelden</b-button>
+            <b-button v-if="Carer!='null'" v-on:click="logout" v-b-toggle.collapse-1 variant="danger">Abmelden</b-button>
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
