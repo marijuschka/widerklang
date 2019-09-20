@@ -83,7 +83,7 @@
         class="dragArea list-group"
         :list="tv"
         group="people"
-        @change="setBild(1)"
+        @change="setTV()"
       >
           <div class="list-group-item" v-for="element in tv" :key="element.id">
             <img
@@ -120,7 +120,7 @@
         class="dragArea list-group"
         :list="bild2"
         group="people"
-        @change="setBild(1)"
+        @change="setBild(2)"
       >
         <div
           class="list-group-item"
@@ -140,7 +140,7 @@
         class="dragArea list-group"
         :list="bild3"
         group="people"
-        @change="setBild(1)"
+        @change="setBild(3)"
       >
         <div
           class="list-group-item"
@@ -250,12 +250,35 @@ export default {
       this.currentCategory = this.kategorien[index].name;
       this.fetchImages();
     },
-    setBild(tmp){
+     setTV(){
       var image = {
         mmd_id: "xxxxx",
         relation: "generisch",
-        materials_id: this.bild1[0].id,
-        display: 1,
+        materials_id: this.tv[0].id,
+        display: 0,
+        stacknr: 0
+      }
+      axios
+      .post("http://139.6.102.67:8080/familie", image)
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => console.log("Hey! Axios error for editMember: " + err));
+    },
+    setBild(tmp){
+      var bild;
+      if(tmp == 1){
+        bild = this.bild1[0].id;
+      } else if(tmp == 2) {
+        bild = this.bild2[0].id;
+      }else if(tmp == 3) {
+        bild = this.bild3[0].id;
+      }
+      var image = {
+        mmd_id: "xxxxx",
+        relation: "generisch",
+        materials_id: bild,
+        display: tmp,
         stacknr: 0
       }
       axios
