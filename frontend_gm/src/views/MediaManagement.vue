@@ -47,9 +47,6 @@
   </b-modal>
 </div>
          
-         <!-- <v-flex> <Popup /></v-flex>
-          <Popup /> -->
-          
    
       
       <draggable
@@ -161,20 +158,11 @@
 </template>
 
 <script>
-import Popup from "./Popup.vue";
 import Header from "../components/Header.vue";
 import axios from "axios";
 import draggable from "vuedraggable";
-/*
-new Vue({
-  el: '#app',
-  data: {
-    showModal: false
-  }
-})
-*/
+
 export default {
-  components: { Popup },
   name: "mediaManagement",
   data() {
     return {
@@ -392,6 +380,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  
 }
 
 .image-gallery {
@@ -416,20 +406,21 @@ body {
   background-color: brown;
   max-width: 20px;
   max-height: 200px;
+  
 }
 
 .list-group-item {
 border: 0;
 float: left;
+width: 100px;
+height: 100px;
+
 }
 
-.dragArea list-group {
-  width: 120px;
-  height: 120px;
-}
 
 .col-3 {
   max-width: 20%;
+  
 }
 
 
