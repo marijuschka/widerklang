@@ -91,7 +91,7 @@
                         variant="danger"
                       >Entfernen</b-button>
                       <!-- Pop-Up zur Delete Anfrage -->
-                     <b-modal @ok="deleteCarer(carer[index-1].username)"  v-bind:id="'delete-modal-'+carer[index-1].username" title="Pfleger entfernen">
+                     <b-modal @ok="deleteCarer(carer[index-1].id)"  v-bind:id="'delete-modal-'+carer[index-1].username" title="Pfleger entfernen">
                         <p class="my-4">Soll {{carer[index-1].name}} gelöscht werden?</p>
                       </b-modal>
                     </b-card-text>
@@ -112,7 +112,7 @@
                     </b-col>
                     <b-col cols="2" md="2">
                       <b-button
-                        v-on:click="editCarer(carer[index-1].username)"
+                        v-on:click="editCarer(carer[index-1].id)"
                         v-bind:id="'collapse-edit-'+carer[index-1].username"
                         size="md"
                       >Ändern!</b-button>

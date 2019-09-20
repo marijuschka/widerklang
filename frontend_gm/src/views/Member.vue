@@ -124,7 +124,7 @@
                     </b-col>
                     <b-col cols="2" md="2">
                       <b-button
-                        v-on:click="editMember(member[index-1].username)"
+                        v-on:click="editMember(member[index-1].id)"
                         v-b-toggle="'collapse-edit-'+member[index-1].username"
                         size="md"
                       >Ändern!</b-button>
