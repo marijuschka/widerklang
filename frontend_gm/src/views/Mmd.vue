@@ -105,7 +105,8 @@
               </b-col>
               <!-- Name -->
               <b-col cols="5">
-                <h3>Name: {{mmd[index-1].name}}, Alter: {{mmd[index-1].age}}</h3>
+                <h3>{{mmd[index-1].name}}</h3>
+                <h4>{{mmd[index-1].age}} Jahre alt</h4>
               </b-col>
 
               <!-- buttons-->
@@ -246,22 +247,6 @@ export default {
     // Edit Existing USER
     editMMD(id,name) {
       this.$router.push('/member?id='+id)
-     // axios
-        // Funktioniert noch nicht da Router was anderes vorsieht
-      //  .put("http://139.6.102.67:8080/mmd/" + id, this.editedMMD)
-      //  .then(res => {
-       //   if (res.status == 200) {
-        //    M.toast({
-         //     html:
-          //      "<b>Edited user @" +
-           //     document.getElementById("icon_editPassword" + id).placeholder +
-            //    "</b>",
-             // classes: "green white-text"
-            //});
-            //this.toggleElements("editUser" + id);
-          //}
-        //})
-        //.catch(err => console.log("Hey! Axios error for editMember: " + err));
     },
     // Delete User with given ID
     deleteMMD(id) {
@@ -285,25 +270,6 @@ export default {
       })
       .catch(err => console.log("Hey! Axios error for Created MMD: " + err));
 
-    axios
-      .get("http://139.6.102.67:8080/mmd_member/")
-      .then(res => {
-        console.log("Mmd_Member: ");
-        console.log(res.data);
-        this.member = res.data;
-      })
-      .catch(err =>
-        console.log("Hey! Axios error for Created MMD_Member: " + err)
-      );
-
-    axios
-      .get("http://139.6.102.67:8080/carer/")
-      .then(res => {
-        console.log("Carer: ");
-        console.log(res.data);
-        this.carer = res.data;
-      })
-      .catch(err => console.log("Hey! Axios error for Created Carer: " + err));
   }
 };
 </script>
