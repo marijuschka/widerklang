@@ -87,7 +87,8 @@ mounted(){
             console.log("Token for "+this.loginData.username+" is: "+res.data.token);
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("role", res.data.role);
-            
+            localStorage.setItem("mmd_id", res.data.mmd_id);
+              
             if(res.data.auth == true){
             if(res.data.role === "Carer"){
               localStorage.setItem("role", "true");

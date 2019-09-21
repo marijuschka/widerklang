@@ -208,7 +208,7 @@ export default {
         .then(res => {
           console.log("Member mit ID " + id + " wurde entfernt.");
           console.log(res);
-          this.member = this.member.filter(member => member.mmd_id !== id);
+          this.member = this.member.filter(member => member.id !== id);
         })
         .catch(err => console.log("Hey! Axios error for deleteMember: " + err));
     }
