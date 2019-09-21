@@ -81,22 +81,54 @@ User.login = function login(username, password, result) {
             if (row.length > 0) {
                 if (bcrypt.compareSync(password, row[0].password)) {
                     const user = row[0];
-                    const token = jwt.sign({
-                        email: user.email,
-                        userId: user.id,
-                        username: user.username
-                    }, 'my_secret_key');
-                    result(null, {
-                        'token': token,
-                        'auth': true,
-                        'userid': user.id,
-                        'name': user.username,
-                        'email': user.email,
-                        'role': user.role,
-                        'role_id': user.role_id,
-                        'name': 'dummy'
-                    });
-                } else {
+                    if (user.role == 'Carer') {
+                        sql.query("SELECT name FROM carer WHERE id = ?", user.role_id, function (err, res) {
+                            if (err)
+                                result(err);
+                            carer = res[0];
+                            const token = jwt.sign({
+                                email: user.email,
+                                userId: user.id,
+                                username: user.username,
+                                name: carer
+                            }, 'my_secret_key');
+                            result(null, {
+                                'token': token,
+                                'auth': true,
+                                'userid': user.id,
+                                'name': user.username,
+                                'email': user.email,
+                                'role': user.role,
+                                'role_id': user.role_id,
+                                'name': 'dummy'
+                            });
+                        });
+                    }
+                    else {
+                        sql.query("SELECT name,mmd_id FROM mmd_member WHERE id = ?", user.role_id, function (err, res) {
+                            if (err)
+                                result(err);
+                            member = res[0];
+                            const token = jwt.sign({
+                                email: user.email,
+                                userId: user.id,
+                                username: user.username,
+                                name: member.name
+                            }, 'my_secret_key');
+                            result(null, {
+                                'token': token,
+                                'auth': true,
+                                'userid': user.id,
+                                'name': user.username,
+                                'email': user.email,
+                                'role': user.role,
+                                'role_id': user.role_id,
+                                'mmd_id': member.mmd_id
+                            });
+                        });
+                    }
+                }
+                else {
                     result(null, { 'token': false, 'message': 'Username or password is not correct' });
                 }
             }
