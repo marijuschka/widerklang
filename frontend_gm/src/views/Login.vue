@@ -1,11 +1,11 @@
 <template>
   <div class="login">
   <Header /> 
+  <br />
     <br />
     <img class="logo" alt="Vue logo Responsive image" src="../assets/Widerklang_Logo.png" />
     <br />
     <br />
-    <!-- <h1>Das wird die LOGIN Seite!</h1> -->
 
     <!-- Benutzername -->
     <form>
@@ -110,6 +110,6 @@ mounted(){
 
 <style scoped>
 .logo {
-  width: 300px;
+  width: 500px;
 }
 </style>
