@@ -314,15 +314,14 @@ export default {
       var image = {
         mmd_id: this.mmd_id,
         display: 0,
-        stacknr: 0,
-        category: this.tv[0].category,
-        type: this.tv[0].type,
-        path: this.tv[0].path,
-        description: this.tv[0].description
+        path: this.tv[this.tv.length-1].path,
+        type: this.tv[this.tv.length-1].type,
+        category: this.currentCategory,
+        description: this.tv[this.tv.length-1].description
       }
       console.log("tv: " + image)
       axios
-      .post("http://139.6.102.67:8080/familie" , image)
+      .post("http://139.6.102.67:8080/" + this.currentCategory, image)
         .then(res => {
           console.log(res);
         })

@@ -3,9 +3,11 @@
     <head>
         <script src="/socket.io/socket.io.js"></script>
         <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     </head>
     <body>
-<ul id="messages"></ul>
+        <img src="" id="image" name="image" class="image"/>
+        
     </body>
 
 
@@ -14,6 +16,7 @@
             $(function() {
                 var imagepath = "";
                 var socket = io();
+                var stack = "";
              socket.on('user join', function (msg){
                 });
                 socket.on('reMessage', function (data){
@@ -30,8 +33,23 @@
                     document.body.style.background = 'blue';
                     } 
                     imagepath = data.bild1path;
-                    alert(imagepath);
+                    
+                    axios
+                .get("http://139.6.102.67:8080/" + data.category + "/" + data.mmd_id + "/1")
+                 .then(res => {  
+                stack = res.data;
+                document.getElementById('image').src = 'http://139.6.102.67:8080/' + res.data[0].path;
+                console.log(res.data)
+             /*   socket.on('retvStack', function (data){
+                  console.log("Ausgabe" + stack.path);
+                    document.getElementById('image').src = 'http://139.6.102.67:8080/' + stack.path;
+                });*/
+      })
+      .catch(err =>
+        console.log("Hey! Axios error for Created MMD_Member: " + err)
+      );
+    });
                 });
-            });   
+   
                 </script>
 </html>

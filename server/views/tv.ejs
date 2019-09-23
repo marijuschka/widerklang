@@ -19,28 +19,6 @@
                 var socket = io();
                 var stack = [];
                 
-          /*      var stack = [
-        {
-          id: 1,
-          path: "https://picsum.photos/id/40/400/400"
-        },
-        {
-          id: 2,
-          path: "https://picsum.photos/id/77/400/400"
-        },
-        {
-          id: 3,
-          path: "https://picsum.photos/id/200/400/400"
-        },
-        {
-          id: 4,
-          path: "https://picsum.photos/id/230/400/400"
-        },
-        {
-          id: 5,
-          path: "https://picsum.photos/id/250/400/400"
-        }
-      ]     */ 
       
       //  document.getElementById('image').src = 'http://139.6.102.67:8080/' + stack[2].path;
         socket.on('user join', function (msg){
@@ -60,9 +38,10 @@
                     } 
                     imagepath = data.bild1path;
                     stack = null;
+                    console.log(data.mmd_id)
                
                 axios
-                .get("http://139.6.102.67:8080/" + data.category + "/xxxxx/0")
+                .get("http://139.6.102.67:8080/" + data.category + "/" + data.mmd_id + "/0")
                  .then(res => {
                 stack = res.data;
                 socket.on('retvStack', function (data){

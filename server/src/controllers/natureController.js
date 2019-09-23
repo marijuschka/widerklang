@@ -21,6 +21,13 @@ exports.set_to_stack = function (req, res) {
                 category: req.body.category,
                 description: req.body.description
             } 
+            if(req.body.display == 0){
+                Nature.setToStack(stack, function (err, material) {
+                    if (err)
+                        res.send(err);
+                    res.send(material);
+                });
+            }else{
             //prüfen, ob mmd_id mit display= und stacknr= existiert
             Nature.proof(stack, function (err, material) {
                 if (err)
@@ -44,6 +51,7 @@ exports.set_to_stack = function (req, res) {
                     });
                 }
             });
+        }
                 //if (result == null)
                     /* INSERT new Eintrag*/
                 //else
