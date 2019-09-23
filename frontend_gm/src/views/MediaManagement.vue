@@ -458,6 +458,7 @@ body {
 
 .btn-sidebar img {
   margin: 0;
+  background-color:white;
 }
 
 .image-navbar {
