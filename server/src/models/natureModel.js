@@ -46,4 +46,17 @@ Nature.update = function update(material, result){
     });
 }
 
+
+Nature.getStackById = function getStackById(mmd_id, display, result) {
+    sql.query("SELECT * FROM nature WHERE mmd_id = ? AND display = ?", [mmd_id, display], function (err,res) {
+        if (err) {
+            result(null, err);
+        }
+        else {
+            result(null, res);
+        }
+    });
+};
+
+
 module.exports = Nature;

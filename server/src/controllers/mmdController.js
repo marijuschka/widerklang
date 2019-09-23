@@ -93,3 +93,5 @@ exports.get_all_mmd = function (req, res) {
     }
 };
    
+
+//mmd by name route!

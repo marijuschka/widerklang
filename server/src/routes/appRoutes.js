@@ -144,17 +144,23 @@ app.route('/generic/')
         .post(genericController.upload_generic);
 
  //Stack
-app.route('/familie/:mmd_id')
+app.route('/familie/:mmd_id/:display')
         .get(familyController.getStack);
 app.route('/familie/')
         .post(familyController.set_to_stack);  
 
+app.route('/natur/:mmd_id/:display')
+        .get(natureController.getStack);
 app.route('/natur/')
         .post(natureController.set_to_stack); 
+app.route('/freizeit/:mmd_id/:display')
+        .get(freizeitController.getStack);
 app.route('/freizeit/')
-        .post(freizeitController.set_to_stack);  
+        .post(freizeitController.set_to_stack); 
+app.route('/heimat/:mmd_id/:display')
+        .get(heimatController.getStack); 
 app.route('/heimat/')
-        .post(heimatController.set_to_stack);        
+        .post(heimatController.set_to_stack);     
 };
 
 //page Views

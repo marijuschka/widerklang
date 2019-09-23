@@ -36,7 +36,7 @@ Family.proof = function proof(material, result){
 }
 
 Family.update = function update(material, result){
-    sql.query("UPDATE familie SET relation = ? , materials_id = ? WHERE mmd_id =? AND display = ? AND stacknr = ?", [material.relation, material.materials_id, material.mmd_id, material.display, material.stacknr], function (err, res) {
+    sql.query("UPDATE familie SET path = ? , category = ?, type = ?, description = ? WHERE mmd_id =? AND display = ? AND stacknr = ?", [material.path, material.category, material.type, material.description, material.mmd_id, material.display, material.stacknr], function (err, res) {
         if (err) {
             result(err, null);
         }
@@ -46,8 +46,8 @@ Family.update = function update(material, result){
     });
 }
 
-Family.getStackById = function getStackById(mmd_id, result) {
-    sql.query("SELECT * FROM familie WHERE mmd_id = ?", mmd_id, function (err,res) {
+Family.getStackById = function getStackById(mmd_id, display, result) {
+    sql.query("SELECT * FROM familie WHERE mmd_id = ? AND display = ?", [mmd_id, display], function (err,res) {
         if (err) {
             result(null, err);
         }

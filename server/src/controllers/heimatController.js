@@ -51,3 +51,11 @@ exports.set_to_stack = function (req, res) {
       /*     }
        })*/
    };
+
+   exports.getStack = function (req, res) {
+    Heimat.getStackById(req.params.mmd_id, req.params.display, async function(err, stackData) {
+        if (err)
+            res.send(err);
+        res.json(stackData);
+        })
+}

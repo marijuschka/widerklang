@@ -13,15 +13,15 @@
       <b-row v-bind:class="theme" class="fill">
         <!-- vorheriges Bild -->
         <b-col cols="4 reset-padding">
-          <img class="stack stack-pos-side" @click="previousOnStack()" v-bind:src="stack[stackLeft].path" v-bind:alt="stack[stackLeft].path">
+          <img class="stack stack-pos-side" @click="previousOnStack()" v-bind:src="'http://139.6.102.67:8080/' + stack[stackLeft].path" v-bind:alt="stack[stackLeft].path">
         </b-col>
         <!-- aktuelles Bild - startet Video bei anklicken wenn Video -->
         <b-col cols="4 reset-padding">
-          <img class="stack stack-pos-middle" v-bind:src="stack[stackFocus].path" v-bind:alt="stack[stackFocus].path">
+          <img class="stack stack-pos-middle" v-bind:src="'http://139.6.102.67:8080/' + stack[stackFocus].path" v-bind:alt="stack[stackFocus].path">
         </b-col>
         <!-- nächstes Bild -->
         <b-col cols="4 reset-padding">
-          <img class="stack stack-pos-side" @click="nextOnStack()" v-bind:src="stack[stackRight].path" v-bind:alt="stack[stackRight].path">
+          <img class="stack stack-pos-side" @click="nextOnStack()" v-bind:src="'http://139.6.102.67:8080/' + stack[stackRight].path" v-bind:alt="stack[stackRight].path">
         </b-col>
       </b-row>
       
@@ -59,9 +59,10 @@ export default {
       stackLeft: 0,
       stackRight: 2,
       seen: false,
+      stack: []
 
       /* Hier sollte dann der richtige Stack in Abhängigkeit der Themen und des Users geladen werden */
-      stack: [
+    /* stack: [
         {
           id: 1,
           path: "https://picsum.photos/id/40/400/400"
@@ -82,7 +83,7 @@ export default {
           id: 5,
           path: "https://picsum.photos/id/250/400/400"
         }
-      ]      
+     ]     */ 
     };
   },
   methods: {
@@ -148,20 +149,34 @@ export default {
       console.log('trigger');
       console.log(this.seen);
       this.seen = !this.seen;
-    }
+    }, 
+     getTV(){
+      axios
+      .get("http://139.6.102.67:8080/familie/xxxxx/0")
+      .then(res => {
+        console.log();
+        this.stack = res.data;
+      })
+      .catch(err =>
+        console.log("Hey! Axios error for Created MMD_Member: " + err)
+      );
+    },
   },
-  created:{
-  fetchImages(){
+ created(){
+
         axios
-            .get("http://139.6.102.67:8080/" + this.$route.query.theme + "/xxxxx" )
+            .get("http://139.6.102.67:8080/familie/xxxxx/0" )
               .then(res => {
-                console.log()
-                this.images = res.data;
+                console.log(res.data)
+                this.stack = res.data;
               })
               .catch(err =>
                 console.log("Hey! Axios error for Created MMD_Member: " + err)
               );
-    } 
+
+},
+mounted(){
+  this.getTV();
 }
 }
 </script>

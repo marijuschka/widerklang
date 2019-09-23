@@ -34,7 +34,7 @@ Material.uploadFile = function uploadFile(material, result){
     });
 };*/
 
-
+/*
 Material.getAllMaterial = function getAllMaterial(list, result) {
     var arr = list.map( function(el) { return el.material_id; });
     sql.query("SELECT * FROM material WHERE id IN (?)", [arr], function (err, res) {
@@ -46,7 +46,7 @@ Material.getAllMaterial = function getAllMaterial(list, result) {
             result(null, res);
         }
     }); 
-};
+};*/
 Material.getStackMaterial = function getStackMaterial(list, result) {  
     var arr = list.map( function(el) { return el.materials_id; });
     sql.query("SELECT * FROM material WHERE id IN (?)", [arr], function (err, res) {
@@ -59,6 +59,16 @@ Material.getStackMaterial = function getStackMaterial(list, result) {
         }
     }); 
 };
+Material.getAllMaterial = function getAllMaterial(mmdmat, result){
+    sql.query("SELECT * FROM material WHERE category = ? AND mmd_id = ?", [mmdmat.category, mmdmat.mmd_id], function (err, res) {
+        if (err) {
+            result(err, null);
+        }
+        else {
+            result(null, res);
+        }
+    });
+}
 
 module.exports = Material;
 

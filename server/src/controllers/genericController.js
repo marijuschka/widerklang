@@ -21,20 +21,12 @@ const upload = multer({
 }).single('myImage');
 
 exports.get_all_generic = function (req, res) {
-    /*   ensureToken(req, res);
-       jwt.verify(req.token, 'my_secret_key', function (err, data) {
-           if (err) {
-               res.sendStatus(403);
-           } else {*/
             console.log(req.params.category)
                Generic.getAllGeneric(req.params.category, function (err, generic) {
                    if (err)
                        res.send(err);
                 res.json(generic);
                   });
-               
-      /*     }
-       })*/
    };
 
    exports.upload_generic = function(req, res){

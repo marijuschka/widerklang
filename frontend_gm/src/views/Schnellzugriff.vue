@@ -9,7 +9,6 @@
         <b-col cols="12" sm="6" class="footroom" id="links">
           <router-link to="/mmd" id="mmd"><h2>Menschen mit Demenz</h2></router-link>
           <hr />
-          <h3>Schnellzugriff</h3>
           <b-row class="justify-content-center first-row">
             <b-col class="user-boxes left-box" cols="4">
               <img class="user-img" alt="" src="https://images.unsplash.com/photo-1472066719480-ecc7314ed065?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"/>
@@ -32,31 +31,30 @@
 
         <!-- Rechte Seite -->
         <b-col cols="12" sm="6" class="footroom" id="rechts">
-          <img class="Media" alt="2" width="50%" src="../assets/Media.png"/>
+         <!-- <img class="Media" alt="2" width="50%" src="../assets/Media.png"/> -->
           
-          
+          <router-link to="/mediaManagementPfleger" id="mmd"><h2>Medien</h2></router-link>
           <hr />
-          <h3>Schnellzugriff</h3>
           <b-row class="justify-content-center first-row">
             <b-col class="red-theme theme-boxes left-box" cols="4">
-              <router-link to="/mediaManagement" id="mediaManagement">
+              <router-link to="/mediaManagementPfleger" id="mediaManagement">
                 <img class="theme-img" alt="" src="../assets/Familie-Icon.png"/>
               </router-link>
             </b-col>
             <b-col class="blue-theme theme-boxes" cols="4">
-              <router-link to="/mediaManagement" id="mediaManagement">
+              <router-link to="/mediaManagementPfleger" id="mediaManagement">
                 <img class="theme-img" alt="" src="../assets/Heimat-Icon.png"/>
               </router-link>
             </b-col>
           </b-row>
           <b-row class="justify-content-center">
             <b-col class="green-theme theme-boxes left-box" cols="4">
-              <router-link to="/mediaManagement" id="mediaManagement">
+              <router-link to="/mediaManagementPfleger" id="mediaManagement">
                 <img class="theme-img" alt="" src="../assets/Natur-Icon.png" />
               </router-link>
             </b-col>
             <b-col class="orange-theme theme-boxes" cols="4">
-              <router-link to="/mediaManagement" id="mediaManagement">
+              <router-link to="/mediaManagementPfleger" id="mediaManagement">
                 <img class="theme-img" alt="" src="../assets/Freizeit-Icon.png"/>
               </router-link>
             </b-col>

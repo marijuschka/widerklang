@@ -3,9 +3,10 @@
     <head>
         <script src="/socket.io/socket.io.js"></script>
         <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     </head>
     <body>
-<ul id="messages">
+            <img src="" id="image" name="image" class="image"/>
 </ul>
 
     </body>
@@ -16,7 +17,33 @@
             $(function() {
                 var imagepath = "";
                 var socket = io();
-             socket.on('user join', function (msg){
+                var stack = [];
+                
+          /*      var stack = [
+        {
+          id: 1,
+          path: "https://picsum.photos/id/40/400/400"
+        },
+        {
+          id: 2,
+          path: "https://picsum.photos/id/77/400/400"
+        },
+        {
+          id: 3,
+          path: "https://picsum.photos/id/200/400/400"
+        },
+        {
+          id: 4,
+          path: "https://picsum.photos/id/230/400/400"
+        },
+        {
+          id: 5,
+          path: "https://picsum.photos/id/250/400/400"
+        }
+      ]     */ 
+      
+      //  document.getElementById('image').src = 'http://139.6.102.67:8080/' + stack[2].path;
+        socket.on('user join', function (msg){
                 });
                 socket.on('reMessage', function (data){
                     if(data.category === 'Natur'){
@@ -32,8 +59,38 @@
                     document.body.style.background = 'blue';
                     } 
                     imagepath = data.bild1path;
-                    alert(imagepath);
+                    stack = null;
+               
+                axios
+                .get("http://139.6.102.67:8080/" + data.category + "/xxxxx/0")
+                 .then(res => {
+                stack = res.data;
+                socket.on('retvStack', function (data){
+                  console.log("Ausgabe" + stack[data].path);
+                    document.getElementById('image').src = 'http://139.6.102.67:8080/' + stack[data].path;
                 });
+      })
+      .catch(err =>
+        console.log("Hey! Axios error for Created MMD_Member: " + err)
+      );
+    });
+     /* console.log(this.stack);
+      document.getElementById('image').src = 'http://139.6.102.67:8080/' + stack[2].path;*/
+             
             });   
                 </script>
+
+<style type="text/css">
+    .image{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height:100%;
+    width: auto;
+    margin: auto;
+    overflow: auto;
+    }
+    </style>
 </html>

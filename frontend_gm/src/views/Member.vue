@@ -70,7 +70,7 @@
             <b-row align-v="center" align-h="between" no-gutters>
               <!-- Bild -->
               <b-col cols="2" md="1">
-                <b-card-img src="https://picsum.photos/400/400/?image=20"></b-card-img>
+                <b-card-img src="https://cdn.onlinewebfonts.com/svg/img_227643.png"></b-card-img>
               </b-col>
               <b-col cols="1">
               </b-col>

@@ -16,19 +16,21 @@ exports.set_to_stack = function (req, res) {
             var stack = {
                 id: generateUniqueId(),
                 mmd_id: req.body.mmd_id,
-                relation: req.body.relation,
-                materials_id: req.body.materials_id,
                 display: req.body.display,
-                stacknr: req.body.stacknr
+                stacknr: req.body.stacknr,
+                path: req.body.path,
+                type: req.body.type,
+                category: req.body.category,
+                description: req.body.description
             } 
             //prüfen, ob mmd_id mit display= und stacknr= existiert
             Family.proof(stack, function (err, material) {
                 if (err)
                     res.send(err);
                 proof = material;
-                console.log(proof)
-
-                if (typeof proof === "undefined"){
+                console.log("check" + proof)
+                    //proof === undefined oder display === tv
+              if (typeof proof === "undefined" ){
                     console.log("init")
                     Family.setToStack(stack, function (err, material) {
                         if (err)
@@ -37,26 +39,19 @@ exports.set_to_stack = function (req, res) {
                     });
                 } else{
                     console.log("update")
-                    Family.update(stack, function (err, material) {
+                 /*   Family.update(stack, function (err, material) {
                         if (err)
                             res.send(err);
                         res.send(material);
-                    });
+                    });*/
                 }
             });
    };
 
    exports.getStack = function (req, res) {
-    Family.getStackById(req.params.mmd_id, async function(err, stackData) {
+    Family.getStackById(req.params.mmd_id, req.params.display, async function(err, stackData) {
         if (err)
             res.send(err);
-    Material.getStackMaterial(stackData, async function(err, materialData){
-            res.json({
-                data: {
-                    stackData,
-                    materialData
-                }
-            })
+        res.json(stackData);
         })
- })
 }

@@ -47,14 +47,14 @@ export default new Router({
       component: () => import('./views/MediaManagement.vue')
     },
     {
+      path: '/mediaManagementPfleger',
+      name: 'mediaManagementPfleger',
+      component: () => import('./views/MediaManagementPfleger.vue')
+    },
+    {
       path: '/schnellzugriff',
       name: 'schnellzugriff',
       component: () => import('./views/Schnellzugriff.vue')
-    },
-    {
-      path: '/imageUpload',
-      name: 'imageUpload',
-      component: () => import('./views/ImageUpload.vue')
     }
   ]
 })

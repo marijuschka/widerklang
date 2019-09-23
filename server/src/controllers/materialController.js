@@ -35,23 +35,14 @@ exports.upload_material = function(req, res){
                 name: req.body.name,
                 description: req.body.description,
                 path: req.file.path,
-                type: req.file.mimetype
-            }
-            var mmd_material = {
-                id: mmd_material_id,
+                type: req.file.mimetype,
                 mmd_id: mmd_id,
-                material_id: material_id,
                 category: req.body.category,
             }
             Material.uploadFile(material, function (err, resMaterial) {
                 if (err)
                     res.send(err);
                 res.json(resMaterial);
-            });
-            Mmd_Material.saveMaterial(mmd_material, function(err, resmat){
-                if (err)
-                    res.send(err);
-                res.json(resmat);
             });
         }
     });
@@ -65,15 +56,15 @@ exports.get_all_material = function (req, res) {
        mmd_id: req.params.mmdid
     }
     console.log(req.body.mmdid)
-               Mmd_Material.getAllMaterial(mmdmat, function (err, generic) {
+              /* Mmd_Material.getAllMaterial(mmdmat, function (err, generic) {
                    if (err)
                        res.send(err);
-                list = generic;
-                Material.getAllMaterial(list, function (err, selected) {
+                list = generic;*/
+                Material.getAllMaterial(mmdmat, function (err, selected) {
                     if (err){
                         res.send(err);
                     }
                  res.json(selected); 
                    });
-                });
+              //  });
    };

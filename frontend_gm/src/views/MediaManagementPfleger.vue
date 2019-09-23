@@ -1,7 +1,7 @@
 <template>
   <div class="media-management">
     <my-header></my-header>
-   
+    <h2> Generische Medienverwaltung </h2>
     <div class="container">
       <div class="image-sidebar">
         <button
@@ -20,20 +20,20 @@
         </button>
       </div>
       <div class="image-grid">
-        <div class="image-navbar">
+   <!--     <div class="image-navbar">
           <button @click="setGenerisch">Generisch</button>
           <button @click="setPersoenlich">Persönlich</button>
-        </div>
+        </div> -->
         <div class="image-gallery">
           <!-- upload -->
          <div>
-          <b-button v-b-modal.modal-1><div class="upload">
-            
-          </div>
-    </b-button>
+          <b-button v-b-modal.modal-1><div class="upload"></div>
+          </b-button>
+          
+   
 
   <b-modal id="modal-1" title="Image Upload">  
-     <form action="http://139.6.102.67:8080/material" method="POST" enctype="multipart/form-data">
+     <form action="http://139.6.102.67:8080/generic" method="POST" enctype="multipart/form-data">
                 <div class="input-field col s12">
                         <input placeholder="Benne deine Datei" id="name" name="name" type="text" class="validate">
                         <label for="first_name">Name</label>
@@ -45,11 +45,7 @@
                         <div class="input-field col s12">
                                 <input placeholder="Beschreibung/Gruß" id="description" name="description" type="text" class="validate">
                                 <label for="first_name">Beschreibung</label>
-                              </div>
-                          <div class="input-field col s12">
-                                <input placeholder="mmd_id" id="mmd_id" name="mmd_id" type="text" class="validate">
-                                <label for="first_name">mmd_id</label>
-                              </div>  
+                              </div> 
                     </br>
                 <div class="file-field input-field">
                     <div class="btn grey">
@@ -66,14 +62,6 @@
   </b-modal>
 </div>
          
-   
-      
-      <draggable
-        class="dragArea list-group"
-        :list="images"
-        :group="{ name: 'people', pull: 'clone', put: false }"
-        @change=""
-      >
         <div
           class="list-group-item"
           v-for="element in images"
@@ -86,102 +74,10 @@
             class="image-gallery__image"
           />
         </div>
-      </draggable>
       </div>
         
-         <div class="col-3">
-     
-      </div>
     </div>
-  <div>
-  <b-card no-body>
-    <b-tabs card>
-      <b-tab title="Fernseher" active>
-        <b-card-text>
-        <draggable
-        class="dragArea list-group"
-        :list="tv"
-        group="people"
-        @change="setTV()"
-      >
-          <div class="list-group-item" v-for="element in tv" :key="element.id">
-            <img
-              :key="index"
-              :src="'http://139.6.102.67:8080/' + element.path"
-              alt="123"
-              class="image-gallery__image"
-            />
-          </div>
-        </draggable>
-        </b-card-text>
-      </b-tab>
-      <b-tab title="Bilderwand">
-        <b-card-text>
-         <h3>Bild1</h3>
-      <draggable
-        class="dragArea list-group"
-        :list="bild1"
-        group="people"
-        @change="setBild(1)"
-      >
-        <div
-          class="list-group-item"
-          v-for="element in bild1"
-          :key="element.id"
-        >
-            <img
-            :key="index"
-            :src="'http://139.6.102.67:8080/' + element.path"
-            alt="123"
-            class="image-gallery__image"
-          />
-        </div>
-      </draggable>
-            <h3>Bild2</h3>
-      <draggable
-        class="dragArea list-group"
-        :list="bild2"
-        group="people"
-        @change="setBild(2)"
-      >
-        <div
-          class="list-group-item"
-          v-for="element in bild2"
-          :key="element.id"
-        >
-            <img
-            :key="index"
-            :src="'http://139.6.102.67:8080/' + element.path"
-            alt="123"
-            class="image-gallery__image"
-          />
-        </div>
-      </draggable>
-            <h3>Bild3</h3>
-      <draggable
-        class="dragArea list-group"
-        :list="bild3"
-        group="people"
-        @change="setBild(3)"
-      >
-        <div
-          class="list-group-item"
-          v-for="element in bild3"
-          :key="element.id"
-        >
-            <img
-            :key="index"
-            :src="'http://139.6.102.67:8080/' + element.path"
-            alt="123"
-            class="image-gallery__image"
-          />
-        </div>
-      </draggable>
-        </b-card-text>
-      </b-tab>
-    </b-tabs>
-  </b-card>
-</div>
+
     </div>
   </div>
 </template>

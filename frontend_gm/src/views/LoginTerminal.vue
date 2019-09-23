@@ -61,13 +61,15 @@ export default {
             localStorage.setItem("role", res.data.role);
             localStorage.setItem("auth", res.data.auth);
             localStorage.setItem("userid", res.data.user_id);
+            localStorage.setItem("mmd_id", res.data.mmd_id);
+
             console.log("Token: "+localStorage.getItem("token")+" ___ Role: "+localStorage.getItem("role")+" ___ Role: "+localStorage.getItem("auth"))
             
           }
         });
     },
     login2(){
- this.$router.push('tablet')
+ this.$router.push('../tablet')
     }
   }
 };

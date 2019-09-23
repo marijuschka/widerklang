@@ -47,7 +47,14 @@ exports.set_to_stack = function (req, res) {
                     /* INSERT new Eintrag*/
                 //else
                     /* UPDATE material_id, relation WHERE mmd_id= AND display= AND stacknr= */    
-               
       /*     }
        })*/
    };
+
+   exports.getStack = function (req, res) {
+    Nature.getStackById(req.params.mmd_id, req.params.display, async function(err, stackData) {
+        if (err)
+            res.send(err);
+        res.json(stackData);
+        })
+}
