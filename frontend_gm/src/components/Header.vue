@@ -36,7 +36,7 @@
 
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
-            <b-button v-if="Carer!='null'" v-on:click="logout" v-b-toggle.collapse-1 variant="danger">Abmelden</b-button>
+            <b-button v-if="Carer!='null'" v-on:click="logout" v-b-toggle.collapse-1 variant="transparent"> <img alt="Vue logo" src="../assets/Logout2.png" /></b-button>
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>

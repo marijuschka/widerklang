@@ -2,7 +2,7 @@
   <div class="login">
   <br />
     <br />
-    <img class="logo" alt="Vue logo Responsive image" src="../assets/Widerklang_Logo.png" />
+    <img class="logo" alt="Vue logo Responsive image" src="../assets/WiderKlang_Bild_Wort_Marke.png" />
     <br />
     <br />
 
@@ -111,6 +111,6 @@ mounted(){
 
 <style scoped>
 .logo {
-  width: 500px;
+  width: 320px;
 }
 </style>
