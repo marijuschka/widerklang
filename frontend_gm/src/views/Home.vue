@@ -3,7 +3,7 @@
     <div class="home">
       <Header />
       <br/>
-      <img alt="Vue logo" src="../assets/WiderklangLogo.png" />
+      <img alt="Vue logo" src="../assets/WiderKlang_Bild_Marke_2.png" />
       <br/>
       <br>
       HOMEPAGE VON WIDERKLANG --> TESTPHASE
