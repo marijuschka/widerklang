@@ -33,19 +33,16 @@
    
 
   <b-modal id="modal-1" title="Image Upload">  
-     <form action="http://139.6.102.67:8080/generic" method="POST" enctype="multipart/form-data">
+ <form action="http://139.6.102.67:8080/generic" method="POST" enctype="multipart/form-data">
                 <div class="input-field col s12">
                         <input placeholder="Benne deine Datei" id="name" name="name" type="text" class="validate">
                         <label for="first_name">Name</label>
                       </div>
-                      <div class="input-field col s12">
-                            <input placeholder="Kategorie wählen" id="category" name="category" type="text" class="validate">
-                            <label for="first_name">Kategorie</label>
-                         </div>
-                        <div class="input-field col s12">
+                          <div class="input-field col s12">
                                 <input placeholder="Beschreibung/Gruß" id="description" name="description" type="text" class="validate">
                                 <label for="first_name">Beschreibung</label>
-                              </div> 
+                              </div>
+                        <input class="form-input" type="hidden" id="category" name="category" v-bind:value="currentCategory">
                     </br>
                 <div class="file-field input-field">
                     <div class="btn grey">
@@ -58,7 +55,6 @@
                 </div>
                 <button type="submit" class="btn"> Submit </button>
             </form>
-        
   </b-modal>
 </div>
          
