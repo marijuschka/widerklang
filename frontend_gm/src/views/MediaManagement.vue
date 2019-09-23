@@ -33,23 +33,17 @@
     </b-button>
 
   <b-modal id="modal-1" title="Image Upload">  
-     <form action="http://139.6.102.67:8080/material" method="POST" enctype="multipart/form-data">
+   <form action="http://139.6.102.67:8080/material" method="POST" enctype="multipart/form-data">
                 <div class="input-field col s12">
                         <input placeholder="Benne deine Datei" id="name" name="name" type="text" class="validate">
                         <label for="first_name">Name</label>
                       </div>
-                      <div class="input-field col s12">
-                            <input placeholder="Kategorie wählen" id="category" name="category" type="text" class="validate">
-                            <label for="first_name">Kategorie</label>
-                         </div>
-                        <div class="input-field col s12">
+                          <div class="input-field col s12">
                                 <input placeholder="Beschreibung/Gruß" id="description" name="description" type="text" class="validate">
                                 <label for="first_name">Beschreibung</label>
                               </div>
-                          <div class="input-field col s12">
-                                <input placeholder="mmd_id" id="mmd_id" name="mmd_id" type="text" class="validate">
-                                <label for="first_name">mmd_id</label>
-                              </div>  
+                        <input class="form-input" type="hidden" id="mmd_id" name="mmd_id" v-bind:value="mmd_id">
+                        <input class="form-input" type="hidden" id="category" name="category" v-bind:value="currentCategory">
                     </br>
                 <div class="file-field input-field">
                     <div class="btn grey">
@@ -62,14 +56,13 @@
                 </div>
                 <button type="submit" class="btn"> Submit </button>
             </form>
-        
   </b-modal>
 </div>
          
    
       
       <draggable
-        class="dragArea list-group"
+        class="dragArea"
         :list="images"
         :group="{ name: 'people', pull: 'clone', put: false }"
         @change=""
@@ -80,17 +73,13 @@
           :key="element.id"
         >
          <img
-            :key="index"
+            :key="element.id"
             :src="'http://139.6.102.67:8080/' + element.path"
             alt="123"
             class="image-gallery__image"
           />
         </div>
       </draggable>
-      </div>
-        
-         <div class="col-3">
-     
       </div>
     </div>
   <div>
@@ -99,14 +88,14 @@
       <b-tab title="Fernseher" active>
         <b-card-text>
         <draggable
-        class="dragArea list-group"
+        class="dragArea "
         :list="tv"
         group="people"
         @change="setTV()"
       >
           <div class="list-group-item" v-for="element in tv" :key="element.id">
             <img
-              :key="index"
+              :key="element.id"
               :src="'http://139.6.102.67:8080/' + element.path"
               alt="123"
               class="image-gallery__image"
@@ -119,7 +108,7 @@
         <b-card-text>
          <h3>Bild1</h3>
       <draggable
-        class="dragArea list-group"
+        class="dragArea"
         :list="bild1"
         group="people"
         @change="setBild(1)"
@@ -130,7 +119,7 @@
           :key="element.id"
         >
             <img
-            :key="index"
+            :key="element.id"
             :src="'http://139.6.102.67:8080/' + element.path"
             alt="123"
             class="image-gallery__image"
@@ -139,7 +128,7 @@
       </draggable>
             <h3>Bild2</h3>
       <draggable
-        class="dragArea list-group"
+        class="dragArea "
         :list="bild2"
         group="people"
         @change="setBild(2)"
@@ -150,7 +139,7 @@
           :key="element.id"
         >
             <img
-            :key="index"
+            :key="element.id"
             :src="'http://139.6.102.67:8080/' + element.path"
             alt="123"
             class="image-gallery__image"
@@ -159,7 +148,7 @@
       </draggable>
             <h3>Bild3</h3>
       <draggable
-        class="dragArea list-group"
+        class="dragArea"
         :list="bild3"
         group="people"
         @change="setBild(3)"
@@ -170,7 +159,7 @@
           :key="element.id"
         >
             <img
-            :key="index"
+            :key="element.id"
             :src="'http://139.6.102.67:8080/' + element.path"
             alt="123"
             class="image-gallery__image"
@@ -201,7 +190,7 @@ export default {
       bild1: [],
       bild2: [],
       bild3: [],
-      file:"",
+      file: "",
       newFile: {
         name: "",
         description: "",
@@ -246,6 +235,9 @@ export default {
      console.log("MMD_ID: " +this.mmd_id);
     this.fetchImages();
     this.getTV();
+    this.getBilderwand(1);
+    this.getBilderwand(2);
+    this.getBilderwand(3);
   },
   components: {
     "my-header": Header,
@@ -253,7 +245,7 @@ export default {
   },
   created() {
     axios
-      .get("http://139.6.102.67:8080/" + this.currentCategory + "/xxxxx/0")
+      .get("http://139.6.102.67:8080/" + this.currentCategory + "/" + this.mmd_id + "/0")
       .then(res => {
         console.log();
         this.tv = res.data;
@@ -278,9 +270,12 @@ export default {
       this.kategorien[index].selected = true;
       this.currentCategory = this.kategorien[index].name;
       this.fetchImages();
+      this.getBilderwand(1);
+      this.getBilderwand(2);
+      this.getBilderwand(3);
       this.getTV();
     },
-    onSelect(){
+    handleFileUpload(){
       const file = this.$refs.file.files[0];
       this.file = file;
     },
@@ -295,7 +290,12 @@ export default {
         console.log(this.newFile);
         
       axios
-      .post("http://139.6.102.67:8080/material", this.newFile)
+      .post("http://139.6.102.67:8080/material", formData,
+      {
+    headers: {
+        'Content-Type': 'multipart/form-data'
+    }
+  })
       .then(res => {
         console.log();
         this.tv = res.data;
@@ -304,14 +304,32 @@ export default {
         console.log("Hey! Axios error for Created MMD_Member: " + err)
       );
   this.fetchImages();
-
     },
     getTV(){
+      this.tv = null;
       axios
-      .get("http://139.6.102.67:8080/" + this.currentCategory + "/xxxxx/0")
+      .get("http://139.6.102.67:8080/" + this.currentCategory + "/" + this.mmd_id + "/0")
       .then(res => {
         console.log();
         this.tv = res.data;
+      })
+      .catch(err =>
+        console.log("Hey! Axios error for Created MMD_Member: " + err)
+      );
+    },
+    getBilderwand(current){
+      this.bild1 = null;
+      axios
+      .get("http://139.6.102.67:8080/" + this.currentCategory + "/" + this.mmd_id + "/"+ current)
+      .then(res => {
+        console.log();
+        if(current == 1){
+        this.bild1 = res.data;
+        } else if (current == 2){
+        this.bild2 = res.data;
+        } else {
+        this.bild3 = res.data;
+        }
       })
       .catch(err =>
         console.log("Hey! Axios error for Created MMD_Member: " + err)
@@ -329,7 +347,7 @@ export default {
       }
       console.log("tv: " + image)
       axios
-      .post("http://139.6.102.67:8080/familie", image)
+      .post("http://139.6.102.67:8080/ "+ this.currentCategory, image)
         .then(res => {
           console.log(res);
         })
@@ -352,7 +370,7 @@ export default {
         stacknr: 0
       }
       axios
-      .post("http://139.6.102.67:8080/familie", image)
+      .post("http://139.6.102.67:8080/" +  this.currentCategory , image)
         .then(res => {
           console.log(res);
         })
@@ -372,7 +390,7 @@ export default {
       } else {
         axios
           .get(
-            "http://139.6.102.67:8080/material/xxxxx/" + this.currentCategory
+            "http://139.6.102.67:8080/material/" + this.mmd_id +"/" + this.currentCategory
           )
           .then(res => {
             this.images = res.data;
