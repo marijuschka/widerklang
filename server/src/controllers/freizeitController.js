@@ -21,6 +21,13 @@ exports.set_to_stack = function (req, res) {
                 category: req.body.category,
                 description: req.body.description
             } 
+            if(req.body.display == 0){
+                Freizeit.setToStack(stack, function (err, material) {
+                    if (err)
+                        res.send(err);
+                    res.send(material);
+                });
+            }else{
             //prüfen, ob mmd_id mit display= und stacknr= existiert
             Freizeit.proof(stack, function (err, material) {
                 if (err)
@@ -48,7 +55,7 @@ exports.set_to_stack = function (req, res) {
                     /* INSERT new Eintrag*/
                 //else
                     /* UPDATE material_id, relation WHERE mmd_id= AND display= AND stacknr= */    
-               
+        } 
       /*     }
        })*/
    };

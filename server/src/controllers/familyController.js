@@ -12,6 +12,7 @@ exports.set_to_stack = function (req, res) {
            if (err) {
                res.sendStatus(403);
            } else {*/
+            
             var proof;
             var stack = {
                 id: generateUniqueId(),
@@ -22,6 +23,13 @@ exports.set_to_stack = function (req, res) {
                 category: req.body.category,
                 description: req.body.description
             } 
+            if(req.body.display == 0){
+                Family.setToStack(stack, function (err, material) {
+                    if (err)
+                        res.send(err);
+                    res.send(material);
+                });
+            }else{
             //prüfen, ob mmd_id mit display= und stacknr= existiert
             Family.proof(stack, function (err, material) {
                 if (err)
@@ -46,6 +54,7 @@ exports.set_to_stack = function (req, res) {
                     });
                 }
             });
+        }
    };
 
    exports.getStack = function (req, res) {

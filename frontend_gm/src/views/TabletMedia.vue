@@ -58,6 +58,7 @@ export default {
       stackFocus: 1,
       stackLeft: 0,
       stackRight: 2,
+      mmd_id: "mser7dtoxl",
       seen: false,
       stack: []
 
@@ -151,8 +152,20 @@ export default {
       this.seen = !this.seen;
     }, 
      getTV(){
+       console.log(this.theme);
+       if(this.theme == "red-theme"){
+         var category = "familie"
+       }else if(this.theme == "green-theme"){
+         var category = "natur"
+       } 
+       else if(this.theme == "orange-theme"){
+         var category = "freizeit"
+       } 
+       else if(this.theme == "blue-theme"){
+         var category = "heimat"
+       } 
       axios
-      .get("http://139.6.102.67:8080/familie/xxxxx/0")
+      .get("http://139.6.102.67:8080/" + category + "/" + this.mmd_id + "/0")
       .then(res => {
         console.log();
         this.stack = res.data;
@@ -162,19 +175,6 @@ export default {
       );
     },
   },
- created(){
-
-        axios
-            .get("http://139.6.102.67:8080/familie/xxxxx/0" )
-              .then(res => {
-                console.log(res.data)
-                this.stack = res.data;
-              })
-              .catch(err =>
-                console.log("Hey! Axios error for Created MMD_Member: " + err)
-              );
-
-},
 mounted(){
   this.getTV();
 }

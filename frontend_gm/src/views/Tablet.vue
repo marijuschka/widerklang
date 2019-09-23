@@ -85,7 +85,7 @@ var data = {
         bild1path: "bildpath1",
         bild2path: "bildpath2",
         bild3path: "bildpath3",
-        mmd_id: localStorage.getItem("mmd_id")
+        mmd_id: "mser7dtoxl"
     }
 export default {
   name: "tablet",
