@@ -24,7 +24,7 @@ Freizeit.setToStack = function setToStack(material, result){
 }
 
 Freizeit.proof = function proof(material, result){
-    sql.query("SELECT * FROM freizeit WHERE mmd_id = ? AND display = ? AND stacknr = ?", [material.mmd_id, material.display, material.stacknr], function (err, res) {
+    sql.query("SELECT * FROM freizeit WHERE mmd_id = ? AND display = ? ", [material.mmd_id, material.display], function (err, res) {
         if (err) {
             result(err, null);
         }
@@ -36,7 +36,7 @@ Freizeit.proof = function proof(material, result){
 }
 
 Freizeit.update = function update(material, result){
-    sql.query("UPDATE freizeit SET relation = ? , materials_id = ? WHERE mmd_id =? AND display = ? AND stacknr = ?", [material.relation, material.materials_id, material.mmd_id, material.display, material.stacknr], function (err, res) {
+    sql.query("UPDATE freizeit SET relation = ? , materials_id = ? WHERE mmd_id =? AND display = ? ", [material.relation, material.materials_id, material.mmd_id, material.display], function (err, res) {
         if (err) {
             result(err, null);
         }

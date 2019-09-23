@@ -17,7 +17,6 @@ exports.set_to_stack = function (req, res) {
                 id: generateUniqueId(),
                 mmd_id: req.body.mmd_id,
                 display: req.body.display,
-                stacknr: req.body.stacknr,
                 path: req.body.path,
                 type: req.body.type,
                 category: req.body.category,
@@ -38,12 +37,13 @@ exports.set_to_stack = function (req, res) {
                         res.send(material);
                     });
                 } else{
+                   
                     console.log("update")
-                 /*   Family.update(stack, function (err, material) {
+                   Family.update(stack, function (err, material) {
                         if (err)
                             res.send(err);
                         res.send(material);
-                    });*/
+                    });
                 }
             });
    };

@@ -27,7 +27,7 @@
         <div class="image-gallery">
           <!-- upload -->
          <div>
-          <b-button v-b-modal.modal-1><div class="upload">
+          <b-button class="imageUpload" v-b-modal.modal-1><div class="upload">
             
           </div>
     </b-button>
@@ -59,8 +59,6 @@
   </b-modal>
 </div>
          
-   
-      
       <draggable
         class="dragArea"
         :list="images"
@@ -83,10 +81,11 @@
       </div>
     </div>
   <div>
-  <b-card no-body>
+  <b-card no-body class="bildTV" v-bind:style="{'background-color': currentColor }">
     <b-tabs card>
       <b-tab title="Fernseher" active>
         <b-card-text>
+        <h3>TV</h3>
         <draggable
         class="dragArea "
         :list="tv"
@@ -114,7 +113,7 @@
         @change="setBild(1)"
       >
         <div
-          class="list-group-item"
+          class="list-group-item-bilder "
           v-for="element in bild1"
           :key="element.id"
         >
@@ -134,7 +133,7 @@
         @change="setBild(2)"
       >
         <div
-          class="list-group-item"
+          class="list-group-item-bilder "
           v-for="element in bild2"
           :key="element.id"
         >
@@ -154,7 +153,7 @@
         @change="setBild(3)"
       >
         <div
-          class="list-group-item"
+          class="list-group-item-bilder"
           v-for="element in bild3"
           :key="element.id"
         >
@@ -194,33 +193,38 @@ export default {
       newFile: {
         name: "",
         description: "",
-        mmd_id: "xxxxx",
+        mmd_id: "",
         category: "",
         path:"",
         mimeType:""
       },
       generisch: true,
       currentCategory: "",
+      currentColor: "",
       kategorien: [
         {
           name: "Familie",
           farbe: "rot",
-          selected: false
+          selected: false,
+          backgroundcolor: "#db1644"
         },
         {
           name: "Natur",
           farbe: "gruen",
-          selected: false
+          selected: false,
+          backgroundcolor: "#32a62e"
         },
         {
           name: "Freizeit",
           farbe: "gelb",
-          selected: false
+          selected: false,
+          backgroundcolor: "#f2bc18"
         },
         {
           name: "Regional",
           farbe: "blau",
-          selected: false
+          selected: false,
+          backgroundcolor: "#50a5eb"
         }
       ]
     };
@@ -243,8 +247,8 @@ export default {
     "my-header": Header,
     draggable
   },
-  created() {
-    axios
+ /* created() {
+   axios
       .get("http://139.6.102.67:8080/" + this.currentCategory + "/" + this.mmd_id + "/0")
       .then(res => {
         console.log();
@@ -253,7 +257,7 @@ export default {
       .catch(err =>
         console.log("Hey! Axios error for Created MMD_Member: " + err)
       );
-  },
+  },*/
   methods: {
     setGenerisch() {
       this.generisch = true;
@@ -269,41 +273,12 @@ export default {
       let index = this.kategorien.findIndex(element => element.farbe === color);
       this.kategorien[index].selected = true;
       this.currentCategory = this.kategorien[index].name;
+      this.currentColor = this.kategorien[index].backgroundcolor;
       this.fetchImages();
       this.getBilderwand(1);
       this.getBilderwand(2);
       this.getBilderwand(3);
       this.getTV();
-    },
-    handleFileUpload(){
-      const file = this.$refs.file.files[0];
-      this.file = file;
-    },
-    imageUpload(){
-        const formData = new FormData();
-        formData.append('file', this.file)
-        this.newFile.name = "test2";
-        this.newFile.description = "test2";
-        this.newFile.category = this.currentCategory;
-        this.newFile.path = formData.path;
-        this.newFile.mimeType = formData.type;
-        console.log(this.newFile);
-        
-      axios
-      .post("http://139.6.102.67:8080/material", formData,
-      {
-    headers: {
-        'Content-Type': 'multipart/form-data'
-    }
-  })
-      .then(res => {
-        console.log();
-        this.tv = res.data;
-      })
-      .catch(err =>
-        console.log("Hey! Axios error for Created MMD_Member: " + err)
-      );
-  this.fetchImages();
     },
     getTV(){
       this.tv = null;
@@ -337,7 +312,7 @@ export default {
     },
      setTV(){
       var image = {
-        mmd_id: "xxxxx",
+        mmd_id: this.mmd_id,
         display: 0,
         stacknr: 0,
         category: this.tv[0].category,
@@ -347,7 +322,7 @@ export default {
       }
       console.log("tv: " + image)
       axios
-      .post("http://139.6.102.67:8080/ "+ this.currentCategory, image)
+      .post("http://139.6.102.67:8080/familie" , image)
         .then(res => {
           console.log(res);
         })
@@ -356,21 +331,36 @@ export default {
     setBild(tmp){
       var bild;
       if(tmp == 1){
-        bild = this.bild1[0].id;
-      } else if(tmp == 2) {
-        bild = this.bild2[0].id;
-      }else if(tmp == 3) {
-        bild = this.bild3[0].id;
-      }
-      var image = {
-        mmd_id: "xxxxx",
-        relation: "generisch",
-        materials_id: bild,
+         var image = {
+        mmd_id: this.mmd_id,
         display: tmp,
-        stacknr: 0
+        path: this.bild1[0].path,
+        type: this.bild1[0].type,
+        category: this.currentCategory,
+        description: this.bild1[0].description
       }
+      } else if(tmp == 2) {
+         var image = {
+        mmd_id: this.mmd_id,
+        display: tmp,
+        path: this.bild2[0].path,
+        type: this.bild2[0].type,
+        category: this.currentCategory,
+        description: this.bild2[0].description
+      }
+      }else if(tmp == 3) {
+        var image = {
+        mmd_id: this.mmd_id,
+        display: tmp,
+        path: this.bild3[0].path,
+        type: this.bild3[0].type,
+        category: this.currentCategory,
+        description: this.bild3[0].description
+      }
+      }
+     
       axios
-      .post("http://139.6.102.67:8080/" +  this.currentCategory , image)
+      .post("http://139.6.102.67:8080/" + this.currentCategory  , image)
         .then(res => {
           console.log(res);
         })
@@ -431,7 +421,7 @@ body {
 
 .container {
   height: 95vh;
-  padding: 100px;
+  margin: 100px;
   display: flex;
 }
 
@@ -475,8 +465,9 @@ body {
 }
 
 .image-grid {
-  width: 100%;
+  width: 50em;
   padding-left: 30px;
+  padding-right: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -489,17 +480,21 @@ body {
   overflow: auto;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 100px));
-  grid-gap: 10px;
+  grid-gap: 15px;
 }
 
 .image-gallery__image {
+  float:left;
   max-width: 100px;
   max-height: 100px;
 }
 
 .dragArea list-group {
-  width: 200px;
-  height: 300px;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  position: center;
+  border: 1px;
   border-width: 1em;
   border-color:black;
   background: brown;
@@ -511,11 +506,24 @@ body {
 
 .list-group-item {
 border: 0;
-float: left;
 width: 100px;
 height: 100px;
 }
-
+.list-group-item-bilder {
+border: 1;
+width: 100px;
+height: 100px;
+}
+.imageUpload{
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+.bildTV{
+  width: 20em;
+  height: 100%;
+  background-color: #db1644;
+}
 
 .col-3 {
   max-width: 20%;

@@ -15,10 +15,11 @@ exports.set_to_stack = function (req, res) {
             var stack = {
                 id: generateUniqueId(),
                 mmd_id: req.body.mmd_id,
-                relation: req.body.relation,
-                materials_id: req.body.materials_id,
                 display: req.body.display,
-                stacknr: req.body.stacknr
+                path: req.body.path,
+                type: req.body.type,
+                category: req.body.category,
+                description: req.body.description
             } 
             //prüfen, ob mmd_id mit display= und stacknr= existiert
             Freizeit.proof(stack, function (err, material) {

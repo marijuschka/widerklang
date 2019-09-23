@@ -26,9 +26,10 @@
         </div> -->
         <div class="image-gallery">
           <!-- upload -->
-         <div>
-          <b-button v-b-modal.modal-1><div class="upload"></div>
+           <b-button class="uploadButton" v-b-modal.modal-1><div class="upload"></div>
           </b-button>
+         <div>
+         
           
    
 
@@ -318,7 +319,11 @@ body {
 #sidebarImage1 {
   opacity: 1;
 }
-
+.uploadButton{
+  background: transparent;
+  border: none;
+  padding: 0;
+}
 .image-sidebar__image {
   width: 120px;
   height: 120px;
@@ -367,7 +372,9 @@ body {
 }
 
 .image-gallery__image {
-  max-width: 100px;
+  margin: 2px;
+  border:1px;
+  max-width: 120px;
   max-height: 100px;
 }
 
@@ -381,6 +388,7 @@ body {
   background-color: brown;
   max-width: 20px;
   max-height: 200px;
+  border:1px;
 }
 
 .list-group-item {
