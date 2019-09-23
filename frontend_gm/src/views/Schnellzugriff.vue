@@ -32,6 +32,9 @@
         <!-- Rechte Seite -->
         <b-col cols="12" sm="6" class="footroom" id="rechts">
          <!-- <img class="Media" alt="2" width="50%" src="../assets/Media.png"/> -->
+         <div class="imageContainer">
+           <img src="" alt="">
+         </div>
           
           <router-link to="/mediaManagementPfleger" id="mmd"><h2>Medien</h2></router-link>
           <hr />
@@ -156,5 +159,9 @@ a:hover {
 }
 .footroom {
   margin-bottom: 40px;
+}
+.imageContainer {
+  height: 15vh;
+
 }
 </style>

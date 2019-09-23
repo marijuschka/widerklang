@@ -4,6 +4,14 @@ var MmD = require('../models/mmdModel.js');
 function generateUniqueId() {
     return Math.random().toString(36).substr(2, 10);
 }
+exports.get_a_mmd_by_mmd_name = function(req,res) {
+    MmD.getAMmdByMmdName(req.params.mmd_name,function(err,mmd) {
+        if (err)
+            res.send(err);
+        res.send(mmd);
+    })
+};
+
 
 exports.get_a_mmd = function(req,res) {
     

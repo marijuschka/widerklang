@@ -107,8 +107,10 @@ app.route('/carer/')
 // Es ist zu beachten, dass wenn ein MmD geloescht wird sich auch der gesamte Inhalt aus der Datenbank loescht, sprich:
 // Alle Tabellen eintrege von Materialen etc. muessen auch geloescht werden
 
+app.route('/mmd/:mmd_name')
+        .get(mmdController.get_a_mmd_by_mmd_name);
         
-        // Zugriff //
+        // Zugriff //   
 app.route('/mmd/:mmd_id')
 
                 // GET A MMD BY ID

@@ -403,11 +403,11 @@ body {
 }
 
 .upload {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   background-position: center;
-  background-size: 150px 150px; /* Skalierung vom Bild */
-  background-image: url("../assets/plus.jpg");
+  background-size: 80px 80px; /* Skalierung vom Bild */
+  background-image: url("../assets/Add.png");
 }
 
 .upload input {
