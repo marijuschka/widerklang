@@ -27,10 +27,13 @@
       
     </div>
     <b-row class="trigger" @click="trigger()" v-bind:class="theme">
-      <b-col col lg="9">
+      <b-col col lg="4">
       </b-col>
-      <b-col col lg="3">
-        <router-link to="/mediaManagement" id="mediaManagement">
+       <b-col col lg="4">
+           <p class="switch-mode" v-if="seen === true">Hallo {{this.mmd_name}} </p>
+          </b-col>
+      <b-col col lg="4">
+        <router-link to="/mediaManagementfT" id="mediaManagementfT">
           <b-button class="switch-mode" v-if="seen === true"> Betreuer-Modus </b-button>
         </router-link>
       </b-col>
@@ -58,12 +61,13 @@ export default {
       stackFocus: 1,
       stackLeft: 0,
       stackRight: 2,
-      mmd_id: "mser7dtoxl",
+      mmd_id: localStorage.getItem("mmd_id"),
+      mmd_name: localStorage.getItem("name"),
       seen: false,
       stack: []
 
       /* Hier sollte dann der richtige Stack in Abhängigkeit der Themen und des Users geladen werden */
-    /* stack: [
+   /* stack: [
         {
           id: 1,
           path: "https://picsum.photos/id/40/400/400"
@@ -84,8 +88,8 @@ export default {
           id: 5,
           path: "https://picsum.photos/id/250/400/400"
         }
-     ]     */ 
-    };
+     ]  */
+    }; 
   },
   methods: {
     previousOnStack: function() {
@@ -152,6 +156,7 @@ export default {
       this.seen = !this.seen;
     }, 
      getTV(){
+       console.log("mmd_id:" + this.mmd_id)
        console.log(this.theme);
        if(this.theme == "red-theme"){
          var category = "familie"

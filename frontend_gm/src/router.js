@@ -47,6 +47,11 @@ export default new Router({
       component: () => import('./views/MediaManagement.vue')
     },
     {
+      path: '/mediaManagementfT',
+      name: 'mediaManagementfT',
+      component: () => import('./views/MediaManagementfT.vue')
+    },
+    {
       path: '/mediaManagementPfleger',
       name: 'mediaManagementPfleger',
       component: () => import('./views/MediaManagementPfleger.vue')
