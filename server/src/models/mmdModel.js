@@ -19,6 +19,18 @@ MmD.updateById = function updateById(updated_mmd,result) {
     }); 
 }
 
+MmD.getAMmdByMmdName = function getAMmdByMmdName(mmd_name,result) {
+    sql.query("SELECT id FROM mmd WHERE name = ?",mmd_name, function (err,res) {
+        if (err) {
+            result(null, err);
+        }
+        else {
+            result(null, res[0]);
+
+        }
+    });
+};
+
 MmD.getAMmdById = function getAMmdById(mmd_id,result) {
     sql.query("SELECT * FROM mmd WHERE id = ?",mmd_id, function (err,res) {
         if (err) {
