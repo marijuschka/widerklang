@@ -378,7 +378,6 @@ export default {
           console.log(res);
         })
         .catch(err => console.log("Hey! Axios error for editMember: " + err));
-        this.getBilderwand(tmp);
     },
     fetchImages() {
       if (this.generisch == true) {

@@ -1,7 +1,7 @@
 <template>
   <div class="media-management">
     <my-header></my-header>
-    <h2> Generische Medienverwaltung </h2>
+    <h2> Medienverwaltung </h2>
     
           <!-- upload -->
            <b-button class="uploadButton" v-b-modal.modal-1><div class="upload"></div>
@@ -315,6 +315,8 @@ body {
   height: 95vh;
   padding: 100px;
   padding-top:40px;
+  background-color: rgba(0,0,0,0.05);
+  border-radius:20px;
   display: flex;
 }
 
@@ -380,15 +382,12 @@ body {
 }
 
 .image-gallery__image {
-  width: 150px;
-  height: 100px;
+  width: 200px;
+  height: 150px;
   border-radius: 8px;
   background-color:transparent;
   margin: 100%;
-  float: left;
   box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.5);
-  margin:3%;
-  transition: width 1s;
 }
 
 .dragArea list-group {
