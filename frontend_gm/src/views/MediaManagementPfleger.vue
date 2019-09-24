@@ -31,15 +31,15 @@
         </div> -->
     <b-container fluid class="p-4">
 
-  <b-modal id="modal-1" title="Image Upload">  
+  <b-modal id="modal-1" title="Bild hochladen">  
  <form action="http://139.6.102.67:8080/generic" method="POST" enctype="multipart/form-data">
                 <div class="input-field col s12">
-                        <input placeholder="Benne deine Datei" id="name" name="name" type="text" class="validate">
                         <label for="first_name">Name</label>
+                        <input placeholder="Bildbezeichung" id="name" name="name" type="text" class="validate">
                       </div>
                           <div class="input-field col s12">
-                                <input placeholder="Beschreibung/Gruß" id="description" name="description" type="text" class="validate">
                                 <label for="first_name">Beschreibung</label>
+                                <input placeholder="Beschreibung/Gruß" id="description" name="description" type="text" class="validate">
                               </div>
                         <input class="form-input" type="hidden" id="category" name="category" v-bind:value="currentCategory">
                     </br>
@@ -328,6 +328,7 @@ body {
 
 #sidebarImage1 {
   opacity: 1;
+  background: white;
 }
 .uploadButton{
   background: transparent;
@@ -345,6 +346,7 @@ body {
   padding: 0;
   border: none;
   transition: 0.2s;
+  background: white;
 }
 
 .btn-sidebar:focus {
@@ -356,7 +358,8 @@ body {
 }
 
 .btn-sidebar img {
-  margin: 0;
+  opacity: 0;
+  
 }
 
 .image-navbar {
