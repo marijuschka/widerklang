@@ -157,9 +157,9 @@ app.route('/freizeit/:mmd_id/:display')
         .get(freizeitController.getStack);
 app.route('/freizeit/')
         .post(freizeitController.set_to_stack); 
-app.route('/heimat/:mmd_id/:display')
+app.route('/regional/:mmd_id/:display')
         .get(heimatController.getStack); 
-app.route('/heimat/')
+app.route('/regional/')
         .post(heimatController.set_to_stack);     
 };
 

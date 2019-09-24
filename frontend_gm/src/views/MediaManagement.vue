@@ -247,17 +247,6 @@ export default {
     "my-header": Header,
     draggable
   },
- /* created() {
-   axios
-      .get("http://139.6.102.67:8080/" + this.currentCategory + "/" + this.mmd_id + "/0")
-      .then(res => {
-        console.log();
-        this.tv = res.data;
-      })
-      .catch(err =>
-        console.log("Hey! Axios error for Created MMD_Member: " + err)
-      );
-  },*/
   methods: {
     setGenerisch() {
       this.generisch = true;
@@ -285,7 +274,7 @@ export default {
       axios
       .get("http://139.6.102.67:8080/" + this.currentCategory + "/" + this.mmd_id + "/0")
       .then(res => {
-        console.log();
+        console.log(res.data);
         this.tv = res.data;
       })
       .catch(err =>
@@ -364,6 +353,7 @@ export default {
           console.log(res);
         })
         .catch(err => console.log("Hey! Axios error for editMember: " + err));
+        this.getBilderwand(tmp);
     },
     fetchImages() {
       if (this.generisch == true) {
