@@ -4,12 +4,12 @@
       <b-navbar toggleable="lg" type="light" variant="light">
         <b-navbar-brand v-if="Carer=='true'" href="#">
           <router-link to="/schnellzugriff" id="schnellzugriff">
-            <img alt="Vue logo" src="../assets/Widerklang_Logo_Bild.png" />
+            <img alt="Vue logo" src="../assets/WiderKlang_Bild_Marke_2.png" />
           </router-link>
         </b-navbar-brand>
         <b-navbar-brand v-if="Carer=='null'" href="#">
           <router-link to="/" id="login">
-            <img alt="Vue logo" src="../assets/WiderklangLogo.png" />
+            <img class="logo-header" alt="Logo" src="../assets/WiderKlang_Bild_Marke_2.png" />
           </router-link>
         </b-navbar-brand>
 
@@ -18,10 +18,11 @@
         <b-collapse id="nav-collapse" is-nav >
           <b-navbar-nav>
             <b-nav-item v-if="Carer=='true'" href="#">
-              <router-link to="/mmd" id="mmd">Benutzer</router-link>
+              <router-link to="/mmd" id="mmd" class="font-type">Benutzer</router-link>
+              <img alt="Vue logo" src="../assets/WiderKlang_Bild_Marke_2.png" />
             </b-nav-item>
             <b-nav-item v-if="Carer=='true'" href="#">
-              <router-link to="/carer" id="carer">Pfleger</router-link>
+              <router-link to="/carer" id="carer" class="font-type">Pfleger</router-link>
             </b-nav-item>
             <!--<b-nav-item v-if="Carer=='true'" href="#">
               <router-link to="/schnellzugriff" id="SZugriff">SZugriff</router-link>
@@ -30,7 +31,7 @@
               <router-link to="/tablet" id="tablet">TABLET</router-link>
             </b-nav-item> -->
             <b-nav-item v-if="Carer!='null'"  href="#">
-              <router-link to="/mediaManagementPfleger" id="mediaManagement">Medien</router-link>
+              <router-link to="/mediaManagementPfleger" id="mediaManagement" class="font-type">Medien</router-link>
             </b-nav-item>
           </b-navbar-nav>
 
@@ -80,18 +81,25 @@ nav {
 }
 
 header {
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Hind", sans-serif;
 }
 
 .text-white {
   color: #f5f5f5 !important;
 }
-
+.logo-header {
+  width: 10%;
+  height: auto;
+}
 img {
   width: 70px;
 }
 /* Für Abstand auf jeder Seite mit Header */
 .margin-top-60 {
   margin-top: 10px;
+}
+.font-type {
+  font: "Hind" sans-serif;
+  color: black;
 }
 </style>

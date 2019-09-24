@@ -7,7 +7,7 @@
 
         <!-- Linke Seite -->
         <b-col cols="12" sm="6" class="footroom" id="links">
-          <router-link to="/mmd" id="mmd"><h2>Menschen mit Demenz</h2></router-link>
+          <router-link to="/mmd" id="mmd"><img class="accounts" alt="2"  src="../assets/Konten_female.png"/></router-link>
           <hr />
           <b-row class="justify-content-center first-row">
             <b-col class="user-boxes left-box" cols="4">
@@ -32,16 +32,16 @@
         <!-- Rechte Seite -->
         <b-col cols="12" sm="6" class="footroom" id="rechts">
          <!-- <img class="Media" alt="2" width="50%" src="../assets/Media.png"/> -->
-         <div class="imageContainer">
-           <img src="" alt="">
-         </div>
-          
-          <router-link to="/mediaManagementPfleger" id="mmd"><h2>Medien</h2></router-link>
+       
+            <router-link to="/mediaManagementPfleger" id="mmd"><img class="Media" alt="2" width="50%" src="../assets/Media.png"/></router-link>
+           
+        
+         
           <hr />
           <b-row class="justify-content-center first-row">
             <b-col class="red-theme theme-boxes left-box" cols="4">
               <router-link to="/mediaManagementPfleger" id="mediaManagement">
-                <img class="theme-img" alt="" src="../assets/Familie-Icon.png"/>
+                <img class="theme-img" alt="" src="../assets/rot.png"/>
               </router-link>
             </b-col>
             <b-col class="blue-theme theme-boxes" cols="4">
@@ -160,8 +160,15 @@ a:hover {
 .footroom {
   margin-bottom: 40px;
 }
-.imageContainer {
-  height: 15vh;
-
+.Media {
+  margin-top: 5%;
+  rotate: 180;
+  height: 10%;
+  width:auto;
+}
+.accounts {
+  margin-top: 5%;
+  height: 10%;
+  width:auto;
 }
 </style>
