@@ -22,9 +22,8 @@
           </div>
         </div>
       </div>
-      <button v-on:click="login2" type="submit" class="btn btn-primary">Widerklang starten</button>
+      <button v-on:click="login" type="submit" class="btn btn-primary">Widerklang starten</button>
     </form>
-
     <br />
     <br />
     <br />
@@ -48,29 +47,22 @@ export default {
   },
   methods: {
     login() {
+      console.log("test" + this.loginData.username)
       axios
-        .get("http://139.6.102.67:8080/mmd", {
-          
-          username: this.loginData.username,
-        })
+        .get("http://139.6.102.67:8080/mmd/" + this.loginData.username)
         .then(res => {
           {
             console.log(res.data)
             console.log("Token for "+this.loginData.username+" is: "+res.data.token);
-            localStorage.setItem("token", res.data.token);
-            localStorage.setItem("role", res.data.role);
             localStorage.setItem("auth", res.data.auth);
             localStorage.setItem("userid", res.data.user_id);
-            localStorage.setItem("mmd_id", res.data.mmd_id);
-
-            console.log("Token: "+localStorage.getItem("token")+" ___ Role: "+localStorage.getItem("role")+" ___ Role: "+localStorage.getItem("auth"))
-            
+            localStorage.setItem("mmd_id", res.data.id);
+            localStorage.setItem("mmd_name", res.data.name)
+            console.log("der name ist " + localStorage.getItem("mmd_name"))
+            this.$router.push('../tablet')
           }
         });
     },
-    login2(){
- this.$router.push('../tablet')
-    }
   }
 };
 </script>

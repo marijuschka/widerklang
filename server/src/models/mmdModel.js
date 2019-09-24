@@ -20,7 +20,7 @@ MmD.updateById = function updateById(updated_mmd,result) {
 }
 
 MmD.getAMmdByMmdName = function getAMmdByMmdName(mmd_name,result) {
-    sql.query("SELECT id FROM mmd WHERE name = ?",mmd_name, function (err,res) {
+    sql.query("SELECT * FROM mmd WHERE name = ?",mmd_name, function (err,res) {
         if (err) {
             result(null, err);
         }

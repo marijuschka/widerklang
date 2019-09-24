@@ -6,6 +6,7 @@
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     </head>
     <body>
+        
         <img src="" id="image" name="image" class="image"/>
         
     </body>
@@ -21,16 +22,16 @@
                 });
                 socket.on('reMessage', function (data){
                     if(data.category === 'Natur'){
-                    document.body.style.background = 'green';
+                    document.body.style.background = '#32a62e';
                     } 
                     if(data.category === 'Familie'){
-                    document.body.style.background = 'red';
-                    } 
-                    if(data.category === 'Regional'){
-                    document.body.style.background = 'orange';
+                    document.body.style.background = '#db1644';
                     } 
                     if(data.category === 'Freizeit'){
-                    document.body.style.background = 'blue';
+                    document.body.style.background = '#f2bc18';
+                    } 
+                    if(data.category === 'Regional'){
+                    document.body.style.background = '#50a5eb';
                     } 
                     imagepath = data.bild1path;
                     

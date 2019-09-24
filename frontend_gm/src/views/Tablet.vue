@@ -62,11 +62,14 @@
       </div>
 
       <div>
-        <b-row class="trigger" @click="trigger()">
-          <b-col col lg="9">
+        <b-row class="trigger " @click="trigger()" >
+          <b-col col lg="4" class="switch-mode" v-if="seen === true" style="background: grey;">
           </b-col>
-          <b-col col lg="3">
-            <router-link to="/mediaManagement" id="mediaManagement">
+          <b-col col lg="4" class="switch-mode" v-if="seen === true" style="background: grey;">
+           <p class="switch-mode" v-if="seen === true">Hallo {{this.mmd_name}} </p>
+          </b-col>
+          <b-col col lg="4" class="switch-mode" v-if="seen === true" style="background: grey;">
+            <router-link to="/mediaManagementfT" id="mediaManagementfT">
               <b-button class="switch-mode" v-if="seen === true"> Betreuer-Modus </b-button>
             </router-link>
           </b-col>
@@ -85,7 +88,6 @@ var data = {
         bild1path: "bildpath1",
         bild2path: "bildpath2",
         bild3path: "bildpath3",
-        mmd_id: "mser7dtoxl"
     }
 export default {
   name: "tablet",
@@ -97,7 +99,9 @@ export default {
             message: '',
             messages: [],
             socket : io('http://139.6.102.67:8080'),  //on Server: 'http://139.6.102.67:8080'
-            seen: false
+            seen: false,
+            mmd_id: localStorage.getItem("mmd_id"),
+        mmd_name: localStorage.getItem("mmd_name")
             
         }
     },
@@ -109,13 +113,14 @@ export default {
     data.category = tmp;
     console.log(data.category);
     this.socket.emit('message', data, {for: 'everyone'})
-			 }
-    },
-    trigger: function () {
+			 },
+       trigger: function () {
       console.log('trigger');
       console.log(this.seen);
       this.seen = !this.seen;
+    }
     },
+    
 };
 </script>
 

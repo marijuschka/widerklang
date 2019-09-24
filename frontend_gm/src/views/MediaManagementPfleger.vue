@@ -2,6 +2,11 @@
   <div class="media-management">
     <my-header></my-header>
     <h2> Generische Medienverwaltung </h2>
+    
+          <!-- upload -->
+           <b-button class="uploadButton" v-b-modal.modal-1><div class="upload"></div>
+          </b-button>
+       
     <div class="container">
       <div class="image-sidebar">
         <button
@@ -19,19 +24,12 @@
           />
         </button>
       </div>
-      <div class="image-grid">
-   <!--     <div class="image-navbar">
+    <!--  <div class="image-grid">
+      <div class="image-navbar">
           <button @click="setGenerisch">Generisch</button>
           <button @click="setPersoenlich">Persönlich</button>
         </div> -->
-        <div class="image-gallery">
-          <!-- upload -->
-           <b-button class="uploadButton" v-b-modal.modal-1><div class="upload"></div>
-          </b-button>
-         <div>
-         
-          
-   
+    <b-container fluid class="p-4">
 
   <b-modal id="modal-1" title="Bild hochladen">  
  <form action="http://139.6.102.67:8080/generic" method="POST" enctype="multipart/form-data">
@@ -57,19 +55,24 @@
                 <button type="submit" class="btn"> Submit </button>
             </form>
   </b-modal>
-</div>
-         
-        <div
+
+
+
+     <b-row
           class="list-group-item"
           v-for="element in images"
           :key="element.id"
         >
-         <img
+           <b-col>
+         <img thumbnail fluid
             :key="index"
             :src="'http://139.6.102.67:8080/' + element.path"
             alt="123"
             class="image-gallery__image"
           />
+          </b-col>
+          </b-row>
+          </b-container>
         </div>
       </div>
         
@@ -291,8 +294,12 @@ body {
   width: 100px;
   height: 100px;
   background-position: center;
+  border:1px;
   background-size: 150px 150px; /* Skalierung vom Bild */
   background-image: url("../assets/plus.jpg");
+}
+.p-4{
+  padding:0 !important;
 }
 
 .upload input {
@@ -362,7 +369,7 @@ body {
   padding-left: 30px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
 
   
 }
@@ -376,10 +383,15 @@ body {
 }
 
 .image-gallery__image {
-  margin: 2px;
-  border:1px;
-  max-width: 120px;
-  max-height: 100px;
+  width: 150px;
+  height: 100px;
+  border-radius: 8px;
+  background-color:transparent;
+  margin: 100%;
+  float: left;
+  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.5);
+  margin:3%;
+  transition: width 1s;
 }
 
 .dragArea list-group {
@@ -390,7 +402,7 @@ body {
   background: brown;
   flex-direction: inherit !important;
   background-color: brown;
-  max-width: 20px;
+  max-width: 200px;
   max-height: 200px;
   border:1px;
 }
@@ -398,6 +410,8 @@ body {
 .list-group-item {
 border: 0;
 float: left;
+margin:5%;
+background-color:transparent;
 width: 100px;
 height: 100px;
 }

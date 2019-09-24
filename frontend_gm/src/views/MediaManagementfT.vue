@@ -25,7 +25,6 @@
           <button @click="setPersoenlich">Persönlich</button>
         </div>
         <div class="image-gallery">
-        
           <!-- upload -->
          <div>
           <b-button class="imageUpload" v-b-modal.modal-1><div class="upload">
@@ -66,72 +65,49 @@
         :group="{ name: 'people', pull: 'clone', put: false }"
         @change=""
       >
-       <b-row
+        <div
           class="list-group-item"
           v-for="element in images"
           :key="element.id"
         >
-        <b-col>
-         <img thumbnail fluid
+         <img
             :key="element.id"
             :src="'http://139.6.102.67:8080/' + element.path"
             alt="123"
             class="image-gallery__image"
           />
-         </b-col>
-       </b-row>
+        </div>
       </draggable>
-      
       </div>
     </div>
   <div>
   <b-card no-body class="bildTV" v-bind:style="{'background-color': currentColor }">
-    <b-tabs card active-nav-item-class="font-weight-bold text-uppercase text-danger">
-      <b-tab>
-      <template v-slot:title>
-        <img
-            id="sidebarImage1"
-            :src="'/assets/TV_black.png'"
-            height="20px"
-            width="auto"
-            class="head_img"
-          />
-      </template>
+    <b-tabs card>
+      <b-tab title="Fernseher" active>
         <b-card-text>
-        <b-container fluid class="p-4">
         <h3>TV</h3>
         <draggable
-        class="dragArea2 "
+        class="dragArea "
         :list="tv"
         group="people"
         @change="setTV()"
       >
-          <b-row class="list-group-item" v-for="element in tv" :key="element.id">
-            <b-col>
+          <div class="list-group-item" v-for="element in tv" :key="element.id">
             <img
               :key="element.id"
               :src="'http://139.6.102.67:8080/' + element.path"
               alt="123"
               class="image-gallery__image"
             />
-            </b-col>
-          </b-row>
+          </div>
         </draggable>
-        </b-container>
         </b-card-text>
       </b-tab>
-      <b-tab>
-       <template v-slot:title>
-        <img
-            id="sidebarImage1"
-            :src="'/assets/Image_black.png'"
-            class="head_img"
-          />
-      </template>
+      <b-tab title="Bilderwand">
         <b-card-text>
          <h3>Bild1</h3>
       <draggable
-        class="dragArea2"
+        class="dragArea"
         :list="bild1"
         group="people"
         @change="setBild(1)"
@@ -141,7 +117,7 @@
           v-for="element in bild1"
           :key="element.id"
         >
-            <img thumbnail fluid
+            <img
             :key="element.id"
             :src="'http://139.6.102.67:8080/' + element.path"
             alt="123"
@@ -149,10 +125,9 @@
           />
         </div>
       </draggable>
-      </br>
             <h3>Bild2</h3>
       <draggable
-        class="dragArea2 "
+        class="dragArea "
         :list="bild2"
         group="people"
         @change="setBild(2)"
@@ -162,7 +137,7 @@
           v-for="element in bild2"
           :key="element.id"
         >
-            <img thumbnail fluid
+            <img
             :key="element.id"
             :src="'http://139.6.102.67:8080/' + element.path"
             alt="123"
@@ -170,10 +145,9 @@
           />
         </div>
       </draggable>
-      </br>
-    <h3>Bild3</h3>
+            <h3>Bild3</h3>
       <draggable
-        class="dragArea2"
+        class="dragArea"
         :list="bild3"
         group="people"
         @change="setBild(3)"
@@ -183,7 +157,7 @@
           v-for="element in bild3"
           :key="element.id"
         >
-            <img thumbnail fluid
+            <img
             :key="element.id"
             :src="'http://139.6.102.67:8080/' + element.path"
             alt="123"
@@ -197,6 +171,18 @@
   </b-card>
 </div>
     </div>
+     <b-row class="trigger " @click="trigger()" >
+          <b-col col lg="4" class="switch-mode" v-if="seen === true" style="background: grey;">
+          </b-col>
+          <b-col col lg="4" class="switch-mode" v-if="seen === true" style="background: grey;">
+           <p class="switch-mode" v-if="seen === true">Hallo {{this.mmd_name}} </p>
+          </b-col>
+          <b-col col lg="4" class="switch-mode" v-if="seen === true" style="background: grey;">
+            <router-link to="/tablet" id="tablet">
+              <b-button class="switch-mode" v-if="seen === true"> Anwendungs-Modus </b-button>
+            </router-link>
+          </b-col>
+        </b-row>
   </div>
 </template>
 
@@ -210,6 +196,8 @@ export default {
   data() {
     return {
       mmd_id: localStorage.getItem("mmd_id"),
+      mmd_name: localStorage.getItem("mmd_name"),
+      seen: false,
       images: [],
       tv: [],
       bild1: [],
@@ -274,6 +262,11 @@ export default {
     draggable
   },
   methods: {
+     trigger: function () {
+      console.log('trigger');
+      console.log(this.seen);
+      this.seen = !this.seen;
+    }, 
     setGenerisch() {
       this.generisch = true;
       this.fetchImages();
@@ -312,6 +305,7 @@ export default {
       axios
       .get("http://139.6.102.67:8080/" + this.currentCategory + "/" + this.mmd_id + "/"+ current)
       .then(res => {
+        console.log();
         if(current == 1){
         this.bild1 = res.data;
         } else if (current == 2){
@@ -435,15 +429,12 @@ body {
 
 .container {
   height: 95vh;
-  margin: 60px;
+  margin: 100px;
   display: flex;
 }
 
 .image-sidebar {
   display: flex;
-  height:69%;
-  padding-right: 10px;
-  border-right: 2px;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -484,16 +475,16 @@ body {
 
 .image-grid {
   width: 50em;
-  height: 35em;
   padding-left: 30px;
   padding-right: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  
 }
-
+.trigger{ 
+  height: 8vh;
+  margin-top: 10vh;
+}
 .image-gallery {
   width: 100%;
   overflow: auto;
@@ -503,24 +494,11 @@ body {
 }
 
 .image-gallery__image {
-  width: 150px;
-  height: 100px;
-  border-radius: 8px;
-  background-color:transparent;
-  margin: 100%;
-  float: left;
-  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.5);
-  margin:3%;
-  transition: width 1s;
+  float:left;
+  max-width: 100px;
+  max-height: 100px;
 }
-.head_img{
-  width: 50px;
-  height: 50px;
-  border-radius: 8px;
-  background-color:transparent;
-  margin:3%;
-  transition: width 1s;
-}
+
 .dragArea list-group {
   width: 100%;
   height: 100%;
@@ -535,28 +513,9 @@ body {
   max-width: 20px;
   max-height: 200px;
 }
-.dragArea2 {
-  width: 150px;
-  height: 100px;
-  padding: 5px;
-  flex:center;
-  position: center;
-  border: 1px;
-  margin-left: 15%;
-  border-width: 1em;
-  border-radius: 8px;
-  border-color:black;
-  background-color:rgba(0,0,0,0.1);
-  flex-direction: inherit !important;
-  max-width: 200px;
-  max-height: 150px;
-}
 
 .list-group-item {
 border: 0;
-float: left;
-margin:5%;
-background-color:transparent;
 width: 100px;
 height: 100px;
 }
@@ -578,9 +537,6 @@ height: 100px;
 
 .col-3 {
   max-width: 20%;
-}
-.nav-link.active{
-  background-color:transparent;
 }
 
 
