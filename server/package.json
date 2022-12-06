@@ -19,11 +19,11 @@
   "homepage": "https://github.com/marijuschka/widerklang#readme",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.20.1",
     "connect-history-api-fallback": "^1.6.0",
     "cors": "^2.8.5",
     "ejs": "^2.6.2",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "express-vue": "^5.14.1",
     "jsonwebtoken": "^8.5.1",
     "multer": "^1.4.2",
